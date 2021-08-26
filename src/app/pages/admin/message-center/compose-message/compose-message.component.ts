@@ -7,6 +7,7 @@ import { Message, MessageType } from '../../../../@core/models/message';
 import { ReplyData } from '../../../../shared/components/reply/reply.component';
 import { forkJoin } from 'rxjs';
 import { ToastService } from '../../../../@core/services/toast.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ComposeMessageComponent implements OnInit {
   constructor(
     private userService:UsersService,
     private messageSerivce:MessageService,
-    private toastService:ToastService
+    private toastService:ToastService,private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -27,6 +28,9 @@ export class ComposeMessageComponent implements OnInit {
       this.currentUser = user;
     })
   }
+  back(){
+    this.router.navigate([`/messagecenter`]);
+}
   onSend(data:ReplyData){    
     let requests=[];
     data.to_contacts.forEach((contact:TagInputItem)=>{

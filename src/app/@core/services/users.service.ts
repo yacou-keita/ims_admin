@@ -54,6 +54,9 @@ export class UsersService {
   getTeachers():Observable<User[]>{
     return this.httpClient.get<User[]>(`${this.api_url}/user/?role=Teacher`);
   }
+  getAdmin():Observable<User[]>{
+    return this.httpClient.get<User[]>(`${this.api_url}/user/?role=Admin`);
+  }
   getAdmins():Observable<User[]> {
     let ret_user = dummyUsers.filter((user:User)=>{
       return user.role == USERROLE.Admin;

@@ -88,7 +88,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Teachers & Admins',
     icon: 'people-outline',
-    link: '/teachers',
+    link: '/users',
     // children:[
     //   {
     //     title:'List',

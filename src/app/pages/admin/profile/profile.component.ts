@@ -29,8 +29,10 @@ export class ProfileComponent implements OnInit {
       first_name:['', Validators.required],
       last_name:['', Validators.required],
       email:['', [Validators.email, Validators.required]],
+      altEmail:['', [Validators.email]],
       username:['',Validators.required],
       phoneNumber:['',Validators.required],
+      altPhoneNumber:[''],
       address:['',Validators.required],
       picture:[''],
       pictureFile:['']

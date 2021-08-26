@@ -15,8 +15,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UsersComponent implements OnInit, OnDestroy {
   parents: User[] = [];
   teachers: User[] = [];
+  admins: User[] = [];
   teacher_src: LocalDataSource;
   parent_src: LocalDataSource;
+  admin_src: LocalDataSource;
   settings = {
     actions:{
       add:false,
@@ -53,7 +55,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     private router:Router,) {
     this.teacher_src = new LocalDataSource();
     this.parent_src = new LocalDataSource();
-    
+    this.admin_src = new LocalDataSource();
   }
   
   ngOnInit(): void {
@@ -61,10 +63,16 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.teachers = teachers;
       this.teacher_src.load(this.teachers);
       this.userService.localSource = this.teacher_src;
-    })    
+    })
+    this.userService.getAdmin().pipe(takeUntil(this.destroy$)).subscribe((admins:User[])=>{
+      this.admins = admins;
+      this.admin_src.load(this.admins);
+      this.userService.localSource = this.admin_src;
+    })
   }
-  newTeacher(){
-    this.router.navigate(['teachers/new'])
+  newTeacher(val){
+    localStorage.setItem('role',val);
+    this.router.navigate(['users/new'])
   }
   onSearchWordChange(newWord:string){
     this.searchWord = newWord;

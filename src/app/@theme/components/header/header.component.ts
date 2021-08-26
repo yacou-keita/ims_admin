@@ -115,7 +115,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
   selectClass(name){
-    console.log('name >>',name)
     this.childService.setCurrentClassName(name);
     this.currentClassName = name;
     this.menuService.navigateHome();
@@ -126,7 +125,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   changeSelectedCountryCode(value: string): void {
     this.selectedCountryCode = value;
     let lang;
-    console.log("Hello");
     if(value =='gb')
     {
       this.translateSerivce.use('en');      

@@ -1,7 +1,7 @@
 <nb-card>
     <nb-card-header>
         <div class="d-flex align-items-center justify-content-between">
-            <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: white;">arrow-back-outline</nb-icon> </button>        
+            <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>        
             {{'Child Daily Information' | translate}}
             <nb-user [picture]="child?.photo" [name]="child?.first_name + ' ' + child?.last_name"></nb-user>    
         </div>
@@ -83,7 +83,7 @@
                 <div>
                     <span class="text-hint" >{{'Record injuries' | translate}}: </span>
                     <div style="display: inline-block;">
-                        <button type="button"  nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="addInjureForm()"> <nb-icon icon="plus-outline"  style="color: white;"></nb-icon> </button>
+                        <button type="button"  nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="addInjureForm()"> <nb-icon icon="plus-outline"  style="color: black;"></nb-icon> </button>
                     </div>
                 </div>
                 

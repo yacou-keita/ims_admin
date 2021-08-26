@@ -24,7 +24,7 @@ export class CellAvatarComponent implements ViewCell, OnInit {
   ngOnInit(): void {
   }
   edit(){
-    this.router.navigate([`/teachers/${this.rowData.id}`]);
+    this.router.navigate([`/users/${this.rowData.id}`]);
   }
   delete() {
     this.dialogService.open(YesNoDialogComponent,{context:{

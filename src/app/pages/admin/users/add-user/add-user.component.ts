@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { UsersService } from '../../../../@core/services/users.service';
 import { isInvalidControl } from "../../../../@core/utils/form.util";
@@ -24,14 +24,17 @@ export class AddUserComponent implements OnInit {
   errors;
   showPassword:boolean = false;
   showPassword1:boolean = false;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder, private userService:UsersService, private toastrService:ToastService) { 
+  role;
+  title;
+  constructor(private route:ActivatedRoute,private fb: FormBuilder, private userService:UsersService, private toastrService:ToastService,private router:Router) { 
     this.genereatedPwd = generateRandomPassword(12);
+    this.role = localStorage.getItem('role');
     this.profileForm = this.fb.group({
       first_name:['', Validators.required],
       last_name:['', Validators.required],
       email:['', [Validators.email, Validators.required]],
       username:['',Validators.required],
-      role:['', Validators.required],
+      role:[undefined],
       picture:[undefined],
       pictureFile:[undefined],
       pwd:['', Validators.required],
@@ -40,6 +43,12 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.role == 'teacher'){
+      this.title = 'New Teacher'
+    }else if(this.role == 'admin'){
+      this.title = 'New Admin'
+    }
+    this.profileForm['role']= this.role;
   }
   isInvalidControl = isInvalidControl;
 
@@ -68,7 +77,9 @@ export class AddUserComponent implements OnInit {
     this.profileForm.markAllAsTouched();
     if(this.profileForm.valid){
       let data =this.profileForm.value;
+      data['role'] = this.role
       data['password'] = this.profileForm.value['pwd'];
+      console.log('data >>', data);
       this.userService.AddUser(data).subscribe(
         _=>{
           this.toastrService.success('New User Added','Success');
@@ -87,7 +98,9 @@ export class AddUserComponent implements OnInit {
       return '';
     return this.profileForm.get('picture').value;
   }
-
+  back(){
+      this.router.navigate(['/users']);
+  }
   get roleList(){
     let ret =[];
     Object.keys(USERROLE).forEach(value=>{

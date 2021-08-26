@@ -1,7 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-lg-6">
         <nb-card >
-            <nb-card-header>{{'New Teacher' | translate}}</nb-card-header>
+            <nb-card-header>
+                <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
+                {{title | translate}}
+            </nb-card-header>
             <nb-card-body>
                 <form [formGroup]="profileForm" (ngSubmit)="onFormSubmit()">
                     <div class="form-group row justify-content-center">
@@ -52,7 +55,7 @@
                             <span class="error-text" *ngIf="profileForm.get('username').errors.hostError">{{errors['username'][0] | translate}}</span>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="label">{{'Role' | translate}}</label>
                         <nb-select [status]="isInvalidControl(profileForm,'role')?'danger':'basic'" fullWidth formControlName="role">
                             <nb-option *ngFor="let item of roleList;" [value]="item">
@@ -62,7 +65,7 @@
                         <div *ngIf="isInvalidControl(profileForm,'role')">
                             <span class="error-text" *ngIf="profileForm.get('role').errors.required">{{'required' | translate}}</span>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="form-group">
                         <label class="label">{{'New Password' | translate}}</label>
                         <input [nbPopover]="card" nbPopoverPlacement="bottom" nbInput [type]="showPassword ? 'text' : 'password'"  fullWidth [status]="isInvalidControl(profileForm,'pwd')?'danger':'basic'" formControlName="pwd">
