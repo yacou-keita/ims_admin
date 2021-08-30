@@ -10,7 +10,7 @@ import {
   NbInputModule,
   NbIconModule,
   NbPopoverModule,
-  NbButtonModule, NbCheckboxModule} from '@nebular/theme';
+  NbButtonModule, NbCheckboxModule, NbTooltipModule} from '@nebular/theme';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
 @NgModule({
   declarations: [UserDetailComponent],
@@ -22,6 +22,7 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     NbCheckboxModule,
     NbIconModule,
     NbButtonModule,
+    NbTooltipModule,
     SharedTranslateModule,
     NbPopoverModule ,
     ReactiveFormsModule
