@@ -34,8 +34,10 @@ export class AddUserComponent implements OnInit {
       first_name:['', Validators.required],
       last_name:['', Validators.required],
       email:['', [Validators.email, Validators.required]],
+      phoneNumber:['',Validators.required],
       username:['',Validators.required],
-      role:[undefined],
+      notes:[''],
+      role:[],
       picture:[undefined],
       pictureFile:[undefined],
       pwd:['', Validators.required],
@@ -51,7 +53,14 @@ export class AddUserComponent implements OnInit {
       this.title = 'New Admin'
       this.role = 2;
     }
-    this.profileForm['role']= this.role;
+    else if(this.role_name == 'Assistant'){
+      this.title = 'New Assistant'
+      this.role = 6;
+    }
+    else if(this.role_name == 'Personnel'){
+      this.title = 'New Personnel'
+      this.role = 7;
+    }
   }
   isInvalidControl = isInvalidControl;
 
@@ -78,6 +87,7 @@ export class AddUserComponent implements OnInit {
   }
   onFormSubmit(){
     this.profileForm.markAllAsTouched();
+    //this.profileForm['role']= this.role;
     if(this.profileForm.valid){
       let data =this.profileForm.value;
       data['role'] = this.role

@@ -78,7 +78,7 @@
                       </div>
                       <div class="form-group">
                         <label class="label">{{'Address' | translate}}</label>
-                        <textarea nbInput type="text" placeholder="{{'Address'| translate}}" [status]="isInvalidControl(profileForm,'address')?'danger':'basic'" fullWidth formControlName="address"></textarea>
+                        <textarea nbInput type="text" placeholder="{{'Address'| translate}}" [status]="isInvalidControl(profileForm,'address')?'danger':'basic'" fullWidth formControlName="address" style="height: 200px;"></textarea>
                         <div *ngIf="isInvalidControl(profileForm,'address')">
                             <span class="error-text" *ngIf="profileForm.get('address').errors.required">{{'required' | translate}}</span>
                         </div>

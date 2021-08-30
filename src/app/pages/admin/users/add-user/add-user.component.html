@@ -45,7 +45,13 @@
                             <span class="error-text" *ngIf="profileForm.get('email').errors.hostError">{{errors['email'][0] | translate}}</span>
                         </div>
                       </div>
-
+                      <div class="form-group">
+                        <label class="label">{{'Phone Number' | translate}}</label>
+                        <input nbInput type="tel"  placeholder="{{'Phone Number'| translate}}" [status]="isInvalidControl(profileForm,'phoneNumber')?'danger':'basic'" fullWidth formControlName="phoneNumber">
+                        <div *ngIf="isInvalidControl(profileForm,'phoneNumber')">
+                            <span class="error-text" *ngIf="profileForm.get('phoneNumber').errors.required">{{'required' | translate}}</span>
+                        </div>
+                      </div>
           
                       <div class="form-group">
                         <label class="label">{{'User ID' | translate}}</label>
@@ -55,6 +61,14 @@
                             <span class="error-text" *ngIf="profileForm.get('username').errors.hostError">{{errors['username'][0] | translate}}</span>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="label">{{'Notes' | translate}}</label>
+                        <textarea nbInput type="text" placeholder="{{'Notes'| translate}}" [status]="isInvalidControl(profileForm,'notes')?'danger':'basic'" fullWidth formControlName="notes" style="height: 200px;"></textarea>
+                        <div *ngIf="isInvalidControl(profileForm,'notes')">
+                            <span class="error-text" *ngIf="profileForm.get('notes').errors.required">{{'required' | translate}}</span>
+                        </div>
+                      </div>
+
                       <!-- <div class="form-group">
                         <label class="label">{{'Role' | translate}}</label>
                         <nb-select [status]="isInvalidControl(profileForm,'role')?'danger':'basic'" fullWidth formControlName="role">

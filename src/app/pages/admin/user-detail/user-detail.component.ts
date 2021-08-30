@@ -32,7 +32,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private childService:ChildService,
     private fb: FormBuilder, 
     private userService:UsersService, 
-    private toastrService:ToastService) { }
+    private toastrService:ToastService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.genereatedPwd = generateRandomPassword(12);
@@ -42,7 +43,11 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       first_name:['', Validators.required],
       last_name:['', Validators.required],
       email:['', [Validators.email, Validators.required]],
+      phoneNumber:['',[Validators.required]],
       username:['',Validators.required],
+      notes:[''],
+      altPhoneNumber:[''],
+      altEmail:[''],
       picture:[''],
       pictureFile:[''],
     });
@@ -114,6 +119,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         }
       )
     }
+  }
+  back(){
+    this.router.navigate(['/users']);
   }
   onUpdateClassroom(){
     this.userService.patchUser({

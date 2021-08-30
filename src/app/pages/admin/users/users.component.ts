@@ -16,9 +16,13 @@ export class UsersComponent implements OnInit, OnDestroy {
   parents: User[] = [];
   teachers: User[] = [];
   admins: User[] = [];
+  assistants: User[] = [];
+  personnels: User[] = [];
   teacher_src: LocalDataSource;
   parent_src: LocalDataSource;
   admin_src: LocalDataSource;
+  assistant_src: LocalDataSource;
+  personnel_src: LocalDataSource;
   settings = {
     actions:{
       add:false,
@@ -48,6 +52,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     },
   };
   searchWord:string;
+  role;
   private destroy$: Subject<void> = new Subject<void>();
 
 
@@ -56,18 +61,42 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.teacher_src = new LocalDataSource();
     this.parent_src = new LocalDataSource();
     this.admin_src = new LocalDataSource();
+    this.assistant_src = new LocalDataSource();
+    this.personnel_src = new LocalDataSource();
   }
   
   ngOnInit(): void {
-    this.userService.getTeachers().pipe(takeUntil(this.destroy$)).subscribe((teachers:User[])=>{
-      this.teachers = teachers;
+    // this.userService.getTeachers().pipe(takeUntil(this.destroy$)).subscribe((teachers:User[])=>{
+    //   this.teachers = teachers;
+    //   this.teacher_src.load(this.teachers);
+    //   this.userService.localSource = this.teacher_src;
+    // })
+    // this.userService.getAdmin().pipe(takeUntil(this.destroy$)).subscribe((admins:User[])=>{
+    //   this.admins = admins;
+    //   this.admin_src.load(this.admins);
+    //   this.userService.localSource = this.admin_src;
+    // })
+
+    this.userService.getAllUsers().pipe(takeUntil(this.destroy$)).subscribe( (user:User[]) => {
+      user.forEach((item) => {
+        if(item.role == 2){
+          this.admins.push(item)
+        }else if(item.role == 3){
+          this.teachers.push(item)
+        }else if(item.role == 6){
+          this.assistants.push(item)
+        }else if(item.role == 7){
+          this.personnels.push(item)
+        }
+      })
       this.teacher_src.load(this.teachers);
       this.userService.localSource = this.teacher_src;
-    })
-    this.userService.getAdmin().pipe(takeUntil(this.destroy$)).subscribe((admins:User[])=>{
-      this.admins = admins;
       this.admin_src.load(this.admins);
       this.userService.localSource = this.admin_src;
+      this.assistant_src.load(this.assistants);
+      this.userService.localSource = this.assistant_src;
+      this.personnel_src.load(this.personnels);
+      this.userService.localSource = this.personnel_src;
     })
   }
   newTeacher(val){

@@ -37,10 +37,10 @@
         </nb-card>         
       </nb-tab>
 
-      <!-- <nb-tab tabTitle="Assistants">
+      <nb-tab tabTitle="Assistants">
         <nb-card>
           <nb-card-header>
-            <button style="float: right;" type="button" nbButton (click)="newTeacher()" ghost> {{'New' | translate}} </button>
+            <button style="float: right;" type="button" nbButton (click)="newTeacher('Assistant')" ghost> {{'New' | translate}} </button>
           </nb-card-header>
             <nb-card-body>
               <div class="search-box mb-2">
@@ -49,7 +49,7 @@
                   <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
                 </div>
               </div>
-                <ng2-smart-table [settings]="settings" [source]="teacher_src">
+                <ng2-smart-table [settings]="settings" [source]="assistant_src">
                 </ng2-smart-table>
             </nb-card-body>
         </nb-card>         
@@ -58,7 +58,7 @@
       <nb-tab tabTitle="Personnels">
         <nb-card>
           <nb-card-header>
-            <button style="float: right;" type="button" nbButton (click)="newTeacher()" ghost> {{'New' | translate}} </button>
+            <button style="float: right;" type="button" nbButton (click)="newTeacher('Personnel')" ghost> {{'New' | translate}} </button>
           </nb-card-header>
             <nb-card-body>
               <div class="search-box mb-2">
@@ -67,11 +67,11 @@
                   <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
                 </div>
               </div>
-                <ng2-smart-table [settings]="settings" [source]="teacher_src">
+                <ng2-smart-table [settings]="settings" [source]="personnel_src">
                 </ng2-smart-table>
             </nb-card-body>
         </nb-card>         
-      </nb-tab> -->
+      </nb-tab>
   
       <!-- <nb-tab tabTitle="Parents">
         <nb-card>
