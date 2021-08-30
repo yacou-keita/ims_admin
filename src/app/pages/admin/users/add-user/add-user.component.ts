@@ -43,9 +43,9 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.role == 'teacher'){
+    if(this.role == 'Teacher'){
       this.title = 'New Teacher'
-    }else if(this.role == 'admin'){
+    }else if(this.role == 'Admin'){
       this.title = 'New Admin'
     }
     this.profileForm['role']= this.role;

@@ -154,8 +154,8 @@
                 <nb-card>
                     <nb-card-header>
                         {{'Siblings' | translate}}
-                        <button nbTooltip="Add Sibling" *ngIf="!isTeacher()"  nbButton ghost (click)="onAddSiblingClick()"> <nb-icon icon="plus-outline"  style="color: white;">plus-outline</nb-icon> </button>
-                        <button *ngIf="child?.siblings.length > 1  && !isTeacher()" nbTooltip="Remove From Sibling"  nbButton ghost (click)="onRemoveSiblingClick()"> <nb-icon icon="minus-outline"  style="color: white;">minus-outline</nb-icon> </button>
+                        <button nbTooltip="Add Sibling" *ngIf="!isTeacher()"  nbButton ghost (click)="onAddSiblingClick()"> <nb-icon icon="plus-outline"  style="color: black;">plus-outline</nb-icon> </button>
+                        <button *ngIf="child?.siblings.length > 1  && !isTeacher()" nbTooltip="Remove From Sibling"  nbButton ghost (click)="onRemoveSiblingClick()"> <nb-icon icon="minus-outline"  style="color: black;">minus-outline</nb-icon> </button>
                     </nb-card-header>
                     <nb-card-body>
                         <ng-container *ngIf="child?.siblings.length == 0; else siblings">

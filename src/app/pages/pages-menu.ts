@@ -108,7 +108,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Menu of This Year',
-    link:  '/menuofyear'
+    link:  '/menuofyear',
+    icon: 'clipboard-outline'
   },
   {
     title: 'Photos',

@@ -25,7 +25,7 @@
                         <nb-card >
                             <nb-card-header> 
                                 {{presetItemForm.get('classroom').value | translate}} 
-                                <button *ngIf="!isFinished" type="button"  nbTooltip="Add Date"  nbButton ghost (click)="addTimeRangeForm(presetItemForm)"> <nb-icon icon="plus-outline"  style="color: white;"></nb-icon> </button>
+                                <button *ngIf="!isFinished" type="button"  nbTooltip="Add Date"  nbButton ghost (click)="addTimeRangeForm(presetItemForm)"> <nb-icon icon="plus-outline"  style="color: black;"></nb-icon> </button>
                             </nb-card-header>
                             <nb-card-body >
                                 <ng-container formArrayName="timeranges" *ngFor="let timerangeForm of presetItemForm.get('timeranges').controls; index as j">                                
