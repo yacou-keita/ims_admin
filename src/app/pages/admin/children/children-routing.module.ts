@@ -11,9 +11,9 @@ import { AddChildComponent } from './add-child/add-child.component';
 
 const routes: Routes = [
   { path: '', component: ChildrenComponent },
-  { path: 'new', component: AddChildComponent, canActivate:[RoleGuard],data: {role: USERROLE.Admin} },
-  { path: ':childId/addsiblings', component: AddSiblingComponent, canActivate:[RoleGuard],data: {role: USERROLE.Admin}  },
-  { path: ':childId/setpwd', component: SetChildPWDComponent , canActivate:[RoleGuard],data: {role: USERROLE.Admin} },
+  { path: 'new', component: AddChildComponent, canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} },
+  { path: ':childId/addsiblings', component: AddSiblingComponent, canActivate:[RoleGuard],data: {role_name: USERROLE.Admin}  },
+  { path: ':childId/setpwd', component: SetChildPWDComponent , canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} },
   { path: ':childId', component: ChildDetailComponent },
   
   

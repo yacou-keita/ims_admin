@@ -67,7 +67,7 @@ export class ChildDetailComponent implements OnInit {
     this.router.navigate(['/children']);
   }
   isTeacher(){
-    return this.currentUser.role == USERROLE.Teacher;
+    return this.currentUser.role_name == USERROLE.Teacher;
   }
   getPhotoOfChild(){
     if(this.child)
@@ -75,7 +75,7 @@ export class ChildDetailComponent implements OnInit {
     return '';
   }
   isAdmin(user:User){
-    return user.role == USERROLE.Admin;
+    return user.role_name == USERROLE.Admin;
   }
   onDelete(){
     this.dialogService.open(YesNoDialogComponent,{context:{

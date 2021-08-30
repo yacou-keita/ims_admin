@@ -78,9 +78,9 @@ export class ReplyComponent implements OnInit {
   }
   getFromString(){
     if(!this.fromContact) return '';
-    if(this.fromContact.role == USERROLE.Admin)
+    if(this.fromContact.role_name == USERROLE.Admin)
       return "Admin Center"
-    if(this.fromContact.role == USERROLE.Teacher)
+    if(this.fromContact.role_name == USERROLE.Teacher)
       return this.fromContact.first_name + " " + this.fromContact.last_name;
   }
   

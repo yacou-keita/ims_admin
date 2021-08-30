@@ -24,11 +24,12 @@ export class AddUserComponent implements OnInit {
   errors;
   showPassword:boolean = false;
   showPassword1:boolean = false;
+  role_name;
   role;
   title;
   constructor(private route:ActivatedRoute,private fb: FormBuilder, private userService:UsersService, private toastrService:ToastService,private router:Router) { 
     this.genereatedPwd = generateRandomPassword(12);
-    this.role = localStorage.getItem('role');
+    this.role_name = localStorage.getItem('role_name');
     this.profileForm = this.fb.group({
       first_name:['', Validators.required],
       last_name:['', Validators.required],
@@ -43,10 +44,12 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.role == 'Teacher'){
+    if(this.role_name == 'Teacher'){
       this.title = 'New Teacher'
-    }else if(this.role == 'Admin'){
+      this.role = 3;
+    }else if(this.role_name == 'Admin'){
       this.title = 'New Admin'
+      this.role = 2;
     }
     this.profileForm['role']= this.role;
   }

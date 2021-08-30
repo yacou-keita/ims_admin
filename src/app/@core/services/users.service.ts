@@ -47,19 +47,19 @@ export class UsersService {
   }
   getParents():Observable<User[]>{
     let ret_user = dummyUsers.filter((user:User)=>{
-      return user.role == USERROLE.Parent;
+      return user.role_name == USERROLE.Parent;
     });
     return of(ret_user);
   }
   getTeachers():Observable<User[]>{
-    return this.httpClient.get<User[]>(`${this.api_url}/user/?role=Teacher`);
+    return this.httpClient.get<User[]>(`${this.api_url}/user/?role=3`);
   }
   getAdmin():Observable<User[]>{
-    return this.httpClient.get<User[]>(`${this.api_url}/user/?role=Admin`);
+    return this.httpClient.get<User[]>(`${this.api_url}/user/?role=2`);
   }
   getAdmins():Observable<User[]> {
     let ret_user = dummyUsers.filter((user:User)=>{
-      return user.role == USERROLE.Admin;
+      return user.role_name == USERROLE.Admin;
     });
     return of(ret_user);
   }

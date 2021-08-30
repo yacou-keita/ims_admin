@@ -23,10 +23,10 @@ export class ClassRoomGuard implements CanActivate {
         this.usersService.getCurrentUser().subscribe((user:User) =>{
           let classname= this.childService.getCurrentClassName();
           let nameList = []
-          if(user.role == USERROLE.Teacher){
+          if(user.role_name == USERROLE.Teacher){
             nameList = user.classNames;
           }
-          if(user.role == USERROLE.Admin){
+          if(user.role_name == USERROLE.Admin){
             nameList = this.childService.classNameList;
           }
 

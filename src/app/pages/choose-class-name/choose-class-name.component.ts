@@ -34,15 +34,15 @@ export class ChooseClassNameComponent implements OnInit {
     this.nameList =[];
     this.userService.getCurrentUser().subscribe(item=>{
       this.current_user = item
-      if(this.current_user.role == USERROLE.Teacher)
+      if(this.current_user.role_name == USERROLE.Teacher)
         this.nameList = this.current_user.classNames;
-      if(this.current_user.role == USERROLE.Admin)
+      if(this.current_user.role_name == USERROLE.Admin)
         this.nameList = this.childService.classNameList;
     });
   }
   isTeacher(){
     if (!this.current_user) return false;
-    return this.current_user.role == USERROLE.Teacher
+    return this.current_user.role_name == USERROLE.Teacher
   }
   selectClass(name){
     console.log('nam >>',name)

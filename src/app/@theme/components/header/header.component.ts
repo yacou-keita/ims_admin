@@ -73,9 +73,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
     this.currentClassName = this.childService.getCurrentClassName();
     this.userService.getCurrentUser().subscribe((user:User)=>{
-      if(user.role == USERROLE.Admin)
+      if(user.role_name == USERROLE.Admin)
         this.title = "Admin Center";
-      if(user.role == USERROLE.Teacher)
+      if(user.role_name == USERROLE.Teacher)
         this.title = "Teacher Center";
     })
     this.menuService.onItemClick
@@ -100,9 +100,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.nameList =[];
     this.userService.getCurrentUser().subscribe(item=>{
       this.current_user = item
-      if(this.current_user.role == USERROLE.Teacher)
+      if(this.current_user.role_name == USERROLE.Teacher)
         this.nameList = this.current_user.classNames;
-      if(this.current_user.role == USERROLE.Admin)
+      if(this.current_user.role_name == USERROLE.Admin)
         this.nameList = this.childService.classNameList;
     });
   }

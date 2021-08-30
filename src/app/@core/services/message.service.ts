@@ -54,7 +54,7 @@ export class MessageService {
 
 
   getSenderName(msg:Message){
-    switch(msg.sender.role){
+    switch(msg.sender.role_name){
       case USERROLE.Admin:
         return 'Admin Center';
       case USERROLE.Parent:
@@ -64,7 +64,7 @@ export class MessageService {
     }
   }
   getReceiverName(msg:Message){
-    switch(msg.receiver.role){
+    switch(msg.receiver.role_name){
       case USERROLE.Admin:
         return 'Admin Center';
       case USERROLE.Parent:
@@ -74,11 +74,11 @@ export class MessageService {
     }
   }
   getSenderPhotoUrl(msg:Message){
-    if(msg.sender.role == USERROLE.Parent)  return msg.child.photo
+    if(msg.sender.role_name == USERROLE.Parent)  return msg.child.photo
     else return msg.sender.picture
   }
   getReceiverPhotoUrl(msg:Message){
-    if(msg.receiver.role == USERROLE.Parent)  return msg.child.photo
+    if(msg.receiver.role_name == USERROLE.Parent)  return msg.child.photo
     else return msg.receiver.picture
   }
 }

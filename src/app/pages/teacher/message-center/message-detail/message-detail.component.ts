@@ -58,7 +58,7 @@ export class MessageDetailComponent implements OnInit {
   }
 
   isUserAdmin(user:User):boolean{
-    return user.role == USERROLE.Admin
+    return user.role_name == USERROLE.Admin
   }
 
   getFormatDate(date:string){
@@ -74,9 +74,9 @@ export class MessageDetailComponent implements OnInit {
     let user = msg.sender;
     if(user.id == this.currentUser.id)
       return "me";
-    if(user.role == USERROLE.Admin)
+    if(user.role_name == USERROLE.Admin)
       return "Admin Center";
-    if(user.role == USERROLE.Parent)
+    if(user.role_name == USERROLE.Parent)
       return msg.child.first_name + " " + msg.child.last_name;
     return user.first_name + " "+ user.last_name;
   }
@@ -85,20 +85,20 @@ export class MessageDetailComponent implements OnInit {
     let user = msg.receiver;    
     if(user.id == this.currentUser.id)
       return "me";
-    if(user.role == USERROLE.Admin)
+    if(user.role_name == USERROLE.Admin)
       return "Admin Center";
-    if(user.role == USERROLE.Parent)
+    if(user.role_name == USERROLE.Parent)
       return msg.child.first_name + " " + msg.child.last_name;
     return user.first_name + " "+ user.last_name;
   }
 
   resolveReceiverPictureUrl(msg:Message):string{
-    if(msg.receiver.role == USERROLE.Parent)
+    if(msg.receiver.role_name == USERROLE.Parent)
       return msg.child.photo
     return msg.sender.picture;
   }
   resolveSenderPictureUrl(msg:Message):string{
-    if(msg.sender.role == USERROLE.Parent)
+    if(msg.sender.role_name == USERROLE.Parent)
       return msg.child.photo
     return msg.sender.picture;
   }

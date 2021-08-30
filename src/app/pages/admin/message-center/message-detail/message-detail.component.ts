@@ -59,7 +59,7 @@ export class MessageDetailComponent implements OnInit {
   }
 
   isUserAdmin(user:User):boolean{
-    return user.role == USERROLE.Admin
+    return user.role_name == USERROLE.Admin
   }
   getdata(a){
     alert("asdf");

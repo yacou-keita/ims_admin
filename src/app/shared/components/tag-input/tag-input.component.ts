@@ -87,7 +87,7 @@ export class TagInputComponent implements OnInit, ControlValueAccessor {
     let results=[];
     let serach_keyword = value.toLowerCase();
     results =  this.data.filter((item:TagInputItem)=>{
-      if(item.user.role == USERROLE.Parent){
+      if(item.user.role_name == USERROLE.Parent){
         if(item.child.first_name.toLowerCase().includes(serach_keyword)|| item.child.last_name.toLowerCase().includes(serach_keyword))
           return true;
       }
@@ -159,22 +159,22 @@ export class TagInputComponent implements OnInit, ControlValueAccessor {
   }
   
   getItemName(item:TagInputItem){
-    if(item.user.role == USERROLE.Parent)
+    if(item.user.role_name == USERROLE.Parent)
       return item.child.first_name + " " + item.child.last_name;
     else
       return item.user.first_name + " " + item.user.last_name;
   }
   getItemTitle(item:TagInputItem){
-    if(item.user.role == USERROLE.Parent)
+    if(item.user.role_name == USERROLE.Parent)
       return "Child";
-    if(item.user.role == USERROLE.Admin)
+    if(item.user.role_name == USERROLE.Admin)
       return "Admin"
       
-    if(item.user.role == USERROLE.Teacher)
+    if(item.user.role_name == USERROLE.Teacher)
       return "Teacher"
   }
   getItemPicture(item:TagInputItem){
-    if(item.user.role == USERROLE.Parent)
+    if(item.user.role_name == USERROLE.Parent)
       return item.child.photo;
     return item.user.picture;
   }

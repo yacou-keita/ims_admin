@@ -145,7 +145,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
   classroomChange(checked:boolean, name:NameOfClass){
     console.log(checked,name);
-    if(this.user.role != USERROLE.Teacher) return;
+    if(this.user.role_name != USERROLE.Teacher) return;
     if(!this.user.classNames) this.user.classNames=[];
     
     if(!this.user.classNames.includes(name))

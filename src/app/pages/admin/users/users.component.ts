@@ -71,7 +71,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     })
   }
   newTeacher(val){
-    localStorage.setItem('role',val);
+    localStorage.setItem('role_name',val);
     this.router.navigate(['users/new'])
   }
   onSearchWordChange(newWord:string){

@@ -126,13 +126,13 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   }
   getName(user:User){
     if (!user) return ''
-    if(user.role == USERROLE.Parent)
+    if(user.role_name == USERROLE.Parent)
       if(user.child) return user.child.first_name +' '+ user.child.last_name;
     return user.first_name + ' ' + user.last_name
   }
   getPicture(user:User){
     if (!user) return '';
-    if(user.role == USERROLE.Parent)
+    if(user.role_name == USERROLE.Parent)
       if(user.child) return user.child.photo
     return user.picture
   }

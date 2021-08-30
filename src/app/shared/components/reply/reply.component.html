@@ -7,7 +7,7 @@
             </div>
             <div class="form-group">
                 <label class="label"> {{'To' | translate}}:</label>              
-                <ngx-tag-input required minlength="1" [(ngModel)]="to_contacts" [usertype] = "fromContact.role" #contacts="ngModel"></ngx-tag-input>
+                <ngx-tag-input required minlength="1" [(ngModel)]="to_contacts" [usertype] = "fromContact.role_name" #contacts="ngModel"></ngx-tag-input>
                 
                 <div *ngIf="contacts.invalid && isSubmitted">
                     <span class="error-text"> {{'At least One Contact is required' | translate}}. </span>

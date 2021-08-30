@@ -1,4 +1,4 @@
-import { User, USERROLE } from "./models/user";
+import { ROLE, User, USERROLE } from "./models/user";
 import { Message,MessageType } from "../@core/models/message";
 import * as moment from 'moment';
 import { CalendarEvent } from "angular-calendar";
@@ -11,12 +11,12 @@ import { Document, DocumentFor } from './models/document';
 import { MiniClub } from './models/miniclub';
 import { BookStatus, ExchangeLibrary } from './models/exchangelibrary';
 export let users:User[] = [
-    { id:1, username:"nickjones" ,first_name:"Nick", last_name:"Jones", picture: 'assets/images/nick.png', role:USERROLE.Admin, email:'nick@jone.com'},
-    { id:2, username:"katemartineze" ,first_name:"Kate", last_name:"Martinez", picture: 'assets/images/eva.png',role:USERROLE.Teacher,email:'kate@martine.com', classNames:[NameOfClass.Acajou, NameOfClass.Bamboo]},
-    { id:3, username:"evamoor" ,first_name:"Eva", last_name:"Moor", picture: 'assets/images/jack.png', role:USERROLE.Parent,email:'eva@moor.com'},
-    { id:4, username:"jackwilliam" ,first_name:"Jack", last_name:"Williams", picture: 'assets/images/lee.png', role:USERROLE.Teacher,email:'jack@william.com', classNames:[NameOfClass.Iroko, NameOfClass.Baobab]},
-    { id:5, username:"leewong" ,first_name:"Lee", last_name:"Wong", picture: 'assets/images/alan.png', role:USERROLE.Parent,email:'lee@wong.com'},
-    { id:6, username:"alanthompson" ,first_name:"Alan", last_name:"Thompson", picture: 'assets/images/kate.png', role:USERROLE.Teacher,email:'ala@thompson.com',classNames:[NameOfClass.Baobab]}
+    { id:1, username:"nickjones" ,first_name:"Nick", last_name:"Jones", picture: 'assets/images/nick.png', role:ROLE.Admin, role_name:USERROLE.Admin, email:'nick@jone.com'},
+    { id:2, username:"katemartineze" ,first_name:"Kate", last_name:"Martinez", picture: 'assets/images/eva.png',role:ROLE.Teacher,role_name:USERROLE.Teacher,email:'kate@martine.com', classNames:[NameOfClass.Acajou, NameOfClass.Bamboo]},
+    { id:3, username:"evamoor" ,first_name:"Eva", last_name:"Moor", picture: 'assets/images/jack.png',role:ROLE.Parent, role_name:USERROLE.Parent,email:'eva@moor.com'},
+    { id:4, username:"jackwilliam" ,first_name:"Jack", last_name:"Williams", picture: 'assets/images/lee.png',role:ROLE.Teacher, role_name:USERROLE.Teacher,email:'jack@william.com', classNames:[NameOfClass.Iroko, NameOfClass.Baobab]},
+    { id:5, username:"leewong" ,first_name:"Lee", last_name:"Wong", picture: 'assets/images/alan.png',role:ROLE.Parent, role_name:USERROLE.Parent,email:'lee@wong.com'},
+    { id:6, username:"alanthompson" ,first_name:"Alan", last_name:"Thompson", picture: 'assets/images/kate.png', role:ROLE.Teacher, role_name:USERROLE.Teacher,email:'ala@thompson.com',classNames:[NameOfClass.Baobab]}
 ];
 export let emgencyContacts:EmergencyContact[]=[
   { name:' emegerncy name1', email:'a@a.com', phone_number:'1234234'},

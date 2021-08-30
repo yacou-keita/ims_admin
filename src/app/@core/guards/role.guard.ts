@@ -16,7 +16,7 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return new Promise(async (resolve, reject)=>{
         this.usersService.getCurrentUser().subscribe((user:User) =>{
-          const isAllowed = Boolean(next.data.role === user.role);
+          const isAllowed = Boolean(next.data.role_name === user.role_name);
           if(!isAllowed)
             this.router.navigate(['/default']);
           resolve(isAllowed);

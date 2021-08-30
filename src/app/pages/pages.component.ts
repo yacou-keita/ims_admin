@@ -22,9 +22,9 @@ export class PagesComponent {
   constructor(private translateService: TranslateService, private userService:UsersService) {
     this.menu=[];
     this.userService.getCurrentUser().subscribe((user:User) => {
-      if( user.role === USERROLE.Admin)
+      if( user.role_name === USERROLE.Admin)
         this.menu = MENU_ITEMS;
-      if( user.role === USERROLE.Teacher)
+      if( user.role_name === USERROLE.Teacher)
         this.menu = TEACHER_MENU_ITEMS;
       this._TranslateMenu();
     })

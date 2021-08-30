@@ -22,10 +22,10 @@ const routes: Routes = [
 
       { 
         path: '', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
-        canActivate:[RoleGuard,ClassRoomGuard],data: {role: USERROLE.Admin} 
+        canActivate:[RoleGuard,ClassRoomGuard],data: {role_name: USERROLE.Admin} 
       },      
       { path: 'teacher', loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule), 
-        canActivate:[RoleGuard, ClassRoomGuard],data: {role: USERROLE.Teacher} 
+        canActivate:[RoleGuard, ClassRoomGuard],data: {role_name: USERROLE.Teacher} 
       },
       { path: '404', component:NotFoundComponent},
       { path: 'notallowed', component:NotAllowedComponent},

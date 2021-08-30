@@ -39,6 +39,6 @@ export class ChildrenComponent implements OnInit {
   }
   isAdmin(user:User){
     if (!user) return false;
-    return user.role == USERROLE.Admin;
+    return user.role_name == USERROLE.Admin;
   }
 }
