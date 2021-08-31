@@ -36,19 +36,21 @@ export class AddChildComponent implements OnInit {
         photoFile:[undefined],
         first_name: ['', Validators.required],
         last_name:  ['', Validators.required],
-        birth:[moment().subtract(15,'years').toDate(), Validators.required],
+        // moment().subtract(15,'years').toDate()
+        birth:['', Validators.required],
         gender:['Male', Validators.required],
-        nationality:['',Validators.required],
+        // nationality:['',Validators.required],
+        nationality:[[],Validators.required],
         address:['',Validators.required],
-        nameOfClass:[NameOfClass.Baobab, Validators.required],
+        nameOfClass:['', Validators.required],
         firstNameOfMother:['',Validators.required],
         lastNameOfMother:['',Validators.required],
-        phoneOfMother:['', Validators.required],
+        phoneOfMother:[''],
         firstNameOfFather:['', Validators.required],
         lastNameOfFather:['',Validators.required],
-        emailOfMother:['',[Validators.email,Validators.required]],
-        phoneOfFather:['', Validators.required],
-        emailOfFather:['',[Validators.email,Validators.required]]        
+        emailOfMother:['',[Validators.email]],
+        phoneOfFather:[''],
+        emailOfFather:['',[Validators.email]]        
       });
   }
 

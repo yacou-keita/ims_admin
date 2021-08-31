@@ -28,12 +28,12 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this.fb.group({
       first_name:['', Validators.required],
       last_name:['', Validators.required],
-      email:['', [Validators.email, Validators.required]],
+      email:['', [Validators.email]],
       altEmail:['', [Validators.email]],
       username:['',Validators.required],
-      phoneNumber:['',Validators.required],
+      phoneNumber:[''],
       altPhoneNumber:[''],
-      address:['',Validators.required],
+      address:[''],
       picture:[''],
       pictureFile:['']
     });

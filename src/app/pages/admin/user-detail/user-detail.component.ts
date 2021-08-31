@@ -42,8 +42,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.profileForm = this.fb.group({
       first_name:['', Validators.required],
       last_name:['', Validators.required],
-      email:['', [Validators.email, Validators.required]],
-      phoneNumber:['',[Validators.required]],
+      email:['', [Validators.email]],
+      phoneNumber:[''],
       username:['',Validators.required],
       notes:[''],
       altPhoneNumber:[''],

@@ -72,7 +72,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label"> {{'Nationality' | translate}}</label>
-                                <nb-select fullWidth formControlName="nationality" [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
+                                <nb-select fullWidth formControlName="nationality" multiple [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
                                     <nb-option value="civ">Cote d'ivoire</nb-option>
                                     <nb-option value="usa">United States of America</nb-option>
                                     <nb-option value="gbr">United Kingdom</nb-option>
@@ -86,7 +86,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label"> {{'Name of Class' | translate}}</label>
-                                <nb-select fullWidth formControlName="nameOfClass">
+                                <nb-select fullWidth formControlName="nameOfClass" placeholder="Select Classname">
                                     <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item |translate |titlecase}} </nb-option>
                                 </nb-select>
                             </div>
