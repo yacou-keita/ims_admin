@@ -5,7 +5,8 @@ export enum NameOfClass{
     Baobab = 'Baobab',
     Iroko = 'Iroko',
     Bamboo = 'Bamboo',
-    Acajou = 'Acajou'
+    Acajou = 'Acajou',
+    AddNew = 'Add New Class'
 }
 
 export interface EmergencyContact {

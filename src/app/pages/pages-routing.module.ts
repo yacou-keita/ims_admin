@@ -11,6 +11,7 @@ import { DefaultComponent } from './default/default.component';
 import { NotAllowedComponent } from './not-allowed/not-allowed.component';
 import { ChooseClassNameComponent } from './choose-class-name/choose-class-name.component';
 import { ClassRoomGuard } from '../@core/guards/class-room.guard';
+import { AddClassNameComponent } from './add-class-name/add-class-name.component';
 const routes: Routes = [
   {
     path: '',
@@ -29,8 +30,8 @@ const routes: Routes = [
       },
       { path: '404', component:NotFoundComponent},
       { path: 'notallowed', component:NotAllowedComponent},
-      { path: 'default', component:DefaultComponent}    
-
+      { path: 'default', component:DefaultComponent},   
+      { path: 'add/classname', component:AddClassNameComponent}
 
     ]
   },

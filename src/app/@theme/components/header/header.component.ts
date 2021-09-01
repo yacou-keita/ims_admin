@@ -115,11 +115,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
   selectClass(name){
-    this.childService.setCurrentClassName(name);
-    this.currentClassName = name;
-    this.menuService.navigateHome();
-    this.router.navigateByUrl('/', {skipLocationChange: true})
-      .then(() => this.router.navigate(['/children']));
+    if(name == 'Add New Class'){
+      this.router.navigate(['/add/classname']);
+    }else{
+      this.childService.setCurrentClassName(name);
+      this.currentClassName = name;
+      this.menuService.navigateHome();
+      this.router.navigateByUrl('/', {skipLocationChange: true})
+        .then(() => this.router.navigate(['/children']));
+    }
+    
     //this.router.navigateByUrl('/children');
   }
   changeSelectedCountryCode(value: string): void {

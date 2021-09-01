@@ -39,8 +39,8 @@ export class AddChildComponent implements OnInit {
         // moment().subtract(15,'years').toDate()
         birth:['', Validators.required],
         gender:['Male', Validators.required],
-        // nationality:['',Validators.required],
-        nationality:[[],Validators.required],
+        nationality:['',Validators.required],
+        // nationality:[[],Validators.required],
         address:['',Validators.required],
         nameOfClass:['', Validators.required],
         firstNameOfMother:['',Validators.required],
@@ -66,6 +66,7 @@ export class AddChildComponent implements OnInit {
       console.log(data.birth)
       data.birth = moment(data.birth).format("YYYY-MM-DD")
       this.isSubmitting = true
+      console.log('data >>', data)
       this.childService.addNewChild(data).subscribe(_=>{
         this.isSubmitting = false;
         this.toastService.success('New Child has been added succesfully','success');

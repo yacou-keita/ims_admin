@@ -81,7 +81,7 @@ export class AddUserComponent implements OnInit {
       reader.onload = (event:any) => {
         this.profileForm.get('picture').setValue(event.target.result);        
       }
-      this.profileForm.get('pictureFile').setValue(event.tareget.files[0]);
+      this.profileForm.get('pictureFile').setValue(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
     }
   }

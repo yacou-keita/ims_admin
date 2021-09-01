@@ -71,8 +71,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="label"> {{'Nationality' | translate}}</label>
-                                <nb-select fullWidth formControlName="nationality" multiple [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
+                                <label class="label"> {{'Nationality' | translate}}</label> <!--multiple-->
+                                <nb-select fullWidth formControlName="nationality" [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
                                     <nb-option value="civ">Cote d'ivoire</nb-option>
                                     <nb-option value="usa">United States of America</nb-option>
                                     <nb-option value="gbr">United Kingdom</nb-option>

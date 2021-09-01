@@ -27,3 +27,8 @@ export interface User{
     picture:string,
     child?:any;
 }
+
+export interface ClassName{
+  className:string,
+  Comment:any
+}
