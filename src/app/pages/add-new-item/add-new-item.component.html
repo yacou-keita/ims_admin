@@ -1,0 +1,13 @@
+<nb-card>
+    <nb-card-body>
+        {{title | translate}}
+        <input nbInput type="text" placeholder="{{'Add New'|translate}}" [(ngModel)]="newItem" fullWidth>
+        <!-- <div *ngIf="isInvalidControl(childForm,'first_name')">
+            <span class="error-text" *ngIf="childForm.get('first_name').errors.required">{{'required' | translate}}</span>
+        </div> -->
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton size="small" (click)="submit()" class="mr-4" [tabindex]="1">{{'Submit' |translate}}</button>
+      <!-- <button nbButton size="small" (click)="close(false)">{{'No' | translate}}</button> -->
+    </nb-card-footer>
+  </nb-card>

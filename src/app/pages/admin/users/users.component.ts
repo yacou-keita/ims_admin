@@ -53,6 +53,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   };
   searchWord:string;
   role;
+  roles=[];
   private destroy$: Subject<void> = new Subject<void>();
 
 
@@ -76,7 +77,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     //   this.admin_src.load(this.admins);
     //   this.userService.localSource = this.admin_src;
     // })
-
+    this.userService.getRoles().subscribe((roles) =>{
+      this.roles = roles;
+      console.log('roles >>', roles)
+    })
     this.userService.getAllUsers().pipe(takeUntil(this.destroy$)).subscribe( (user:User[]) => {
       user.forEach((item) => {
         if(item.role == 2){

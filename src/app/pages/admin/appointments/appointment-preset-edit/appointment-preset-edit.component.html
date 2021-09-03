@@ -1,10 +1,11 @@
 <nb-card>
     <nb-card-header>
       <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
-      <div class="d-flex align-items-center">
+      {{title | translate}}
+      <!-- <div class="d-flex align-items-center">
 
         {{title | translate}}
-      </div>
+      </div> -->
       
     </nb-card-header>
     <nb-card-body *ngIf="isClosed()">
@@ -22,9 +23,14 @@
       </div>      
       <div class="form-group row align-items-center">
         <label class="label col-sm-3"> {{'Date' | translate}} </label>
-        <nb-select [(ngModel)] = "selectedTimeRange" (ngModelChange)="onTimerangeChange($event)">
-          <nb-option *ngFor="let timerange of dates" [value]="timerange"> {{timerange.date | date}} </nb-option>
-        </nb-select>
+        <div class="col-sm-9">
+          <input  nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" >
+          <!-- [status]="isInvalidControl(appointmentForm,'start')?'danger':'basic'" formControlName="start"
+            <div *ngIf="isInvalidControl(appointmentForm,'start')">
+              <span class="error-text" *ngIf="appointmentForm.get('start').errors.required">{{'required' | translate}}</span>
+          </div>  -->
+          <owl-date-time #dt></owl-date-time>              
+        </div> 
 
       </div>
       <div class="form-group row align-items-center">

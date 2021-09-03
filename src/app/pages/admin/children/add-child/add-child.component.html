@@ -72,11 +72,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label"> {{'Nationality' | translate}}</label> <!--multiple-->
-                                <nb-select fullWidth formControlName="nationality" [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
-                                    <nb-option value="civ">Cote d'ivoire</nb-option>
+                                <nb-select fullWidth formControlName="nationality" multiple [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
+                                    <nb-option *ngFor="let item of nationalities;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
+                                    <nb-option (click)="addNewNationaliy()">Add New</nb-option>
+                                    <!-- <nb-option value="civ">Cote d'ivoire</nb-option>
                                     <nb-option value="usa">United States of America</nb-option>
                                     <nb-option value="gbr">United Kingdom</nb-option>
-                                    <nb-option value="fra">France</nb-option>
+                                    <nb-option value="fra">France</nb-option> -->
                                 </nb-select>      
                                 <div *ngIf="isInvalidControl(childForm,'nationality')">
                                     <span class="error-text" *ngIf="childForm.get('nationality').errors.required">{{'required' | translate}}</span>
@@ -87,7 +89,7 @@
                             <div class="form-group">
                                 <label class="label"> {{'Name of Class' | translate}}</label>
                                 <nb-select fullWidth formControlName="nameOfClass" placeholder="Select Classname">
-                                    <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item |translate |titlecase}} </nb-option>
+                                    <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
                                 </nb-select>
                             </div>
                         </div>

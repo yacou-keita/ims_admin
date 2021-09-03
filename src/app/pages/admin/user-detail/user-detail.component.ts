@@ -23,7 +23,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   profileForm: FormGroup;
   passwordForm:FormGroup;  
   genereatedPwd:string;
-  classNameList:NameOfClass[];
+  classNameList = [];
   errors:any;
 
   private destroy$:Subject<void>=new Subject<void>();
@@ -52,6 +52,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       pictureFile:[''],
     });
     
+    this.userService.getClasses().subscribe((classes) => {
+      this.classNameList = classes;
+    })
     this.passwordForm = this.fb.group({
       pwd:['', Validators.required],
       confirm_pwd:['']

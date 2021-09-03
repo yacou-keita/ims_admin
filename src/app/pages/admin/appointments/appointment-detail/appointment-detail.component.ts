@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { CalendarEvent, CalendarView, CalendarEventAction } from "angular-calendar";
+import { CalendarEvent, CalendarView, CalendarEventAction, DAYS_OF_WEEK } from "angular-calendar";
 import { DOCUMENT } from '@angular/common';
 import { AppointmentService } from "../../../../@core/services/appointment.service";
 import { UsersService } from "../../../../@core/services/users.service";
@@ -29,6 +29,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   viewDate = new Date();
   events: CalendarEvent[];
   activeDayIsOpen:boolean = true;
+  weekStartsOn;
   userId:number;
   user:User;
   private readonly darkThemeClass = 'dark-theme';
@@ -57,7 +58,9 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
     private router:Router,
     private dialogService:NbDialogService,
     private toastrService:ToastService
-  ) { }
+  ) { 
+    this.weekStartsOn = DAYS_OF_WEEK.MONDAY;
+  }
 
   ngOnInit(): void {
     this.document.body.classList.add(this.darkThemeClass);
@@ -77,7 +80,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
           return calendarEventFromAppointment(item, this.actions);
         })
       })
-    ).subscribe((res:CalendarEvent[])=>{this.events = res;})    
+    ).subscribe((res:CalendarEvent[])=>{this.events = res;})
   }
   
   onDetailEvent(event: CalendarEvent): void {
@@ -126,13 +129,13 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   }
   getName(user:User){
     if (!user) return ''
-    if(user.role_name == USERROLE.Parent)
+    if(user.role_name == USERROLE.Teacher)
       if(user.child) return user.child.first_name +' '+ user.child.last_name;
     return user.first_name + ' ' + user.last_name
   }
   getPicture(user:User){
     if (!user) return '';
-    if(user.role_name == USERROLE.Parent)
+    if(user.role_name == USERROLE.Teacher)
       if(user.child) return user.child.photo
     return user.picture
   }

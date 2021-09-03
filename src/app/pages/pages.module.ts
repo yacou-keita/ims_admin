@@ -24,6 +24,7 @@ import { NotAllowedComponent } from './not-allowed/not-allowed.component';
 import { AdminModule } from './admin/admin.module';
 import { ChooseClassNameComponent } from './choose-class-name/choose-class-name.component';
 import { AddClassNameComponent } from './add-class-name/add-class-name.component';
+import { AddNewItemComponent } from './add-new-item/add-new-item.component';
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -51,6 +52,7 @@ import { AddClassNameComponent } from './add-class-name/add-class-name.component
     NotAllowedComponent,
     ChooseClassNameComponent,
     AddClassNameComponent,
+    AddNewItemComponent,
   ],
 })
 export class PagesModule {

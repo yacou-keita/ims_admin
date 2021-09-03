@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClassName } from '../../@core/models/user';
+import { ToastService } from '../../@core/services/toast.service';
+import { UsersService } from '../../@core/services/users.service';
 import { isInvalidControl } from '../../@core/utils/form.util';
 
 @Component({
@@ -12,19 +14,30 @@ export class AddClassNameComponent implements OnInit {
   @Input() initdata:ClassName;
   @Output('onSubmit') submitEvent =  new EventEmitter<any>();
   classForm:FormGroup;
-  book:ClassName;
+  //book:ClassName;
+  classes = [];
   constructor(
-    private fb:FormBuilder
+    private userService: UsersService,
+    private fb:FormBuilder,
+    private toastService:ToastService,
   ) { }
 
   ngOnInit(): void {
     this.classForm = this.fb.group({
-      className:['', Validators.required],
-      comment:['', Validators.nullValidator]
+      name:['', Validators.required],
+      //comment:['', Validators.nullValidator]
     })
   }
   onSubmit() {
-    console.log('submit')
+    if(this.classForm.valid){
+      let data =this.classForm.value;
+      data['id']= parseInt(localStorage.getItem('classId'))
+      data['createdBy']=2;
+      this.userService.postClassName(data).subscribe((res:any) => {
+        this.toastService.success('New Class has been added succesfully','success');
+        window.location.reload();
+      })
+    }
   }
   isInvalidControl = isInvalidControl
 }

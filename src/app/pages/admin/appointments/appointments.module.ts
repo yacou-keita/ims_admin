@@ -4,7 +4,7 @@ import * as moment from "moment";
 import { AppointmentsRoutingModule } from './appointments-routing.module';
 import { AppointmentsComponent } from './appointments.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ParentListModule } from '../parent-list/parent-list.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { AppointmentDetailComponent } from './appointment-detail/appointment-detail.component';
@@ -23,9 +23,9 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
 import { ChildListModule } from '../../../shared/child-list/child-list.module';
 import { UserListModule } from '../../../shared/user-list/user-list.module';
 
-export function momentAdapterFactory() {
-  return adapterFactory(moment);
-}
+// export function momentAdapterFactory() {
+//   return adapterFactory(moment);
+// }
 
 
 @NgModule({
@@ -36,7 +36,7 @@ export function momentAdapterFactory() {
     AppointmentsRoutingModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
-      useFactory: momentAdapterFactory,
+      useFactory: adapterFactory,
     }),
     NbButtonModule,
     NbBadgeModule,

@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
       console.log(res);
       localStorage.setItem('access_token', res.token)
       this.userService.current_user = undefined;
-      localStorage.setItem('class_name', 'Baobab');
+      localStorage.setItem('class_name', "Baobab");
       this.userService.getCurrentUser().toPromise().then(_=>{
-        this.router.navigate(['/default'])
+        this.router.navigate(['/profile'])
         this.submitted = false;
       })
       

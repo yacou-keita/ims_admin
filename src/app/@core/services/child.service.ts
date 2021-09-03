@@ -73,7 +73,6 @@ export class ChildService {
   }
 
   setCurrentClassName(name: NameOfClass){
-    console.log('name >>',name)
     this.current_class_name = name;
     localStorage.setItem('class_name', this.current_class_name);
     this.currentClassNameSubject.next(this.current_class_name);

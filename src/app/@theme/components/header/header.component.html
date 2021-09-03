@@ -18,7 +18,7 @@
   <!-- <h6 (click)="navigateToChooseName()" style="cursor: pointer;"> {{ currentClassName | translate}} </h6> -->
   <nb-action class="sss">
     <nb-select placeholder="Select class name"  [(selected)]="currentClassName">
-      <nb-option *ngFor="let name of nameList" (click)="selectClass(name)" [value]="name">{{name | translate}}</nb-option>
+      <nb-option *ngFor="let class of classes" (click)="selectClass(class.name,class.id)" [value]="class">{{class.name | translate}}</nb-option>
     </nb-select>
   </nb-action>
   <nb-actions size="small">

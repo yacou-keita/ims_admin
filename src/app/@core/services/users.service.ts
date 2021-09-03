@@ -54,12 +54,21 @@ export class UsersService {
   getTeachers():Observable<User[]>{
     return this.httpClient.get<User[]>(`${this.api_url}/user/?role=3`);
   }
-  // getAdmin():Observable<User[]>{
-  //   return this.httpClient.get<User[]>(`${this.api_url}/user/?role=2`);
-  // }
-  // getUSer(role):Observable<User[]>{
-  //   return this.httpClient.get<User[]>(`${this.api_url}/user/?role=`+role)
-  // }
+  getRoles():Observable<any>{
+    return this.httpClient.get<any[]>(`${this.api_url}/user/roles`)
+  }
+  getClasses():Observable<any>{
+    return this.httpClient.get<any[]>(`${this.api_url}/user/classes`)
+  }
+  getNationalities():Observable<any>{
+    return this.httpClient.get<any[]>(`${this.api_url}/user/nationalities`)
+  }
+  postClassName(classes):Observable<any>{
+    return this.httpClient.post(`${this.api_url}/user/classes/`,classes)
+  }
+  postNationality(nationality:string):Observable<any>{
+    return this.httpClient.post(`${this.api_url}/user/nationalities/`,{name:nationality})
+  }
   getAdmins():Observable<User[]> {
     let ret_user = dummyUsers.filter((user:User)=>{
       return user.role_name == USERROLE.Admin;

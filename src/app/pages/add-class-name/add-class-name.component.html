@@ -14,16 +14,16 @@
                 <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label class="label mr-4"> {{'Class Name' | translate}} </label>
-                        <input nbInput type="text" placeholder="{{'Class Name' | translate }}" [status]="isInvalidControl(classForm,'className')?'danger':'basic'" formControlName="className">
-                        <div *ngIf="isInvalidControl(classForm,'className')">
-                            <span class="error-text" *ngIf="classForm.get('className').errors.required">{{'required' | translate}}</span>
+                        <input nbInput type="text" placeholder="{{'Class Name' | translate }}" [status]="isInvalidControl(classForm,'name')?'danger':'basic'" formControlName="name">
+                        <div *ngIf="isInvalidControl(classForm,'name')">
+                            <span class="error-text" *ngIf="classForm.get('name').errors.required">{{'required' | translate}}</span>
                         </div>
                     </div>                  
   
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="label"> {{'Comment' | translate}} </label>
                         <textarea nbInput rows="5" fullWidth placeholder="{{'comment' | translate}}" formControlName="comment"></textarea>
-                    </div>
+                    </div> -->
                     <input nbInput type="submit" value="Add" style="float: right;">
                 </form>
             </nb-card-body>

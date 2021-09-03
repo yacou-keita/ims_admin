@@ -34,8 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   selectedCountryCode = 'gb';
   countryCodes = ['gb', 'fr'];
   private current_user:User;
-  public nameList:NameOfClass[]
-
+  //public nameList:NameOfClass[]
+  classes = []
   userMenu = [ 
                {title:'Profile', url:'/profile', icon:{icon:'address-card', pack:'fa'}},
                { title: 'Log out', icon:'log-out-outline', tagname:'logout' }
@@ -53,6 +53,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
   ) {
+    this.userService.getClasses().subscribe((classes) =>{
+      this.classes = classes;
+      this.classes.push({id:this.classes.length+1, name:"Add New Class", createdBy:2})
+      this.currentClassName = this.classes[1]
+    })
   }
 
   ngOnInit() {
@@ -64,6 +69,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if(lang =='en')
         this.selectedCountryCode = 'gb';
     }
+    
     //this.currentClassName = this.childService.getCurrentClassName();  
     this.classNameSubscription = this.childService.currentClassNameSubject.subscribe(name=>{
       this.currentClassName = name;
@@ -87,6 +93,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.authService.logout();
       }
     })
+    // this.userService.getClasses()
+    // .pipe(takeUntil(this.destroy$))
+    // .subscribe((classes)=>{
+    //   this.classes = classes;
+    // })
     this.userService.getCurrentUser()
       .pipe(takeUntil(this.destroy$))
       .subscribe((user:User)=>{
@@ -97,14 +108,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   .subscribe((users: any) => this.user = users.nick);
     this._translateMenu();
     
-    this.nameList =[];
-    this.userService.getCurrentUser().subscribe(item=>{
-      this.current_user = item
-      if(this.current_user.role_name == USERROLE.Teacher)
-        this.nameList = this.current_user.classNames;
-      if(this.current_user.role_name == USERROLE.Admin)
-        this.nameList = this.childService.classNameList;
-    });
+    // this.nameList =[];
+    // this.userService.getCurrentUser().subscribe(item=>{
+    //   this.current_user = item
+    //   if(this.current_user.role_name == USERROLE.Teacher)
+    //     this.nameList = this.current_user.classNames;
+    //   if(this.current_user.role_name == USERROLE.Admin)
+    //     this.nameList = this.childService.classNameList;
+    // });
   }
   _translateMenu(){
     for (const each of this.userMenu ) {
@@ -114,9 +125,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
      
     }
   }
-  selectClass(name){
+  selectClass(name,id){
     if(name == 'Add New Class'){
       this.router.navigate(['/add/classname']);
+      localStorage.setItem('classId',id)
     }else{
       this.childService.setCurrentClassName(name);
       this.currentClassName = name;

@@ -114,7 +114,7 @@
                 <input nbInput type="submit" value="Update" (click)="onUpdateClassroom()" style="float: right;">
             </nb-card-header>
             <nb-card-body>
-                <nb-checkbox class="mr-2" (checkedChange)="classroomChange($event, item)" *ngFor="let item of classNameList" [value]="user?.classNames.includes(item)">{{item|translate}}</nb-checkbox>
+                <nb-checkbox class="mr-2" (checkedChange)="classroomChange($event, item)" *ngFor="let item of classNameList" [value]="user?.classNames.includes(item.name)">{{item.name|translate}}</nb-checkbox>
             </nb-card-body>
         </nb-card>
 

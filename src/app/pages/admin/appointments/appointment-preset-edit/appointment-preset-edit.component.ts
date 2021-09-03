@@ -64,7 +64,12 @@ export class AppointmentPresetEditComponent implements OnInit {
     this.appointmentService.GetCurrentPresetRecord().subscribe(res=>{this.currentPresetRecord = res;})
     this.classNameList = this.childService.classNameList;
     this.selectedClassroom = this.childService.getCurrentClassName();
-    
+    forkJoin({
+      teachers:this.userService.getTeachers(),
+      children:this.childService.getAllChildren(),
+    }).subscribe(ret=>{
+      this.childs = ret.children;
+    })
     if(this.isEditmode){
       this.route.paramMap.pipe(
         switchMap(

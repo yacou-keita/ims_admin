@@ -30,11 +30,23 @@
       .cal-month-view .cal-day-cell.cal-out-month .cal-day-number {
         opacity: 0.15;
       }
+      .cal-month-view .cal-cell-row .cal-header:hover{
+        background-color: lightgrey;
+      }
       .cal-month-view .cal-days .cal-cell-row:hover{
         background-color: #39404670;
       }
       .cal-month-view .cal-cell-row .cal-cell:hover, .dark-theme .cal-month-view .cal-cell.cal-has-events.cal-open {
         background-color: #5e646875;
+      }
+      .cal-month-view .cal-day-cell.cal-today{
+        background-color: lightgrey;
+      }
+      .cal-month-view .cal-open-day-events{
+        background-color: lightgrey;
+      }
+      .cal-month-view .cal-open-day-events{
+        color: black;
       }
       .cal-month-view .cal-day-number {
         font-weight: bolder;

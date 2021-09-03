@@ -23,19 +23,27 @@ export class ClassRoomGuard implements CanActivate {
         this.usersService.getCurrentUser().subscribe((user:User) =>{
           let classname= this.childService.getCurrentClassName();
           let nameList = []
-          if(user.role_name == USERROLE.Teacher){
-            nameList = user.classNames;
-          }
-          if(user.role_name == USERROLE.Admin){
-            nameList = this.childService.classNameList;
-          }
-
-          if(nameList.includes(classname)){
-            resolve(true);
-          } else{
-            this.router.navigate(['/choose/classname']);
-            resolve(false);
-          }          
+          this.usersService.getClasses().subscribe((classes) =>{
+            nameList = classes;
+            let classList = [];
+            nameList.forEach((val,i) => {
+              classList.push(val.name)
+            })
+            if(classList.includes(classname)){
+              resolve(true);
+            } else{
+              this.router.navigate(['/choose/classname']);
+              resolve(false);
+            }
+          })
+          
+          // if(user.role_name == USERROLE.Teacher){
+          //   nameList = user.classNames;
+          // }
+          // if(user.role_name == USERROLE.Admin){
+          //   nameList = this.childService.classNameList;
+          // }
+                 
         });        
       });
     return true;
