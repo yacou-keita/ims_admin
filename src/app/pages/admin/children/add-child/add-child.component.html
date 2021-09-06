@@ -72,7 +72,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label"> {{'Nationality' | translate}}</label> <!--multiple-->
-                                <nb-select fullWidth formControlName="nationality" multiple [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
+                                <nb-select fullWidth multiple formControlName="nationality" [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
                                     <nb-option *ngFor="let item of nationalities;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
                                     <nb-option (click)="addNewNationaliy()">Add New</nb-option>
                                     <!-- <nb-option value="civ">Cote d'ivoire</nb-option>

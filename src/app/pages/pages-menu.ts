@@ -70,12 +70,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title:'Notifications',
     icon:'bell-outline',
-    children:[
-      {
-        title:'Compose',
-        link:'/notification/compose'
-      }      
-    ]
+    link:'/notification'
+    // children:[
+    //   {
+    //     title:'Compose',
+    //     link:'/notification/compose'
+    //   }      
+    // ]
   },
   {
     title:'School Documents',

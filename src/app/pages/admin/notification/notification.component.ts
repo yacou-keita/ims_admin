@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-notification',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,) { }
 
   ngOnInit(): void {
   }
-
+  compose(){
+    this.router.navigate(['/notification/compose'])
+  }
 }
