@@ -18,39 +18,39 @@ export class UsersComponent implements OnInit, OnDestroy {
   admins: User[] = [];
   assistants: User[] = [];
   personnels: User[] = [];
-  teacher_src: LocalDataSource;
-  parent_src: LocalDataSource;
-  admin_src: LocalDataSource;
-  assistant_src: LocalDataSource;
-  personnel_src: LocalDataSource;
-  settings = {
-    actions:{
-      add:false,
-      edit:false,
-      delete:false,
-      position:'right'
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    hideSubHeader:true,
-    hideHeader:true,
-    pager:{
-      perPage:4
-    },
-    columns: {
-      picture:{
-        type: 'custom',
-        renderComponent: CellAvatarComponent,
-      }      
-    },
-  };
+  // teacher_src: LocalDataSource;
+  // parent_src: LocalDataSource;
+  // admin_src: LocalDataSource;
+  // assistant_src: LocalDataSource;
+  // personnel_src: LocalDataSource;
+  // settings = {
+  //   actions:{
+  //     add:false,
+  //     edit:false,
+  //     delete:false,
+  //     position:'right'
+  //   },
+  //   edit: {
+  //     editButtonContent: '<i class="nb-edit"></i>',
+  //     saveButtonContent: '<i class="nb-checkmark"></i>',
+  //     cancelButtonContent: '<i class="nb-close"></i>',
+  //   },
+  //   delete: {
+  //     deleteButtonContent: '<i class="nb-trash"></i>',
+  //     confirmDelete: true,
+  //   },
+  //   hideSubHeader:true,
+  //   hideHeader:true,
+  //   pager:{
+  //     perPage:4
+  //   },
+  //   columns: {
+  //     picture:{
+  //       type: 'custom',
+  //       renderComponent: CellAvatarComponent,
+  //     }      
+  //   },
+  // };
   searchWord:string;
   role;
   roles=[];
@@ -59,11 +59,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(private userService: UsersService,private route:ActivatedRoute,
     private router:Router,) {
-    this.teacher_src = new LocalDataSource();
-    this.parent_src = new LocalDataSource();
-    this.admin_src = new LocalDataSource();
-    this.assistant_src = new LocalDataSource();
-    this.personnel_src = new LocalDataSource();
+    // this.teacher_src = new LocalDataSource();
+    // this.parent_src = new LocalDataSource();
+    // this.admin_src = new LocalDataSource();
+    // this.assistant_src = new LocalDataSource();
+    // this.personnel_src = new LocalDataSource();
   }
   
   ngOnInit(): void {
@@ -79,7 +79,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     // })
     this.userService.getRoles().subscribe((roles) =>{
       this.roles = roles;
-      console.log('roles >>', roles)
     })
     this.userService.getAllUsers().pipe(takeUntil(this.destroy$)).subscribe( (user:User[]) => {
       user.forEach((item) => {
@@ -93,29 +92,32 @@ export class UsersComponent implements OnInit, OnDestroy {
           this.personnels.push(item)
         }
       })
-      this.teacher_src.load(this.teachers);
-      this.userService.localSource = this.teacher_src;
-      this.admin_src.load(this.admins);
-      this.userService.localSource = this.admin_src;
-      this.assistant_src.load(this.assistants);
-      this.userService.localSource = this.assistant_src;
-      this.personnel_src.load(this.personnels);
-      this.userService.localSource = this.personnel_src;
+      // this.teacher_src.load(this.teachers);
+      // this.userService.localSource = this.teacher_src;
+      // this.admin_src.load(this.admins);
+      // this.userService.localSource = this.admin_src;
+      // this.assistant_src.load(this.assistants);
+      // this.userService.localSource = this.assistant_src;
+      // this.personnel_src.load(this.personnels);
+      // this.userService.localSource = this.personnel_src;
     })
+  }
+  onSelect(selectedUser:User){
+    this.router.navigate([selectedUser.id],{relativeTo:this.route})
   }
   newTeacher(val){
     localStorage.setItem('role_name',val);
     this.router.navigate(['users/new'])
   }
-  onSearchWordChange(newWord:string){
-    this.searchWord = newWord;
-    if(this.searchWord){
+  // onSearchWordChange(newWord:string){
+  //   this.searchWord = newWord;
+  //   if(this.searchWord){
 
-      this.teacher_src.setFilter([{field:'first_name',search:this.searchWord}, {field:'last_name', search:this.searchWord}], false);    
-    }else{
-      this.teacher_src.setFilter(null);
-    }    
-  }
+  //     this.teacher_src.setFilter([{field:'first_name',search:this.searchWord}, {field:'last_name', search:this.searchWord}], false);    
+  //   }else{
+  //     this.teacher_src.setFilter(null);
+  //   }    
+  // }
   ngOnDestroy() {    
     this.userService.localSource = undefined;
     this.destroy$.next();

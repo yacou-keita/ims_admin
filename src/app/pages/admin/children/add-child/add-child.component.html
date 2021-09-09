@@ -48,7 +48,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label"> {{'Date of Birth' | translate}}</label>
-                                <input  fullWidth nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [status]="isInvalidControl(childForm,'birth')?'danger':'basic'" formControlName="birth">
+                                <input  fullWidth nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [status]="isInvalidControl(childForm,'birth')?'danger':'basic'" formControlName="birth" placeholder="mm/dd/yyyy">
                                     <div *ngIf="isInvalidControl(childForm,'birth')">
                                         <span class="error-text" *ngIf="childForm.get('birth').errors.required">{{'required' | translate}}</span>
                                     </div> 

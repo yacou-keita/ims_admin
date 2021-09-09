@@ -14,6 +14,7 @@ import { NbMenuModule,
   NbTabsetModule,
   NbTooltipModule,
   NbSelectModule} from '@nebular/theme';
+import { ChildListModule } from '../../../shared/child-list/child-list.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CellAvatarComponent } from './cell-avatar/cell-avatar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,7 +39,8 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     NbPopoverModule ,
     FormsModule,
     SharedTranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChildListModule
   ]
 })
 export class UsersModule { }

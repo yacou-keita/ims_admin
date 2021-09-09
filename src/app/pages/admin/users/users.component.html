@@ -7,14 +7,15 @@
             <button style="float: right;" type="button" nbButton (click)="newTeacher('Teacher')" ghost> {{'New' | translate}} </button>
           </nb-card-header>
             <nb-card-body>
-              <div class="search-box mb-2">
+              <!-- <div class="search-box mb-2">
                 <div style="display: flex; justify-content:flex-end;">
                   <input [(ngModel)]="searchWord" type="text" nbInput placeholder="{{'Search by name'| translate}}" (ngModelChange)="onSearchWordChange($event)"/>
                   <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
                 </div>
               </div>
-                <ng2-smart-table [settings]="settings" [source]="teacher_src">
-                </ng2-smart-table>
+                <ng2-smart-table [settings]="settings" (userRowSelect)="onRowSelect($event)" [source]="teacher_src">
+                </ng2-smart-table> -->
+                <ngx-child-list [data]="teachers" (onselect)="onSelect($event)" *ngIf="teachers?.length >0"></ngx-child-list>
             </nb-card-body>
         </nb-card>         
       </nb-tab>
@@ -25,14 +26,15 @@
             <button style="float: right;" type="button" nbButton (click)="newTeacher('Admin')" ghost> {{'New' | translate}} </button>
           </nb-card-header>
             <nb-card-body>
-              <div class="search-box mb-2">
+              <!-- <div class="search-box mb-2">
                 <div style="display: flex; justify-content:flex-end;">
                   <input [(ngModel)]="searchWord" type="text" nbInput placeholder="{{'Search by name'| translate}}" (ngModelChange)="onSearchWordChange($event)"/>
                   <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
                 </div>
               </div>
                 <ng2-smart-table [settings]="settings" [source]="admin_src">
-                </ng2-smart-table>
+                </ng2-smart-table> -->
+                <ngx-child-list [data]="admins" (onselect)="onSelect($event)" *ngIf="admins?.length >0"></ngx-child-list>
             </nb-card-body>
         </nb-card>         
       </nb-tab>
@@ -43,14 +45,15 @@
             <button style="float: right;" type="button" nbButton (click)="newTeacher('Assistant')" ghost> {{'New' | translate}} </button>
           </nb-card-header>
             <nb-card-body>
-              <div class="search-box mb-2">
+              <!-- <div class="search-box mb-2">
                 <div style="display: flex; justify-content:flex-end;">
                   <input [(ngModel)]="searchWord" type="text" nbInput placeholder="{{'Search by name'| translate}}" (ngModelChange)="onSearchWordChange($event)"/>
                   <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
                 </div>
               </div>
                 <ng2-smart-table [settings]="settings" [source]="assistant_src">
-                </ng2-smart-table>
+                </ng2-smart-table> -->
+                <ngx-child-list [data]="assistants" (onselect)="onSelect($event)" *ngIf="assistants?.length >0"></ngx-child-list>
             </nb-card-body>
         </nb-card>         
       </nb-tab>
@@ -61,14 +64,15 @@
             <button style="float: right;" type="button" nbButton (click)="newTeacher('Personnel')" ghost> {{'New' | translate}} </button>
           </nb-card-header>
             <nb-card-body>
-              <div class="search-box mb-2">
+              <!-- <div class="search-box mb-2">
                 <div style="display: flex; justify-content:flex-end;">
                   <input [(ngModel)]="searchWord" type="text" nbInput placeholder="{{'Search by name'| translate}}" (ngModelChange)="onSearchWordChange($event)"/>
                   <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
                 </div>
               </div>
                 <ng2-smart-table [settings]="settings" [source]="personnel_src">
-                </ng2-smart-table>
+                </ng2-smart-table> -->
+                <ngx-child-list [data]="personnels" (onselect)="onSelect($event)" *ngIf="personnels?.length >0"></ngx-child-list>
             </nb-card-body>
         </nb-card>         
       </nb-tab>

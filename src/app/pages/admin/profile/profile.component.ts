@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
     
     this.userService.getCurrentUser().subscribe((user:User)=>{
       this.user = user;
+      localStorage.setItem('role',this.user.role_name);
       this.profileForm.reset(this.user);
     })
     

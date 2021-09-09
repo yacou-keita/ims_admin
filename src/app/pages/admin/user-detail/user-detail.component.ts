@@ -7,11 +7,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { isInvalidControl } from "../../../@core/utils/form.util";
 import { MustMatch } from "../../../@core/utils/validators.util";
 import { generateRandomPassword } from "../../../@core/utils/password.util";
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { NameOfClass } from '../../../@core/models/child';
 import { ChildService } from '../../../@core/services/child.service';
 import { ToastService } from '../../../@core/services/toast.service';
+import { YesNoDialogComponent } from '../../../components/yes-no-dialog/yes-no-dialog.component';
 @Component({
   selector: 'ngx-user-detail',
   templateUrl: './user-detail.component.html',
@@ -33,7 +34,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private fb: FormBuilder, 
     private userService:UsersService, 
     private toastrService:ToastService,
-    private router:Router) { }
+    private router:Router,private dialogService:NbDialogService) { }
 
   ngOnInit(): void {
     this.genereatedPwd = generateRandomPassword(12);
@@ -125,6 +126,21 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
   back(){
     this.router.navigate(['/users']);
+  }
+  onDelete(){
+    this.dialogService.open(YesNoDialogComponent,{context:{
+      title:'Are you going to delete?'
+    }}).onClose.subscribe(ret=>{
+      if(ret==true){
+        this.userService.deleteUser(this.user.id).subscribe(res=>{
+          if(this.userService.localSource){
+            this.userService.localSource.remove(this.user);
+          }
+          this.toastrService.info("User has been deleted", "success");
+          this.router.navigate(['..'],{relativeTo:this.route});
+        })
+      }
+    })
   }
   onUpdateClassroom(){
     this.userService.patchUser({

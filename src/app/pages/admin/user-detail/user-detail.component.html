@@ -3,7 +3,8 @@
         <nb-card >
             <nb-card-header>
                 <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"><nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
-                {{user?.first_name}} {{user?.last_name}} 
+                {{user?.first_name}} {{user?.last_name}}
+                <button style="float: right;" nbButton ghost status="danger" (click)="onDelete()">{{'Delete' | translate}} </button> 
             </nb-card-header>
             <nb-card-body>
                 <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()">

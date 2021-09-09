@@ -36,6 +36,7 @@ export class ChildDetailComponent implements OnInit {
     )).subscribe((child:Child) => {
       
       this.child = child;
+      this.child.nationality = this.child.nationality.replace(/[\[\]'"]+/g,'')//(/[&\/\\#+()$~%.'":*?<>{}]/g, '');
     })
   }
 

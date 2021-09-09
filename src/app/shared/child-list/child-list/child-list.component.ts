@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { Child } from "../../../@core/models/child";
 import { LocalDataSource } from 'ng2-smart-table';
 import { ChildCellComponent } from "../child-cell/child-cell.component";
+import { User } from '../../../@core/models/user';
 @Component({
   selector: 'ngx-child-list',
   templateUrl: './child-list.component.html',
@@ -13,6 +14,7 @@ export class ChildListComponent implements OnInit, OnChanges {
   @Output('onselect') onSelectEvent = new EventEmitter();
   searchWord:string;
   parents: Child[] = [];
+  others: User[] = [];
   parent_src: LocalDataSource;
   settings = {
     actions:{
@@ -49,8 +51,13 @@ export class ChildListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if(this.data){
-      this.parents = this.data;
-      this.parent_src.load(this.parents);
+      if(localStorage.getItem('role') != 'Parent'){
+        this.parents = this.data;
+        this.parent_src.load(this.parents);
+      }else{
+        this.others = this.data;
+        this.parent_src.load(this.others);
+      }
     }
   }
   ngOnChanges(changes:SimpleChanges){
