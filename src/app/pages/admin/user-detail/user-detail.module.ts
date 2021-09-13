@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { UserDetailRoutingModule } from './user-detail-routing.module';
 import { UserDetailComponent } from './user-detail.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -25,6 +25,8 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     NbTooltipModule,
     SharedTranslateModule,
     NbPopoverModule ,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     ReactiveFormsModule
   ]
 })

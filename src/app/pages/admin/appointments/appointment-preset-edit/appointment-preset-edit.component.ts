@@ -62,7 +62,9 @@ export class AppointmentPresetEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.appointmentService.GetCurrentPresetRecord().subscribe(res=>{this.currentPresetRecord = res;})
-    this.classNameList = this.childService.classNameList;
+    this.userService.getClasses().subscribe((classes) => {
+      this.classNameList = classes;
+    })
     this.selectedClassroom = this.childService.getCurrentClassName();
     forkJoin({
       teachers:this.userService.getTeachers(),

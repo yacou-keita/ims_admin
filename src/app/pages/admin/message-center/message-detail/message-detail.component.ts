@@ -11,6 +11,9 @@ import { ReplyData } from '../../../../shared/components/reply/reply.component';
 import { TagInputItem } from '../../../../shared/components/tag-input/tag-input.component';
 import { Child } from '../../../../@core/models/child';
 import { forkJoin } from 'rxjs';
+import { NbDialogService } from '@nebular/theme';
+import { YesNoDialogComponent } from '../../../../components/yes-no-dialog/yes-no-dialog.component';
+import { ToastService } from '../../../../@core/services/toast.service';
 
 @Component({
   selector: 'ngx-message-detail',
@@ -26,22 +29,24 @@ export class MessageDetailComponent implements OnInit {
   public toChild:Child;
 
   constructor(private messageSerivce:MessageService,
-              private userSerivce:UsersService,
+              private userService:UsersService,
               private route:ActivatedRoute,
               private router:Router,
-              private _location:Location
+              private _location:Location,
+              private toastrService:ToastService,
+              private dialogService:NbDialogService
     ) {
 
     }
 
 
   ngOnInit(): void {
-    this.userSerivce.getCurrentUser().subscribe((user:User)=>{ this.currentUser = user ;})
+    this.userService.getCurrentUser().subscribe((user:User)=>{ this.currentUser = user ;})
     this.route.paramMap.pipe(switchMap(
       params => {
         this.headermsgId = Number(params.get('id'));
         return forkJoin({
-          user:this.userSerivce.getCurrentUser(),
+          user:this.userService.getCurrentUser(),
           msg: this.messageSerivce.getMessageLinked(this.headermsgId)
         })
       }
@@ -75,7 +80,21 @@ export class MessageDetailComponent implements OnInit {
   goToMessageCenter(){
     this._location.back()
   }
-
+  onDelete(){
+    this.dialogService.open(YesNoDialogComponent,{context:{
+      title:'Are you going to delete?'
+    }}).onClose.subscribe(ret=>{
+      if(ret==true){
+        this.messageSerivce.deleteMessage(this.headermsgId).subscribe(res=>{
+          // if(this.userService.localSource){
+          //   this.userService.localSource.remove(this.user);
+          // }
+          this.toastrService.info("User has been deleted", "success");
+          this.router.navigate(['..'],{relativeTo:this.route});
+        })
+      }
+    })
+  }
   onSend(data:ReplyData){    
     let requests=[];
     let msg:Message= this.messageSerivce.newMessage();

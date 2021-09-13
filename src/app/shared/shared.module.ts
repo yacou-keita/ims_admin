@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReplyComponent } from './components/reply/reply.component';
 import { NbCardModule, NbButtonModule, NbIconModule, NbInputModule, NbTooltipModule, NbUserModule, NbAutocompleteModule, NbDialogModule } from '@nebular/theme';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -11,6 +11,7 @@ import { UserSelectComponent } from './components/user-select/user-select.compon
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CellAvatarWithCheckBoxComponent } from './components/user-select/cell-avatar-with-check-box/cell-avatar-with-check-box.component';
 import { SharedTranslateModule } from '../shared-translate/shared-translate.module';
+import { DateFilterPipe } from './date-filter.pipe';
 @NgModule({
   declarations: [ReplyComponent, TagInputComponent, UserSelectComponent, CellAvatarWithCheckBoxComponent],
   imports: [
@@ -37,6 +38,7 @@ import { SharedTranslateModule } from '../shared-translate/shared-translate.modu
     ReplyComponent, 
     TagInputComponent,
     UserSelectComponent
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class SharedModule { }

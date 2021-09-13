@@ -50,8 +50,9 @@ export class MessageService {
     return this.httpClient.post<Message>(`${this.api_url}/messages/`, data);
     
   }
-
-
+  deleteMessage(msgId:number):Observable<any>{
+    return this.httpClient.delete(`${this.api_url}/messages/${msgId}/`);
+  }
 
   getSenderName(msg:Message){
     switch(msg.sender.role_name){

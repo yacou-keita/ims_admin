@@ -16,7 +16,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule, TranslatePipe} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr)
 
@@ -41,6 +41,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
+import { DateFilterPipe } from './shared/date-filter.pipe';
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
@@ -48,7 +49,7 @@ export function momentAdapterFactory() {
 
 
 @NgModule({
-  declarations: [AppComponent, YesNoDialogComponent],
+  declarations: [AppComponent, YesNoDialogComponent,DateFilterPipe],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -87,8 +88,9 @@ export function momentAdapterFactory() {
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
-      multi:true
-    }
+      multi:true,
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

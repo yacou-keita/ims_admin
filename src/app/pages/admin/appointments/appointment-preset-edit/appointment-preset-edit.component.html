@@ -16,8 +16,8 @@
       <div class="form-group row align-items-center">
           <label class="label col-sm-3"> {{'Classroom' | translate}}</label>
           <div class="col-sm-9">
-            <nb-select [(ngModel)]="selectedClassroom" (ngModelChange)="onClassroomChange($event)">
-              <nb-option *ngFor="let name of classNameList" [value]="name"> {{name |translate |titlecase}} </nb-option>
+            <nb-select [(ngModel)]="selectedClassroom">
+              <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
             </nb-select>
           </div>
       </div>      

@@ -20,6 +20,7 @@ import { CellAvatarComponent } from './cell-avatar/cell-avatar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent  } from './add-user/add-user.component';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 @NgModule({
   declarations: [UsersComponent, CellAvatarComponent,AddUserComponent],
@@ -40,6 +41,8 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     FormsModule,
     SharedTranslateModule,
     ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     ChildListModule
   ]
 })

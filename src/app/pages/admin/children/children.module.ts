@@ -12,6 +12,7 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
 import { SetChildPWDComponent } from './set-child-pwd/set-child-pwd.component';
 import { AddChildComponent } from './add-child/add-child.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { DateFilterPipe } from '../../../shared/date-filter.pipe';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angul
     OwlNativeDateTimeModule,
     SharedTranslateModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ChildrenModule { }

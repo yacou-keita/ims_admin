@@ -36,7 +36,14 @@
                             <span class="error-text" *ngIf="profileForm.get('last_name').errors.required">{{'required' | translate}}</span>
                         </div>
                       </div>
-
+                      <div class="form-group">
+                        <label class="label"> {{'Date of Birth' | translate}}</label>
+                        <input  fullWidth nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [status]="isInvalidControl(profileForm,'dob')?'danger':'basic'" formControlName="dob" placeholder="mm/dd/yyyy">
+                            <!-- <div *ngIf="isInvalidControl(profileForm,'dob')">
+                                <span class="error-text" *ngIf="profileForm.get('dob').errors.required">{{'required' | translate}}</span>
+                            </div>  -->
+                        <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+                      </div>
                     <div class="form-group">
                         <label class="label">{{'Email address' | translate}}</label>
                         <input nbInput type="email" placeholder="{{'Email'| translate}}" fullWidth [status]="isInvalidControl(profileForm,'email')?'danger':'basic'" formControlName="email">

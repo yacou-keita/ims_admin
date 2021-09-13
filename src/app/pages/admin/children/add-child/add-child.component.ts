@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from "@angular/common";
+import { DatePipe, Location } from "@angular/common";
 import { ChildService } from '../../../../@core/services/child.service';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
@@ -12,6 +12,7 @@ import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 import * as moment from 'moment';
 import { UsersService } from '../../../../@core/services/users.service';
 import { AddNewItemComponent } from '../../../add-new-item/add-new-item.component';
+import { DateFilterPipe } from '../../../../shared/date-filter.pipe';
 @Component({
   selector: 'ngx-add-child',
   templateUrl: './add-child.component.html',
@@ -22,6 +23,7 @@ export class AddChildComponent implements OnInit {
   classNameList = [];
   nationalities = [];
   isSubmitting:boolean = false;
+  dateFormat = 'dd/mm/yyyy';
   constructor(private location:Location,
     private childService:ChildService,
     private toastService:ToastService,
@@ -29,7 +31,8 @@ export class AddChildComponent implements OnInit {
     private dateAdapter:DateTimeAdapter<any>,
     private userService:UsersService,
     private fb:FormBuilder,
-    private dialogService:NbDialogService
+    private dialogService:NbDialogService,
+    private datePipe: DatePipe
     ) {
       this.dateAdapter.setLocale(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((event:LangChangeEvent)=>{
@@ -57,6 +60,7 @@ export class AddChildComponent implements OnInit {
         phoneOfFather:[''],
         emailOfFather:['',[Validators.email]]        
       });
+      this.childForm['birth'] = datePipe.transform(this.childForm['birth'],'yyyy-MM-dd');
   }
 
   ngOnInit(): void {

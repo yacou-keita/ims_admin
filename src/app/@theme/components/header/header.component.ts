@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userService.getClasses().subscribe((classes) =>{
       this.classes = classes;
       this.classes.push({id:this.classes.length+1, name:"Add New Class", createdBy:2})
-      this.currentClassName = this.classes[1]
+     // this.currentClassName = this.classes[1]
     })
   }
 
@@ -130,8 +130,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.router.navigate(['/add/classname']);
       localStorage.setItem('classId',id)
     }else{
-      this.childService.setCurrentClassName(name);
+      localStorage.setItem('class_name', name);
       this.currentClassName = name;
+      this.childService.setCurrentClassName(name);
       this.menuService.navigateHome();
       this.router.navigateByUrl('/', {skipLocationChange: true})
         .then(() => this.router.navigate(['/children']));

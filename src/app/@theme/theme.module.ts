@@ -48,6 +48,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedTranslateModule } from '../shared-translate/shared-translate.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -83,7 +84,8 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, MatRippleModule,NgxFlagPickerModule, ...NB_MODULES, TranslateModule.forChild({
+  imports: [CommonModule, MatRippleModule,NgxFlagPickerModule,ReactiveFormsModule,
+    FormsModule, ...NB_MODULES, TranslateModule.forChild({
     loader: {
         provide: TranslateLoader,
         useFactory: TranslationLoaderFactory,

@@ -33,6 +33,7 @@ export class AddUserComponent implements OnInit {
     this.profileForm = this.fb.group({
       first_name:['', Validators.required],
       last_name:['', Validators.required],
+      dob:[''],
       email:['', [Validators.email]],
       phoneNumber:[''],
       username:['',Validators.required],
