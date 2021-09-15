@@ -125,14 +125,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
      
     }
   }
-  selectClass(name,id){
-    if(name == 'Add New Class'){
+  selectClass(event){
+    if(event.name == 'Add New Class'){
       this.router.navigate(['/add/classname']);
-      localStorage.setItem('classId',id)
+      localStorage.setItem('classId',event.id)
     }else{
-      localStorage.setItem('class_name', name);
-      this.currentClassName = name;
-      this.childService.setCurrentClassName(name);
+      this.currentClassName = event.name;
+      this.childService.setCurrentClassName(event.name);
+      localStorage.setItem('class_name', event.name);
       this.menuService.navigateHome();
       this.router.navigateByUrl('/', {skipLocationChange: true})
         .then(() => this.router.navigate(['/children']));

@@ -1,8 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Child } from "../../../@core/models/child";
+import { Child, NameOfClass } from "../../../@core/models/child";
 import { LocalDataSource } from 'ng2-smart-table';
 import { ChildCellComponent } from "../child-cell/child-cell.component";
 import { User } from '../../../@core/models/user';
+import { UsersService } from '../../../@core/services/users.service';
+import { ChildService } from '../../../@core/services/child.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'ngx-child-list',
   templateUrl: './child-list.component.html',
@@ -15,6 +18,9 @@ export class ChildListComponent implements OnInit, OnChanges {
   searchWord:string;
   parents: Child[] = [];
   others: User[] = [];
+  classNameList=[];
+  currentClassName;
+  fromChild ;
   parent_src: LocalDataSource;
   settings = {
     actions:{
@@ -45,12 +51,13 @@ export class ChildListComponent implements OnInit, OnChanges {
     },
   };
   purpose:string;
-  constructor() {
+  constructor(private userService:UsersService,private childService:ChildService,private router:Router,) {
     this.parent_src = new LocalDataSource();
   }
 
   ngOnInit(): void {
     if(this.data){
+      this.fromChild = localStorage.getItem('fromChild');
       if(localStorage.getItem('role') != 'Parent'){
         this.parents = this.data;
         this.parent_src.load(this.parents);
@@ -59,11 +66,34 @@ export class ChildListComponent implements OnInit, OnChanges {
         this.parent_src.load(this.others);
       }
     }
+    this.classNameList.push({id: 0, name: "All", createdBy: 2});
+    this.userService.getClasses().subscribe((classes) => {
+     
+      classes.forEach((val,i)=>{
+        this.classNameList.push(val);
+      })
+      this.classNameList.push({id:this.classNameList.length+1, name:"Add New Class", createdBy:2})
+    })
   }
   ngOnChanges(changes:SimpleChanges){
     if('data' in changes){
       if(this.data)
         this.parent_src.load(this.data);
+    }
+  }
+  selectClass(event){
+    this.currentClassName = event.name
+    if(event.name == 'All'){
+      this.childService.getAllChildren().subscribe(children=>{
+        this.parent_src.load(children);
+      })
+    }else if(event.name == 'Add New Class'){
+      this.router.navigate(['/add/classname']);
+      localStorage.setItem('classId',event.id)
+    }else{
+      this.childService.getChildrenByClassName(event.name).subscribe(data=>{
+        this.parent_src.load(data);
+      })
     }
   }
   onSearchWordChange(newWord:string){

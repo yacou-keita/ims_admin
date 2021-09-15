@@ -15,7 +15,6 @@ export class ChildrenComponent implements OnInit {
   children:Child[];
   currentClassName:NameOfClass;
   currentUser:User;
- 
   constructor(
     private childService:ChildService,
     private userService:UsersService,
@@ -26,9 +25,14 @@ export class ChildrenComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe(data=>{this.currentUser=data})
+    localStorage.setItem('fromChild','true');
     this.currentClassName = this.childService.getCurrentClassName();
-    this.childService.getChildrenByClassName(this.currentClassName).subscribe(data=>{
-      this.children = data;
+    // this.childService.getChildrenByClassName(this.currentClassName).subscribe(data=>{
+    //   this.children = data;
+    // })
+
+    this.childService.getAllChildren().subscribe(children=>{
+      this.children = children;
     })
   }
   onSelect(selectedChild:Child){

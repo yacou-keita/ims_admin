@@ -13,7 +13,7 @@ export class ChildCellComponent implements OnInit, ViewCell {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.rowData);
+    
   }
   
   onClick(){

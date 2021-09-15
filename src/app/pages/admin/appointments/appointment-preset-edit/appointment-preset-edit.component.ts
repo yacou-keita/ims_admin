@@ -37,7 +37,7 @@ export class AppointmentPresetEditComponent implements OnInit {
 
   childs:Child[];
   allChildren:Child[];
-  classNameList:NameOfClass[];
+  classNameList=[];
   dates:TimeRangeItem[];
   selectedClassroom:NameOfClass;
   selectedParent:User;
@@ -63,6 +63,7 @@ export class AppointmentPresetEditComponent implements OnInit {
   ngOnInit(): void {
     this.appointmentService.GetCurrentPresetRecord().subscribe(res=>{this.currentPresetRecord = res;})
     this.userService.getClasses().subscribe((classes) => {
+      console.log('classes >>',classes)
       this.classNameList = classes;
     })
     this.selectedClassroom = this.childService.getCurrentClassName();

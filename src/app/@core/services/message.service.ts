@@ -54,6 +54,7 @@ export class MessageService {
     return this.httpClient.delete(`${this.api_url}/messages/${msgId}/`);
   }
 
+
   getSenderName(msg:Message){
     switch(msg.sender.role_name){
       case USERROLE.Admin:

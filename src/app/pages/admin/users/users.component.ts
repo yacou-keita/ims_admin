@@ -77,6 +77,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     //   this.admin_src.load(this.admins);
     //   this.userService.localSource = this.admin_src;
     // })
+    localStorage.setItem('fromChild','false');
     this.userService.getRoles().subscribe((roles) =>{
       this.roles = roles;
     })

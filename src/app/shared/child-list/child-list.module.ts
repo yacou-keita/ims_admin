@@ -4,7 +4,7 @@ import { ChildListComponent } from './child-list/child-list.component';
 import { ChildCellComponent } from './child-cell/child-cell.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { FormsModule } from '@angular/forms';
-import { NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbCardModule } from '@nebular/theme';
+import { NbIconModule, NbButtonModule, NbInputModule, NbUserModule, NbCardModule, NbSelectModule } from '@nebular/theme';
 import { ChildSelectComponent } from './child-select/child-select.component';
 import { ChildCellWithCheckboxComponent } from './child-cell-with-checkbox/child-cell-with-checkbox.component';
 import { SharedTranslateModule } from '../../shared-translate/shared-translate.module';
@@ -21,6 +21,7 @@ import { SharedTranslateModule } from '../../shared-translate/shared-translate.m
     NbButtonModule,
     NbIconModule,
     NbInputModule,
+    NbSelectModule,
     NbIconModule,
     NbButtonModule,
     NbUserModule,

@@ -1,5 +1,9 @@
+
 <div class="search-box mb-2">
     <div style="display: flex; justify-content:flex-end;">
+      <nb-select placeholder="Select class name" (selectedChange)="selectClass($event)"  ([ngModel])="currentClassName" style="padding-right: 10px;" *ngIf="fromChild == 'true'">
+        <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
+      </nb-select>
       <input [(ngModel)]="searchWord" type="text" nbInput placeholder="{{'Search by name'| translate}}" (ngModelChange)="onSearchWordChange($event)"/>
       <button type="button" nbButton status="primary"><nb-icon class="action-icon" icon="search-outline"></nb-icon></button>
     </div>
