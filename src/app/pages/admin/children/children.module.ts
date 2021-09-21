@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ChildrenRoutingModule } from './children-routing.module';
 import { ChildrenComponent } from './children.component';
 import { ChildListModule } from '../../../shared/child-list/child-list.module';
-import { NbCardModule, NbButtonModule, NbIconModule, NbTooltipModule, NbUserModule, NbInputModule, NbPopoverModule, NbSelectModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbIconModule, NbTooltipModule, NbUserModule, NbInputModule, NbPopoverModule, NbSelectModule, NbCheckboxModule } from '@nebular/theme';
 import { ChildDetailComponent } from './child-detail/child-detail.component';
 import { AddSiblingComponent } from './add-sibling/add-sibling.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +27,7 @@ import { DateFilterPipe } from '../../../shared/date-filter.pipe';
     NbCardModule,
     NbInputModule,
     NbSelectModule,
+    NbCheckboxModule,
     NbUserModule,
     NbPopoverModule,
     OwlDateTimeModule,

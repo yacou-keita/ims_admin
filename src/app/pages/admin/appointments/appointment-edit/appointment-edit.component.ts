@@ -44,9 +44,14 @@ export class AppointmentEditComponent implements OnInit {
     forkJoin({
       teachers:this.userService.getTeachers(),
       children:this.childService.getAllChildren(),
+      admins:this.userService.getAdmin(),
     }).subscribe(ret=>{
       this.teachers = ret.teachers;
       this.children = ret.children;
+      ret.admins.forEach((val,i)=>{
+        this.teachers.push(val);
+      })
+      
     })
 
    

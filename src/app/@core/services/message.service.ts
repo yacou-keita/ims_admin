@@ -51,7 +51,7 @@ export class MessageService {
     
   }
   deleteMessage(msgId:number):Observable<any>{
-    return this.httpClient.delete(`${this.api_url}/messages/${msgId}/`);
+    return this.httpClient.delete(`${this.api_url}/messages/delete_message/${msgId}/`);
   }
 
 

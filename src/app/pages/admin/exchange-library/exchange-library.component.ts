@@ -25,7 +25,8 @@ export class ExchangeLibraryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.exchangeLibraryService.getAllBooks().subscribe(data => {this.books = data; this.filteredbooks = this.books;})
+    this.exchangeLibraryService.getAllBooks().subscribe(data => {this.books = data; this.filteredbooks = this.books;
+    })
   }
   onSearchWordChange(data){
     this.filteredbooks = this.books.filter((item:ExchangeLibrary)=>{return item.title.includes(this.searchWord)});

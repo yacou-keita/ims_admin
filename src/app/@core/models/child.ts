@@ -51,8 +51,22 @@ export interface Child{
     allgeries?:string,
     food_restriction?:string,
     health_issue?:string,
-    sibling_group?:number
-    
+    sibling_group?:number,
+    video:boolean,
+    newsLetter:boolean,
+    fridaysLetter:boolean,
+    internetSite:boolean,
+    yearbook:boolean,
+    flyer:boolean,
+    magazine:boolean,
+    facebook:boolean,
+    instagram:boolean,
+    reenrollment:boolean,
+    dischargeOfResponibility:boolean,
+    imageRights:boolean,
+    healthProtocol:boolean,
+    financialContract:boolean,
+    interieurRules:boolean,
 }
 export interface InjureRecord{
     id:number,

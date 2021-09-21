@@ -54,6 +54,9 @@ export class UsersService {
   getTeachers():Observable<User[]>{
     return this.httpClient.get<User[]>(`${this.api_url}/user/?role=3`);
   }
+  getAdmin():Observable<User[]>{
+    return this.httpClient.get<User[]>(`${this.api_url}/user/?role=2`);
+  }
   getRoles():Observable<any>{
     return this.httpClient.get<any[]>(`${this.api_url}/user/roles`)
   }

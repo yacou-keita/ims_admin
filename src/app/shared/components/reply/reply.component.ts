@@ -62,13 +62,19 @@ export class ReplyComponent implements OnInit {
     this.storage.change()
     .subscribe(uploads => {
       this.uploads = uploads
-      console.log(this.uploads);
-      uploads.forEach(item=>{
-        if(item.isCompleted()){
-          let itemId =item.data.response.body.id; 
+      if(this.uploads.length > 1){
+        uploads.forEach(item=>{
+          if(item.isCompleted()){
+            let itemId =item.data.response.body.id; 
+            if(!this.uploadedFileIds.includes(itemId)) this.uploadedFileIds.push(itemId);
+          }
+        })
+      }else{
+        if(this.uploads[0].isCompleted()){
+          let itemId =this.uploads[0].data.response.body.id; 
           if(!this.uploadedFileIds.includes(itemId)) this.uploadedFileIds.push(itemId);
         }
-      })
+      }
     });
     
     this.userService.getParents().subscribe((users:User[])=>{
@@ -85,11 +91,9 @@ export class ReplyComponent implements OnInit {
   }
   
   public onSelect(event) {
-    console.log("Select", event)
     const addedFiles: File[] = event.addedFiles;
     const uploads = this.uploadFactory.createUploadRequest(addedFiles, this.uploadOptions);    
     this.storage.add(uploads);
-
   }
   public onRemove(upload: NgxFileUploadRequest) {
     if(upload.isCompleted){

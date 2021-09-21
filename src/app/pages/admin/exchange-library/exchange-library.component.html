@@ -37,7 +37,7 @@
                     <div class="mt-2 text-1"> {{book.comment}}  </div>
                     <div class="d-flex mt-2 flex-wrap align-items-center " *ngIf="isBooked(book)">
                         <div class="text-1 date-text mr-4"> {{'Child' | translate}} </div>
-                        <nb-user [picture]="book.child.photo" [name]="book.child.first_name +' '+ book.child.last_name"></nb-user>
+                        <!-- <nb-user [picture]="book.child.picture" [name]="book.child.first_name +' '+ book.child.last_name"></nb-user> -->
                     </div>
                 </div>
 

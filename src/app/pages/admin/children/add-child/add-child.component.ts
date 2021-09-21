@@ -24,6 +24,24 @@ export class AddChildComponent implements OnInit {
   nationalities = [];
   isSubmitting:boolean = false;
   dateFormat = 'dd/mm/yyyy';
+  privacy = ['video','newsLetter','fridaysLetter','internetSite','yearbook','flyer','magazine','facebook','instagram'];
+  others = ['reenrollment','dischargeOfResponibility','imageRights','healthProtocol','financialContract','interieurRules']
+  video:boolean = false;
+  newsLetter:boolean = false;
+  fridaysLetter:boolean = false;
+  internetSite:boolean = false;
+  yearbook:boolean = false;
+  flyer:boolean = false;
+  magazine:boolean = false;
+  facebook:boolean = false;
+  instagram:boolean = false;
+  reenrollment:boolean = false;
+  dischargeOfResponibility:boolean = false;
+  imageRights:boolean = false;
+  healthProtocol:boolean = false;
+  financialContract:boolean = false;
+  interieurRules:boolean = false;
+
   constructor(private location:Location,
     private childService:ChildService,
     private toastService:ToastService,
@@ -71,6 +89,57 @@ export class AddChildComponent implements OnInit {
       this.nationalities = nationalities;
     })
   }
+  privacyCheck(event,name){
+    if(name == 'video'){
+      this.video = true
+    }
+    if(name == 'newsLetter'){
+      this.newsLetter = true
+    }
+    if(name == 'fridaysLetter'){
+      this.fridaysLetter = true
+    }
+    if(name == 'internetSite'){
+      this.internetSite = true
+    }
+    if(name == 'yearbook'){
+      this.yearbook = true
+    }
+    if(name == 'flyer'){
+      this.flyer = true
+    }
+    if(name == 'magazine'){
+      this.magazine = true
+    }
+    if(name == 'facebook'){
+      this.facebook = true
+    }
+    if(name == 'instagram'){
+      this.instagram = true
+    }
+
+  }
+  othersCheck(event,name){
+    if(name == 'reenrollment'){
+      this.reenrollment = true
+    }
+    if(name == 'dischargeOfResponibility'){
+      this.dischargeOfResponibility = true
+    }
+    if(name == 'imageRights'){
+      this.imageRights = true
+    }
+    if(name == 'healthProtocol'){
+      this.healthProtocol = true
+    }
+    if(name == 'financialContract'){
+      this.financialContract = true
+    }
+    if(name == 'interieurRules'){
+      this.interieurRules = true
+    }
+
+  }
   onSubmit(){
     this.childForm.markAllAsTouched();
     if(this.childForm.valid){
@@ -82,6 +151,52 @@ export class AddChildComponent implements OnInit {
       })
       data.nationality = nat;
       if(!data.photo) data.photo = undefined;
+      if(this.video){
+        data.video = this.video;
+      }
+      if(this.newsLetter){
+        data.newsLetter = this.newsLetter;
+      }
+      if(this.fridaysLetter){
+        data.fridaysLetter = this.fridaysLetter;
+      }
+      if(this.internetSite){
+        data.internetSite = this.internetSite;
+      }
+      if(this.yearbook){
+        data.yearbook = this.yearbook;
+      }
+      if(this.flyer){
+        data.flyer = this.flyer;
+      }
+      if(this.magazine){
+        data.magazine = this.magazine;
+      }
+      if(this.facebook){
+        data.facebook = this.facebook;
+      }
+      if(this.instagram){
+        data.instagram = this.instagram;
+      }
+      if(this.reenrollment){
+        data.reenrollment = this.reenrollment;
+      }
+      if(this.dischargeOfResponibility){
+        data.dischargeOfResponibility = this.dischargeOfResponibility;
+      }
+      if(this.imageRights){
+        data.imageRights = this.imageRights;
+      }
+      if(this.healthProtocol){
+        data.healthProtocol = this.healthProtocol;
+      }
+      if(this.financialContract){
+        data.financialContract = this.financialContract;
+      }
+      if(this.interieurRules){
+        data.interieurRules = this.interieurRules;
+      }
+
       data.authPersons = []
       data.emergencyContacts = []
       console.log('data',data)

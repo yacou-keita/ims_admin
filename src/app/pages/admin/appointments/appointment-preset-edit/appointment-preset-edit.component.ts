@@ -44,6 +44,8 @@ export class AppointmentPresetEditComponent implements OnInit {
   selectedChild:Child;
   slotsInfo:any;
   selectedTimeRange: TimeRangeItem;
+  start: Date;
+  end: Date
   
   constructor(
     private route:ActivatedRoute,
@@ -63,7 +65,6 @@ export class AppointmentPresetEditComponent implements OnInit {
   ngOnInit(): void {
     this.appointmentService.GetCurrentPresetRecord().subscribe(res=>{this.currentPresetRecord = res;})
     this.userService.getClasses().subscribe((classes) => {
-      console.log('classes >>',classes)
       this.classNameList = classes;
     })
     this.selectedClassroom = this.childService.getCurrentClassName();
@@ -199,11 +200,14 @@ export class AppointmentPresetEditComponent implements OnInit {
             this.appoinment = this.appointmentService.createBlankPresetAppointment();          
             // this.appoinment.title = `${this.selectedTeacher.first_name} ${this.selectedTeacher.last_name} & ${this.selectedParent.first_name, this.selectedParent.last_name} (PRESET)`;
             this.appoinment.child = this.selectedChild;
-            this.appoinment.className = this.selectedClassroom;
-            this.appoinment.presetInfo = this.currentPresetRecord.id;
-            this.appoinment.start = moment(this.selectedTimeRange.date).hour(start.hour()).minute(start.minute()).toDate();
-            this.appoinment.end = moment(this.selectedTimeRange.date).hour(end.hour()).minute(end.minute()).toDate();
-            this.appoinment.timerange = this.selectedTimeRange;
+            this.appoinment.className = this.selectedClassroom['name'];
+            if(this.currentPresetRecord){
+              this.appoinment.presetInfo = this.currentPresetRecord.id;
+            }
+            
+            this.appoinment.start = this.start//moment(this.selectedTimeRange.date).hour(start.hour()).minute(start.minute()).toDate();
+            this.appoinment.end = this.end//moment(this.selectedTimeRange.date).hour(end.hour()).minute(end.minute()).toDate();
+            //this.appoinment.timerange = this.selectedTimeRange;
             this.appointmentService.createPresetAppointment(this.appoinment).subscribe(_ => {
               this.toastrService.success('Registered the New Preset Appointment',"Success");
             })

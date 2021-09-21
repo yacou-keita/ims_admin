@@ -178,6 +178,19 @@
                             </div>
                         </div>
                     </div>
+                    <h6>{{'Privacy Rights' | translate}}</h6>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <nb-checkbox class="mr-2" (checkedChange)="privacyCheck($event, item)" *ngFor="let item of privacy">{{item|translate}}</nb-checkbox>
+                        </div>
+                    </div>
+                    <h6>{{'Other Options' | translate}}</h6>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <nb-checkbox class="mr-2" (checkedChange)="othersCheck($event, item)" *ngFor="let item of others">{{item|translate}}</nb-checkbox>
+                        </div>
+                    </div>
+                    
                     <!-- [disabled]="isSubmitting" -->
                     <input nbInput type="submit" value="{{'Submit' |  translate}}" style="float: right;" >
                 </form>

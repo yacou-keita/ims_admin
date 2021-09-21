@@ -18,15 +18,15 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       { path: 'choose/classname', component:ChooseClassNameComponent},
-      { path: 'children', loadChildren: () => import('./admin/children/children.module').then(m => m.ChildrenModule), canActivate:[ClassRoomGuard] },
+      { path: 'children', loadChildren: () => import('./admin/children/children.module').then(m => m.ChildrenModule) },
       { path: 'profile', loadChildren: () => import('./admin/profile/profile.module').then(m => m.ProfileModule) },
 
       { 
         path: '', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
-        canActivate:[RoleGuard,ClassRoomGuard],data: {role_name: USERROLE.Admin} 
+        canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} 
       },      
       { path: 'teacher', loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule), 
-        canActivate:[RoleGuard, ClassRoomGuard],data: {role_name: USERROLE.Teacher} 
+        canActivate:[RoleGuard],data: {role_name: USERROLE.Teacher} 
       },
       { path: '404', component:NotFoundComponent},
       { path: 'notallowed', component:NotAllowedComponent},
