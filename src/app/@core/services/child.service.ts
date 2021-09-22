@@ -24,8 +24,8 @@ export class ChildService {
     return this.httpClient.post(`${this.api_url}/child/`,submitdata);
 
   }
-  UpdateChild(submitdata):Observable<any>{
-    return this.httpClient.put(`${this.api_url}/child/`,submitdata);
+  UpdateChild(childId:number,submitdata):Observable<any>{
+    return this.httpClient.put(`${this.api_url}/child/${childId}/`,submitdata);
 
   }
   deleteChild(childId:number):Observable<any>{

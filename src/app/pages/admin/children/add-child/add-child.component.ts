@@ -152,49 +152,49 @@ export class AddChildComponent implements OnInit {
       data.nationality = nat;
       if(!data.photo) data.photo = undefined;
       if(this.video){
-        data.video = this.video;
+        data.flag_video = this.video;
       }
       if(this.newsLetter){
-        data.newsLetter = this.newsLetter;
+        data.flag_newsletter = this.newsLetter;
       }
       if(this.fridaysLetter){
-        data.fridaysLetter = this.fridaysLetter;
+        data.flag_friday_letter = this.fridaysLetter;
       }
       if(this.internetSite){
-        data.internetSite = this.internetSite;
+        data.flag_internet_sites = this.internetSite;
       }
       if(this.yearbook){
-        data.yearbook = this.yearbook;
+        data.flag_yearbook = this.yearbook;
       }
       if(this.flyer){
-        data.flyer = this.flyer;
+        data.flag_flyer = this.flyer;
       }
       if(this.magazine){
-        data.magazine = this.magazine;
+        data.flag_magazine = this.magazine;
       }
       if(this.facebook){
-        data.facebook = this.facebook;
+        data.flag_facebook = this.facebook;
       }
       if(this.instagram){
-        data.instagram = this.instagram;
+        data.flag_instagram = this.instagram;
       }
       if(this.reenrollment){
-        data.reenrollment = this.reenrollment;
+        data.flag_re_enrollment = this.reenrollment;
       }
       if(this.dischargeOfResponibility){
-        data.dischargeOfResponibility = this.dischargeOfResponibility;
+        data.flag_responsibility_discharge = this.dischargeOfResponibility;
       }
       if(this.imageRights){
-        data.imageRights = this.imageRights;
+        data.flag_image_rights = this.imageRights;
       }
       if(this.healthProtocol){
-        data.healthProtocol = this.healthProtocol;
+        data.flag_health_protocols = this.healthProtocol;
       }
       if(this.financialContract){
-        data.financialContract = this.financialContract;
+        data.flag_fin_contract = this.financialContract;
       }
       if(this.interieurRules){
-        data.interieurRules = this.interieurRules;
+        data.flag_interieur_rules = this.interieurRules;
       }
 
       data.authPersons = []

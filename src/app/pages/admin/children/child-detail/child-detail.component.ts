@@ -17,7 +17,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'ngx-child-detail',
   templateUrl: './child-detail.component.html',
-  styleUrls: ['./child-detail.component.scss']
+  styleUrls: ['./child-detail.component.scss','../add-child/add-child.component.scss']
 })
 export class ChildDetailComponent implements OnInit {
   childForm:FormGroup;
@@ -65,49 +65,49 @@ export class ChildDetailComponent implements OnInit {
     )).subscribe((child:Child) => {
       this.child = child;
       this.childForm.reset(child);
-      if(this.child.video == true){
+      if(this.child.flag_video == true){
         this.privacySelected.push('video')
       }
-      if(this.child.newsLetter == true){
+      if(this.child.flag_newsletter == true){
         this.privacySelected.push('newsLetter')
       }
-      if(this.child.fridaysLetter == true){
+      if(this.child.flag_friday_letter == true){
         this.privacySelected.push('fridaysLetter')
       }
-      if(this.child.internetSite == true){
+      if(this.child.flag_internet_sites == true){
         this.privacySelected.push('internetSite')
       }
-      if(this.child.yearbook == true){
+      if(this.child.flag_yearbook == true){
         this.privacySelected.push('yearbook')
       }
-      if(this.child.flyer == true){
+      if(this.child.flag_flyer == true){
         this.privacySelected.push('flyer')
       }
-      if(this.child.magazine == true){
+      if(this.child.flag_magazine == true){
         this.privacySelected.push('magazine')
       }
-      if(this.child.facebook == true){
+      if(this.child.flag_facebook == true){
         this.privacySelected.push('facebook')
       }
-      if(this.child.instagram == true){
+      if(this.child.flag_instagram == true){
         this.privacySelected.push('instagram')
       }
-      if(this.child.reenrollment == true){
+      if(this.child.flag_re_enrollment == true){
         this.othersSelected.push('reenrollment')
       }
-      if(this.child.dischargeOfResponibility == true){
+      if(this.child.flag_responsibility_discharge == true){
         this.othersSelected.push('dischargeOfResponibility')
       }
-      if(this.child.imageRights == true){
+      if(this.child.flag_image_rights == true){
         this.othersSelected.push('imageRights')
       }
-      if(this.child.healthProtocol == true){
+      if(this.child.flag_health_protocols == true){
         this.othersSelected.push('healthProtocol')
       }
-      if(this.child.financialContract == true){
+      if(this.child.flag_fin_contract == true){
         this.othersSelected.push('financialContract')
       }
-      if(this.child.interieurRules == true){
+      if(this.child.flag_interieur_rules == true){
         this.othersSelected.push('interieurRules')
       }
       this.userService.getClasses().subscribe((classes) => {
@@ -160,21 +160,21 @@ export class ChildDetailComponent implements OnInit {
       emailOfMother:['',[Validators.email]],
       phoneOfFather:[''],
       emailOfFather:['',[Validators.email]],
-      video:[''],
-      newsLetter:[''],
-      fridaysLetter:[''],
-      internetSite:[''],
-      yearbook:[''],
-      flyer:[''],
-      magazine:[''],
-      facebook:[''],
-      instagram:[''],
-      reenrollment:[''],
-      dischargeOfResponibility:[''],
-      imageRights:[''],
-      healthProtocol:[''],
-      financialContract:[''],
-      interieurRules:[''],   
+      flag_video:[''],
+      flag_newsletter:[''],
+      flag_friday_letter:[''],
+      flag_internet_sites:[''],
+      flag_yearbook:[''],
+      flag_flyer:[''],
+      flag_magazine:[''],
+      flag_facebook:[''],
+      flag_instagram:[''],
+      flag_re_enrollment:[''],
+      flag_responsibility_discharge:[''],
+      flag_image_rights:[''],
+      flag_health_protocols:[''],
+      flag_fin_contract:[''],
+      flag_interieur_rules:[''],   
     });
     
   }
@@ -282,61 +282,67 @@ export class ChildDetailComponent implements OnInit {
       let nat = [];
       data.nameOfClass = data.nameOfClass.name;
       data.nationality.forEach((val,i)=>{
-        nat.push(val.name);
+        console.log('data',val)
+        this.nationalities.forEach((v,i)=>{
+          if(val == v.id){
+            nat.push(v.name);
+          }
+        })
+        
       })
       data.nationality = nat;
       if(!data.photo) data.photo = undefined;
       if(this.video){
-        data.video = this.video;
+        data.flag_video = this.video;
       }
       if(this.newsLetter){
-        data.newsLetter = this.newsLetter;
+        data.flag_newsletter = this.newsLetter;
       }
       if(this.fridaysLetter){
-        data.fridaysLetter = this.fridaysLetter;
+        data.flag_friday_letter = this.fridaysLetter;
       }
       if(this.internetSite){
-        data.internetSite = this.internetSite;
+        data.flag_internet_sites = this.internetSite;
       }
       if(this.yearbook){
-        data.yearbook = this.yearbook;
+        data.flag_yearbook = this.yearbook;
       }
       if(this.flyer){
-        data.flyer = this.flyer;
+        data.flag_flyer = this.flyer;
       }
       if(this.magazine){
-        data.magazine = this.magazine;
+        data.flag_magazine = this.magazine;
       }
       if(this.facebook){
-        data.facebook = this.facebook;
+        data.flag_facebook = this.facebook;
       }
       if(this.instagram){
-        data.instagram = this.instagram;
+        data.flag_instagram = this.instagram;
       }
       if(this.reenrollment){
-        data.reenrollment = this.reenrollment;
+        data.flag_re_enrollment = this.reenrollment;
       }
       if(this.dischargeOfResponibility){
-        data.dischargeOfResponibility = this.dischargeOfResponibility;
+        data.flag_responsibility_discharge = this.dischargeOfResponibility;
       }
       if(this.imageRights){
-        data.imageRights = this.imageRights;
+        data.flag_image_rights = this.imageRights;
       }
       if(this.healthProtocol){
-        data.healthProtocol = this.healthProtocol;
+        data.flag_health_protocols = this.healthProtocol;
       }
       if(this.financialContract){
-        data.financialContract = this.financialContract;
+        data.flag_fin_contract = this.financialContract;
       }
       if(this.interieurRules){
-        data.interieurRules = this.interieurRules;
+        data.flag_interieur_rules = this.interieurRules;
       }
 
       data.authPersons = []
       data.emergencyContacts = []
-      console.log('data',data)
+      
       data.birth = moment(data.birth).format("YYYY-MM-DD")
-      this.childService.UpdateChild(data).subscribe(_=>{
+      this.childService.UpdateChild(this.childId,data).subscribe(_=>{
         this.toastService.success('Child Details has been updated successfully','success');
       })
     }

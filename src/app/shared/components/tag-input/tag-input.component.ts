@@ -6,6 +6,7 @@ import { User, USERROLE } from "../../../@core/models/user";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Child, NameOfClass } from '../../../@core/models/child';
 import { ChildService } from '../../../@core/services/child.service';
+import { AdminModule } from '../../../pages/admin/admin.module';
 
 export interface TagInputItem{
   id:number,
@@ -47,8 +48,9 @@ export class TagInputComponent implements OnInit, ControlValueAccessor {
     if(this.usertype == USERROLE.Admin){
       forkJoin({
         teachers:this.userService.getTeachers(),
-        children:this.childSerivce.getAllChildren()
-      }).subscribe(({teachers,children}:{teachers:User[], children:Child[]})=>{
+        children:this.childSerivce.getAllChildren(),
+        admin:this.userService.getAdmin()
+      }).subscribe(({teachers,children,admin}:{teachers:User[], children:Child[], admin:User[]})=>{
         let data:TagInputItem[]=[];
         teachers.forEach(item =>{
           data.push({id:data.length+1, user: item});
@@ -56,6 +58,9 @@ export class TagInputComponent implements OnInit, ControlValueAccessor {
         children.forEach((item:Child)=>{
           data.push({id:data.length+1,user:item.parent, child:item});
         })
+        admin.forEach((item) => {
+          data.push({id:data.length+1, user: item});
+        });
         this.data = data;
         this.filteredOptions$ = of(data);
       })      
