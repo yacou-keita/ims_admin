@@ -122,11 +122,12 @@ export class ChildDetailComponent implements OnInit {
         this.nationalities = nationalities;
         let nat = this.child.nationality.substring(2, this.child.nationality.length-2).split('\", \"');
         console.log('nat >>',nat)
+        //this.child.nationality = nat
         //nat = nat.split('\", \"')
         this.nationalities.forEach((val,i)=>{
          nat.forEach((v,i) => {
             if(v == val.name){
-              this.selectedNation.push(val.id)
+              this.selectedNation.push(val)
             }
           })
           // if(this.child.nationality == val.name){
@@ -147,7 +148,7 @@ export class ChildDetailComponent implements OnInit {
       last_name:  ['', Validators.required],
       // moment().subtract(15,'years').toDate()
       birth:['', Validators.required],
-      gender:['Male', Validators.required],
+      gender:['', Validators.required],
       // nationality:['',Validators.required],
       nationality:[[],Validators.required],
       address:[''],
@@ -280,17 +281,23 @@ export class ChildDetailComponent implements OnInit {
     if(this.childForm.valid){
       let data=this.childForm.value;
       let nat = [];
-      data.nameOfClass = data.nameOfClass.name;
-      data.nationality.forEach((val,i)=>{
-        console.log('data',val)
-        this.nationalities.forEach((v,i)=>{
-          if(val == v.id){
-            nat.push(v.name);
-          }
+      data.nameOfClass = this.selectedItem;
+      data.nationality = data.nationality.substring(2, this.child.nationality.length-2).split('\", \"')
+      console.log('data >>', data)
+      if(data.nationality.length > 1){
+        data.nationality.forEach((val,i)=>{
+          console.log('data',val)
+          this.nationalities.forEach((v,i)=>{
+            if(val == v.name){
+              nat.push(v.name);
+            }
+          })
+          data.nationality = nat;
         })
         
-      })
-      data.nationality = nat;
+      }
+      
+      
       if(!data.photo) data.photo = undefined;
       if(this.video){
         data.flag_video = this.video;
