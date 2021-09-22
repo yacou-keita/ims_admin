@@ -98,7 +98,7 @@
                                     <div class="form-group">
                                         <label class="label"> {{'Name of Class' | translate}}</label>
                                         <nb-select fullWidth formControlName="nameOfClass"  [(selected)]="selectedItem">
-                                            <nb-option *ngFor="let item of classNameList;" [value]="item.id"> {{item.name |translate |titlecase}} </nb-option>
+                                            <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
                                         </nb-select>
                                     </div>
                                 </div>
