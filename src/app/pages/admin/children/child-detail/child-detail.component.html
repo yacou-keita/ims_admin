@@ -320,15 +320,15 @@
                     <nb-card-header>
                         {{'Siblings' | translate}}
                         <button nbTooltip="Add Sibling" *ngIf="!isTeacher()"  nbButton ghost (click)="onAddSiblingClick()"> <nb-icon icon="plus-outline"  style="color: black;">plus-outline</nb-icon> </button>
-                        <button *ngIf="child?.siblings.length > 1  && !isTeacher()" nbTooltip="Remove From Sibling"  nbButton ghost (click)="onRemoveSiblingClick()"> <nb-icon icon="minus-outline"  style="color: black;">minus-outline</nb-icon> </button>
+                        <button *ngIf="child?.siblings_data.length > 1  && !isTeacher()" nbTooltip="Remove From Sibling"  nbButton ghost (click)="onRemoveSiblingClick()"> <nb-icon icon="minus-outline"  style="color: black;">minus-outline</nb-icon> </button>
                     </nb-card-header>
                     <nb-card-body>
-                        <ng-container *ngIf="child?.siblings.length == 0; else siblings">
+                        <ng-container *ngIf="child?.siblings_data.length == 0; else siblings_data">
                             {{'Empty' | translate}}
                         </ng-container>
-                        <ng-template #siblings>
+                        <ng-template #siblings_data>
                             <div class="row">
-                                <div class="mr-2" *ngFor="let sibling of child?.siblings" style="cursor: pointer;" (click)="onSiblingClick(sibling)">
+                                <div class="mr-2" *ngFor="let sibling of child?.siblings_data" style="cursor: pointer;" (click)="onSiblingClick(sibling)">
                                     <nb-user [picture]="sibling.photo" [name]="sibling.first_name + ' ' + sibling.last_name "></nb-user>
                                 </div>
                             </div>
@@ -344,7 +344,7 @@
                     </nb-card-header>
                     <nb-card-body>
                         <div class="form-group">
-                            <nb-checkbox class="mr-2" (checkedChange)="privacyCheck($event, item)" *ngFor="let item of privacy" [value]="privacySeleted?.includes(item)">{{item|translate}}</nb-checkbox>
+                            <nb-checkbox class="mr-2" (checkedChange)="privacyCheck($event, item)" *ngFor="let item of privacy" [value]="privacySelected?.includes(item)">{{item|translate}}</nb-checkbox>
                         </div>
                     </nb-card-body>
                 </nb-card>

@@ -25,12 +25,33 @@
                         <div *ngIf="isInvalidControl(bookForm,'title')">
                             <span class="error-text" *ngIf="bookForm.get('title').errors.required">{{'required' | translate}}</span>
                         </div>
-                      </div>                  
-  
-                      <div class="form-group">
-                        <label class="label"> {{'Comment' | translate}} </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="label mr-4"> {{'Author' | translate}} </label>
+                        <input nbInput type="text" placeholder="{{'Author' | translate }}" [status]="isInvalidControl(bookForm,'author')?'danger':'basic'" formControlName="author">
+                        <div *ngIf="isInvalidControl(bookForm,'author')">
+                            <span class="error-text" *ngIf="bookForm.get('author').errors.required">{{'required' | translate}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label mr-4"> {{'Code' | translate}} </label>
+                        <input nbInput type="text" placeholder="{{'Code' | translate }}" [status]="isInvalidControl(bookForm,'code')?'danger':'basic'" formControlName="code">
+                        <div *ngIf="isInvalidControl(bookForm,'code')">
+                            <span class="error-text" *ngIf="bookForm.get('code').errors.required">{{'required' | translate}}</span>
+                        </div>
+                    </div>
+                                  
+                    <div class="form-group">
+                        <label class="label mr-4"> {{'Donated By' | translate}} </label>
+                        <input nbInput type="text" placeholder="{{'Donated By' | translate }}" [status]="isInvalidControl(bookForm,'donator')?'danger':'basic'" formControlName="donator">
+                        <div *ngIf="isInvalidControl(bookForm,'donator')">
+                            <span class="error-text" *ngIf="bookForm.get('donatedBy').errors.required">{{'required' | translate}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label"> {{'Book Description' | translate}} </label>
                         <textarea nbInput rows="5" fullWidth placeholder="{{'comment' | translate}}" formControlName="comment"></textarea>
-                      </div>
+                    </div>
                       <input nbInput type="submit" value="Add" style="float: right;">
                 </form>
             </nb-card-body>

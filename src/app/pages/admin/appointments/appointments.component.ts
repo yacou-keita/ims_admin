@@ -18,7 +18,8 @@ export class AppointmentsComponent implements OnInit {
   children: Child[] = [];
   teacher_src: LocalDataSource;
   parent_src: LocalDataSource;
-  
+  teacherSelected = false;
+  childSelected = false;
   settings = {
     actions:{
       add:false,
@@ -58,6 +59,7 @@ export class AppointmentsComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    localStorage.setItem('landing','true');
     forkJoin({
       teachers:this.userService.getTeachers(),
       children:this.childService.getAllChildren(),
@@ -66,14 +68,22 @@ export class AppointmentsComponent implements OnInit {
       this.children = ret.children;
     })
   }
-
+  teacherDetails(){
+   this.teacherSelected = true;
+  }
+  childDetails(){
+    this.childSelected = true;
+  }
   onTeacherSelect(event){
+    localStorage.setItem('landing','false');
     let selected_user:User = event;
     this.router.navigate([selected_user.id],{relativeTo:this.route});
   }
   onChildSelect(event){
+    localStorage.setItem('landing','false');
+    localStorage.setItem('childappointments','true')
     let selectedChild:Child = event;
-    this.router.navigate([selectedChild.parent.id],{relativeTo:this.route});
+    this.router.navigate([selectedChild.id],{relativeTo:this.route});
   }
 
   newAppointment(){

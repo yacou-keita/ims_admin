@@ -21,8 +21,8 @@ export class PicturesComponent implements OnInit {
   ngOnInit(): void {
     
     this.currentClassName = this.childService.getCurrentClassName();
-    this.childService.getChildrenByClassName(this.currentClassName).subscribe(data=>{
-      this.children = data;
+    this.childService.getAllChildren().subscribe(children=>{
+      this.children = children;
     })
   }
   onSelect(selectedChild:Child){

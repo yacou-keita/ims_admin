@@ -4,6 +4,7 @@ import { CalendarEvent, CalendarView, CalendarEventAction, DAYS_OF_WEEK } from "
 import { DOCUMENT } from '@angular/common';
 import { AppointmentService } from "../../../../@core/services/appointment.service";
 import { UsersService } from "../../../../@core/services/users.service";
+import { ChildService } from "../../../../@core/services/child.service";
 import { User, USERROLE } from "../../../../@core/models/user";
 import { Appointment, AppointmentType } from "../../../../@core/models/appointment";
 import { calendarEventFromAppointment } from "../../../../@core/utils/calendar.util";
@@ -18,6 +19,7 @@ import { fork } from 'cluster';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { YesNoDialogComponent } from '../../../../components/yes-no-dialog/yes-no-dialog.component';
 import { ToastService } from '../../../../@core/services/toast.service';
+import { Child } from '../../../../@core/models/child';
 
 @Component({
   selector: 'ngx-appointment-detail',
@@ -32,7 +34,10 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   weekStartsOn;
   userId:number;
   user:User;
+  child:Child;
   private readonly darkThemeClass = 'dark-theme';
+  fromLand = false;
+  childSel = false;
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -57,30 +62,79 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
     private route:ActivatedRoute,
     private router:Router,
     private dialogService:NbDialogService,
-    private toastrService:ToastService
+    private toastrService:ToastService,
+    private childService: ChildService
   ) { 
+    if(localStorage.getItem('landing')== 'true')
+      this.fromLand = true;
     this.weekStartsOn = DAYS_OF_WEEK.MONDAY;
   }
 
   ngOnInit(): void {
     this.document.body.classList.add(this.darkThemeClass);
-    this.route.paramMap.pipe(
-      switchMap(
-        params => {
-          this.userId = Number(params.get('id'));
-          return forkJoin({
-            user:this.userService.getUserById(this.userId),
-            appointments:this.appointmentService.getEventsByUserId(this.userId)
-          });
-        }
-      ),
-      map(( {user,appointments}:{user:User, appointments:Appointment[]} )=>{        
-        this.user= user;        
-        return appointments.map(item=>{                    
-          return calendarEventFromAppointment(item, this.actions);
+    if(localStorage.getItem('landing')== 'true'){
+      this.route.paramMap.pipe(
+        switchMap(
+          params => {
+            //this.userId = Number(params.get('id'));
+            return forkJoin({
+             // user:this.userService.getUserById(this.userId),
+              //appointments:this.appointmentService.getEventsByUserId(this.userId)
+              appointments:this.appointmentService.getEventsOfCurrentUser()
+            });
+          }
+        ),
+        map(( {appointments}:{ appointments:Appointment[]} )=>{        
+         // this.user= user;        
+          return appointments.map(item=>{                    
+            return calendarEventFromAppointment(item, this.actions);
+          })
         })
-      })
-    ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+      ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+    }else{
+      if(localStorage.getItem('childappointments') == 'true'){
+        this.childSel = true;
+        this.route.paramMap.pipe(
+          switchMap(
+            params => {
+              this.userId = Number(params.get('id'));
+              return forkJoin({
+                child:this.childService.getChildById(this.userId),
+                appointments:this.appointmentService.getEventsByUserId(this.userId)
+                // appointments:this.appointmentService.getEventsOfCurrentUser()
+              });
+            }
+          ),
+          map(( {child,appointments}:{child:Child, appointments:Appointment[]} )=>{        
+            this.child= child;        
+            return appointments.map(item=>{                    
+              return calendarEventFromAppointment(item, this.actions);
+            })
+          })
+        ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+      }else{
+        this.route.paramMap.pipe(
+          switchMap(
+            params => {
+              this.userId = Number(params.get('id'));
+              return forkJoin({
+                user:this.userService.getUserById(this.userId),
+                appointments:this.appointmentService.getEventsByUserId(this.userId)
+                // appointments:this.appointmentService.getEventsOfCurrentUser()
+              });
+            }
+          ),
+          map(( {user,appointments}:{user:User, appointments:Appointment[]} )=>{        
+            this.user= user;        
+            return appointments.map(item=>{                    
+              return calendarEventFromAppointment(item, this.actions);
+            })
+          })
+        ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+      }
+     
+    }
+    
   }
   
   onDetailEvent(event: CalendarEvent): void {

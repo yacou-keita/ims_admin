@@ -7,7 +7,6 @@ import { UsersService } from '../../../../@core/services/users.service';
 import { User, USERROLE } from '../../../../@core/models/user';
 import { NbDialogService } from '@nebular/theme';
 import { YesNoDialogComponent } from '../../../../components/yes-no-dialog/yes-no-dialog.component';
-import { group } from 'console';
 import { ToastService } from '../../../../@core/services/toast.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { isInvalidControl } from '../../../../@core/utils/form.util';
@@ -22,7 +21,7 @@ import * as moment from 'moment';
 export class ChildDetailComponent implements OnInit {
   childForm:FormGroup;
   childId:number;
-  currentUser:User;
+  currentUser = {role:{} , role_name:{} , classNames:{}} as User;
   child:Child;
   classNameList = [];
   selectedItem;
@@ -121,7 +120,6 @@ export class ChildDetailComponent implements OnInit {
       this.userService.getNationalities().subscribe((nationalities) =>{
         this.nationalities = nationalities;
         let nat = this.child.nationality.substring(2, this.child.nationality.length-2).split('\", \"');
-        console.log('nat >>',nat)
         //this.child.nationality = nat
         //nat = nat.split('\", \"')
         this.nationalities.forEach((val,i)=>{
@@ -133,9 +131,10 @@ export class ChildDetailComponent implements OnInit {
           // if(this.child.nationality == val.name){
           //   this.selectedNation.push(val.name);
           // }
+          this.childForm.get("nationality").setValue(this.selectedNation);
         })
-        console.log('slected nation >>', this.selectedNation)
       })
+      console.log('child >>', this.child.siblings_data)
       //this.child.nationality = this.child.nationality.replace(/[\[\]'"]+/g,'')//(/[&\/\\#+()$~%.'":*?<>{}]/g, '');
     })
   }
@@ -189,7 +188,7 @@ export class ChildDetailComponent implements OnInit {
       if(ret==true)
         this.childService.RemoveChildFromSibling(this.child).subscribe( groupId=>{
           this.child.sibling_group = groupId;
-          this.child.siblings=[];          
+          this.child.siblings_data=[];          
         })
     })
   }
@@ -265,7 +264,6 @@ export class ChildDetailComponent implements OnInit {
     return user.role_name == USERROLE.Admin;
   }
   changeListener(event):void {
-    console.log(event);
     if(event.target.files && event.target.files[0]){
       let reader = new FileReader();
 
@@ -276,27 +274,19 @@ export class ChildDetailComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-  onSubmit(){
+  onSubmit(){ 
     this.childForm.markAllAsTouched();
     if(this.childForm.valid){
       let data=this.childForm.value;
       let nat = [];
       data.nameOfClass = this.selectedItem;
-      data.nationality = data.nationality.substring(2, this.child.nationality.length-2).split('\", \"')
-      console.log('data >>', data)
+      
       if(data.nationality.length > 1){
         data.nationality.forEach((val,i)=>{
-          console.log('data',val)
-          this.nationalities.forEach((v,i)=>{
-            if(val == v.name){
-              nat.push(v.name);
-            }
-          })
-          data.nationality = nat;
+              nat.push(val.name);
         })
-        
+        data.nationality = nat;
       }
-      
       
       if(!data.photo) data.photo = undefined;
       if(this.video){

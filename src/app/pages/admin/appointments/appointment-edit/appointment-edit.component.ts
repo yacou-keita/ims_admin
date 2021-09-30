@@ -37,7 +37,8 @@ export class AppointmentEditComponent implements OnInit {
     private userService:UsersService,
     private fb: FormBuilder
   ) { 
-    this.isEditmode = true;    
+    this.isEditmode = true;  
+    localStorage.setItem('landing','false')  
   }
 
   ngOnInit(): void {

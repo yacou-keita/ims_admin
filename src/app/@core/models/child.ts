@@ -23,14 +23,14 @@ export interface SiblingChild{
     id:number;
     first_name:string;
     last_name:string;
-    parent:number,
-    photo?:string;
+    //parent:number,
+   photo?:string;
 }
 export interface Child{
     id:number;
     photo?:string;
     parent:User;
-    siblings:SiblingChild[];
+    siblings_data:SiblingChild[];
     first_name:string;
     last_name:string;
     birth:string;

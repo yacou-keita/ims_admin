@@ -1,7 +1,13 @@
 export enum DocumentFor {
-    Classroom='Classroom',
-    All = 'All'
-
+    All = 'All',
+    Teacher = 'Teacher',
+    Admin = 'Admin',
+    Classroom = 'Classroom',
+    Baobab = 'Baobab',
+    Iroko = 'Iroko',
+    Bamboo = 'Bamboo',
+    Acajou = 'Acajou',
+    Samba = 'Samba'
 }
 export interface Document{
     id:number,

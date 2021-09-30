@@ -19,6 +19,11 @@
 
                     <nb-tab tabTitle="For Classrooms">
                         <nb-card>
+                            <nb-card-header>
+                                <nb-select placeholder="Select class name" (selectedChange)="selectClass($event)"  [(selected)]="currentClassName" style="padding-right: 10px;">
+                                    <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item |translate |titlecase}} </nb-option>
+                                </nb-select>
+                            </nb-card-header>
                             <nb-card-body>
                                 <nb-list>
                                     <nb-list-item class="contact" *ngFor="let d of forClassroomDocuments">
@@ -34,6 +39,11 @@
                 
                     <nb-tab tabTitle="For All">
                         <nb-card>
+                            <nb-card-header>
+                                <nb-select (selectedChange)="selectValue($event)" [(selected)]="selectedItem">
+                                    <nb-option *ngFor="let item of selectList" [value]="item">{{ item | translate }}</nb-option>
+                                </nb-select>
+                            </nb-card-header>
                             <nb-card-body>
                                 <nb-list>
                                     <nb-list-item class="contact" *ngFor="let d of forAllDocuments">

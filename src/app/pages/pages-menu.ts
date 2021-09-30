@@ -2,52 +2,12 @@ import { NbMenuItem } from '@nebular/theme';
 import { title } from 'process';
 
 export const MENU_ITEMS: NbMenuItem[] = [
-  // {
-  //   title: 'Dashboard',
-  //   icon: 'home-outline',
-  //   link: '/dashboard',
-  //   home: true,
-  // },
-  // {
-  //   title: 'Appointment Center',
-  //   icon: 'calendar-outline',
-  //   children:[
-  //     {
-  //       title:'List',
-  //       link:'/teacher/appointment'
-  //     },      
-  //     {
-  //       title:'Request Meeting',
-  //       link:'/teacher/appointment/request'
-  //     },
-  //     {
-  //       title: 'Preset',
-  //       link: '/teacher/preset'
-  //     }
-  //   ]
-  // },
+ 
   {
     title: 'Appointment Center',
     link: '/appointment',
     icon: 'calendar-outline',
-    // children:[
-    //   {
-    //     title:'New Appointment',
-    //     link:'/appointment/new',
-    //   },
-    //   {
-    //     title:'New Pre-set Appointment',
-    //     link:'/appointment/new/preset'
-    //   },
-    //   {
-    //     title:'Booked Appointments',
-    //     link: '/appointment',
-    //   },
-    //   {
-    //     title:'Preset',
-    //     link:'/appointment/preset'
-    //   }
-    // ]
+   
   },
   {
     title:'Message Center',
@@ -56,27 +16,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
       icon:'inbox',
       pack:'fa'
     },
-    // children:[
-    //   {
-    //     title:'Inbox',
-    //     link: '/messagecenter',
-    //   },
-    //   {
-    //     title:'Compose',
-    //     link:'/messagecenter/compose'
-    //   }
-    // ]
+    
   },
   {
     title:'Notifications',
     icon:'bell-outline',
     link:'/notification'
-    // children:[
-    //   {
-    //     title:'Compose',
-    //     link:'/notification/compose'
-    //   }      
-    // ]
+    
   },
   {
     title:'School Documents',
@@ -90,16 +36,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Teachers & Admins',
     icon: 'people-outline',
     link: '/users',
-    // children:[
-    //   {
-    //     title:'List',
-    //     link: '/users',
-    //   },
-    //   {
-    //     title:'New',
-    //     link: '/users/new',
-    //   }
-    // ]
+    
   },
   {
     title: 'Children`s Information',
@@ -114,8 +51,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Photos',
+    link: '/admin/pictures/',
     icon: 'image-outline',
-    link: '/admin/pictures/'
   },
   // {
   //   title:'Child Daily Information',

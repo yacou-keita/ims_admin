@@ -3,6 +3,7 @@ import { DocumentsService } from "../../../@core/services/documents.service";
 import { documents } from '../../../@core/dummy';
 import { Document, DocumentFor } from '../../../@core/models/document';
 import { ToastService } from '../../../@core/services/toast.service';
+import { UsersService } from '../../../@core/services/users.service';
 @Component({
   selector: 'ngx-school-documents',
   templateUrl: './school-documents.component.html',
@@ -12,26 +13,45 @@ export class SchoolDocumentsComponent implements OnInit {
 
   public documents:any[];
   public isAdd:boolean = false;
-
-  constructor(private documentService:DocumentsService, private toastService:ToastService) { }
+  public selectList = ['All','Teacher','Admin'];
+  public selectedItem = 'All'
+  public currentClassName = 'Classroom'
+  public docFor = 'All';
+  public docForClass = 'Classroom'
+  public classNameList = ['Classroom'];
+  constructor(private documentService:DocumentsService, private toastService:ToastService, private userService:UsersService) { }
 
   ngOnInit(): void {
     this.documents=[];
     this.documentService.getDocuments().subscribe(documents=>{
       this.documents = documents;
     })
+    this.userService.getClasses().subscribe((classes) => {
+      classes.forEach((val,i)=>{
+        this.classNameList.push(val.name);
+      })
+    })
   }
   get forClassroomDocuments(){
     return this.documents.filter((item:Document) => {
-      return item.documentfor == DocumentFor.Classroom
+      return item.documentfor == this.docForClass
     })
   }
   get forAllDocuments(){
     return this.documents.filter((item:Document) => {
-      return item.documentfor == DocumentFor.All
+      return item.documentfor == this.docFor
     })
   }
-
+  selectValue(event){
+    console.log('eve >>', event)
+    this.docFor = event;
+    this.forAllDocuments
+  }
+  selectClass(event){
+    console.log('eve >>', event)
+    this.docForClass = event;
+    this.forClassroomDocuments
+  }
   onUploaded(data){
     this.documents.push({
       name:data.data.name,

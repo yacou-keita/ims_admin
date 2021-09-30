@@ -11,9 +11,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
 import { SetChildPWDComponent } from './set-child-pwd/set-child-pwd.component';
 import { AddChildComponent } from './add-child/add-child.component';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { OwlDateTimeModule, OwlMomentDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_FORMATS } from '@danielmoncada/angular-datetime-picker';
 import { DateFilterPipe } from '../../../shared/date-filter.pipe';
 
+export const MY_CUSTOM_FORMATS = {
+  parseInput: 'DD/MM/YYYY',
+  fullPickerInput: 'DD/MM/YYYY hh:mm a',
+  datePickerInput: 'DD/MM/YYYY',
+  timePickerInput: 'hh:mm a',
+  monthYearLabel: 'MMM-YYYY',
+  dateA11yLabel: 'LL',
+  monthYearA11yLabel: 'MMMM-YYYY'
+};
 
 @NgModule({
   declarations: [ChildrenComponent, ChildDetailComponent, AddSiblingComponent, SetChildPWDComponent, AddChildComponent],
@@ -31,10 +40,15 @@ import { DateFilterPipe } from '../../../shared/date-filter.pipe';
     NbUserModule,
     NbPopoverModule,
     OwlDateTimeModule,
+    OwlMomentDateTimeModule,
     OwlNativeDateTimeModule,
     SharedTranslateModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    // { provide: DateTimeAdapter, useClass: MomentDateTimeAdapter, deps: [OWL_DATE_TIME_LOCALE] },
+    { provide: OWL_DATE_TIME_FORMATS, useValue: MY_CUSTOM_FORMATS }
   ]
 })
 export class ChildrenModule { }

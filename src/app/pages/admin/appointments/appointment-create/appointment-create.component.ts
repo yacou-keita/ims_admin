@@ -10,6 +10,7 @@ export class AppointmentCreateComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.setItem('landing','false')
   }
 
 }

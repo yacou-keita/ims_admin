@@ -58,7 +58,7 @@ export class MessageService {
   getSenderName(msg:Message){
     switch(msg.sender.role_name){
       case USERROLE.Admin:
-        return 'Admin Center';
+        return msg.sender.first_name + " " + msg.sender.last_name;
       case USERROLE.Parent:
         return msg.child.first_name + " " + msg.child.last_name;
       case USERROLE.Teacher:
@@ -68,7 +68,7 @@ export class MessageService {
   getReceiverName(msg:Message){
     switch(msg.receiver.role_name){
       case USERROLE.Admin:
-        return 'Admin Center';
+        return msg.receiver.first_name + " " + msg.receiver.last_name;
       case USERROLE.Parent:
         return msg.child.first_name + " " + msg.child.last_name;
       case USERROLE.Teacher:

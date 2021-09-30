@@ -1,9 +1,30 @@
-<nb-select [selected]="documentFor" (selectedChange)="selectChange($event)">
+<nb-select [selected]="documentFor" (selectedChange)="selectChange($event)" style="width:16%">
   <nb-option [value]="item.value" *ngFor="let item of selectList">{{item.key}}</nb-option>
 </nb-select>
+<div *ngIf="documentFor == All">
+  <ngx-file-upload [url]="uploadUrl + All + '/'" [storage]="storageAll" [formDataName]="'url'"></ngx-file-upload>
+</div>
+<div *ngIf="documentFor == Teacher">
+  <ngx-file-upload [url]="uploadUrl + Teacher + '/'" [storage]="storageAll" [formDataName]="'url'"></ngx-file-upload>
+</div>
+<div *ngIf="documentFor == Admin">
+  <ngx-file-upload [url]="uploadUrl + Admin + '/'" [storage]="storageAll" [formDataName]="'url'"></ngx-file-upload>
+</div>
 <div *ngIf="documentFor == Classroom">
   <ngx-file-upload [url]="uploadUrl + Classroom + '/'" [storage]="storageClasrrom" [formDataName]="'url'"></ngx-file-upload>
 </div>
-<div *ngIf="documentFor == All">
-  <ngx-file-upload [url]="uploadUrl + All + '/'" [storage]="storageAll" [formDataName]="'url'"></ngx-file-upload>
+<div *ngIf="documentFor == Baobab">
+  <ngx-file-upload [url]="uploadUrl + Baobab + '/'" [storage]="storageClasrrom" [formDataName]="'url'"></ngx-file-upload>
+</div>
+<div *ngIf="documentFor == Iroko">
+  <ngx-file-upload [url]="uploadUrl + Iroko + '/'" [storage]="storageClasrrom" [formDataName]="'url'"></ngx-file-upload>
+</div>
+<div *ngIf="documentFor == Bamboo">
+  <ngx-file-upload [url]="uploadUrl + Bamboo + '/'" [storage]="storageClasrrom" [formDataName]="'url'"></ngx-file-upload>
+</div>
+<div *ngIf="documentFor == Acajou">
+  <ngx-file-upload [url]="uploadUrl + Acajou + '/'" [storage]="storageClasrrom" [formDataName]="'url'"></ngx-file-upload>
+</div>
+<div *ngIf="documentFor == Samba">
+  <ngx-file-upload [url]="uploadUrl + Samba + '/'" [storage]="storageClasrrom" [formDataName]="'url'"></ngx-file-upload>
 </div>

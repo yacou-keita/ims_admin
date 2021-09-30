@@ -1,22 +1,39 @@
-<nb-card-header>
-    <button style="float: right; padding-top: 40px;" type="button" nbButton (click)="newPreset()" ghost> {{'Pre-set Appointment' | translate}} </button>
-    <button style="float: right; padding-top: 40px;" type="button" nbButton (click)="newAppointment()" ghost> {{'New Appointment' | translate}} </button>
-</nb-card-header>
-<nb-tabset fullWidth>
-    <nb-tab tabTitle="{{'Teachers' | translate}}">
-        <nb-card>
-            <nb-card-body>
-                <ngx-user-list [data]="this.teachers" (onselect)="onTeacherSelect($event)"></ngx-user-list>
-            </nb-card-body>
-        </nb-card>         
-    </nb-tab>
+<nb-card>
+    <nb-card-header>
+        <button type="button" nbButton (click)="teacherDetails()" ghost>
+            {{'Teachers' | translate}}
+        </button>
+        <button type="button" nbButton (click)="childDetails()" ghost>
+            {{'Children' | translate}}
+        </button>
+        <button style="float: right;" type="button" nbButton (click)="newPreset()" ghost> {{'Pre-set Appointment' | translate}} </button>
+        <button style="float: right;" type="button" nbButton (click)="newAppointment()" ghost> {{'New Appointment' | translate}} </button>
+    </nb-card-header>
+    <!-- <nb-tabset fullWidth>
+        <nb-tab tabTitle="{{'Teachers' | translate}}">
+            <nb-card>
+                <nb-card-body>
+                    <ngx-user-list [data]="this.teachers" (onselect)="onTeacherSelect($event)"></ngx-user-list>
+                </nb-card-body>
+            </nb-card>         
+        </nb-tab>
 
-    <nb-tab tabTitle="{{'Children' | translate}}">
-        <nb-card>
-            <nb-card-body>
-                <ngx-child-list [data]="this.children" (onselect)="onChildSelect($event)"></ngx-child-list>
-            </nb-card-body>
-        </nb-card>  
-    </nb-tab>  
-</nb-tabset>
+        <nb-tab tabTitle="{{'Children' | translate}}">
+            <nb-card>
+                <nb-card-body>
+                    <ngx-child-list [data]="this.children" (onselect)="onChildSelect($event)"></ngx-child-list>
+                </nb-card-body>
+            </nb-card>  
+        </nb-tab>  
+    </nb-tabset> -->
+    <nb-card-body fullWidth *ngIf="!teacherSelected && !childSelected">
+        <ngx-appointment-detail></ngx-appointment-detail>
+    </nb-card-body>
+    <nb-card-body fullwidth *ngIf="teacherSelected">
+        <ngx-user-list [data]="this.teachers" (onselect)="onTeacherSelect($event)"></ngx-user-list>
+    </nb-card-body>
+    <nb-card-body *ngIf="childSelected">
+        <ngx-child-list [data]="this.children" (onselect)="onChildSelect($event)"></ngx-child-list>
+    </nb-card-body>
+</nb-card>
       

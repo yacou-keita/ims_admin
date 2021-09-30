@@ -82,10 +82,11 @@ export class ChildService {
     this.currentClassNameSubject.next(this.current_class_name);
   }
 
-  AddSiblings(pchild:Child, siblings:Child[]):Observable<any>{
+  AddSiblings(childId:number, siblings:Child[]):Observable<any>{
 
     let children = siblings.map(item=>{return item.id});
-    return this.httpClient.post(`${this.api_url}/child/sibling/${pchild.sibling_group}/add/`,{children:children})
+    return this.httpClient.put(`${this.api_url}/child/${childId}/`,{siblings:children})
+    //return this.httpClient.put(`${this.api_url}/child/sibling/${pchild.sibling_group}/add/`,{children:children})
   }
   RemoveChildFromSibling(child:Child):Observable<any>{  // Have to change sibling Id to the blank sibling id.
     return this.httpClient.post(`${this.api_url}/child/${child.id}/remove_from_sibling/`,{});

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { switchMap } from 'rxjs/operators';
+import { __createBinding } from 'tslib';
 import { Child, NameOfClass, SiblingChild } from '../../../../@core/models/child';
 import { ChildService } from '../../../../@core/services/child.service';
 import { ToastService } from '../../../../@core/services/toast.service';
@@ -37,9 +38,12 @@ export class AddSiblingComponent implements OnInit {
       }
     )).subscribe((data:Child[]) => {
       this.children = data.reduce((newData, child:Child)=>{
+        if(child.siblings_data == null){
+          child.siblings_data = [];
+        }
         if(child.id == this.childId)
           this.child = child;
-        else if(!child.siblings.find((item:SiblingChild)=>{return item.id == this.childId})){
+        else if(!child.siblings_data.find((item:SiblingChild)=>{return item.id == this.childId})){
             newData.push(child);
           }
         
@@ -56,10 +60,13 @@ export class AddSiblingComponent implements OnInit {
   }
   onSubmit(){
     alert(this.selectedChildren.length);
-    this.childService.AddSiblings(this.child, this.selectedChildren).subscribe(_=>{
+    this.childService.AddSiblings(this.childId, this.selectedChildren).subscribe(_=>{
       this.toastrService.success('Add Siblings Succesfully', 'success');
       this.router.navigate(['..'],{relativeTo:this.route});
       
     })
+    // this.childService.UpdateChild(this.childId,this.selectedChildren).subscribe( _ => {
+    //   this.toastrService.success('Child Sibling Details has been updated successfully','success');
+    // })
   }
 }
