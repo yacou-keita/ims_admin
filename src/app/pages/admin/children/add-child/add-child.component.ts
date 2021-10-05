@@ -23,7 +23,7 @@ export class AddChildComponent implements OnInit {
   classNameList = [];
   nationalities = [];
   isSubmitting:boolean = false;
-  dateFormat = 'dd/mm/yyyy';
+  //dateFormat = 'dd/mm/yyyy';
   privacy = ['video','newsLetter','fridaysLetter','internetSite','yearbook','flyer','magazine','facebook','instagram'];
   others = ['reenrollment','dischargeOfResponibility','imageRights','healthProtocol','financialContract','interieurRules']
   video:boolean = false;
@@ -52,7 +52,8 @@ export class AddChildComponent implements OnInit {
     private dialogService:NbDialogService,
     private datePipe: DatePipe
     ) {
-      this.dateAdapter.setLocale(this.translateService.currentLang);
+      dateAdapter.setLocale('en-IN')
+      //this.dateAdapter.setLocale(this.translateService.currentLang);
     this.translateService.onLangChange.subscribe((event:LangChangeEvent)=>{
       this.dateAdapter.setLocale(event.lang)
     })

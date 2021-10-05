@@ -54,7 +54,6 @@ export class AppointmentEditComponent implements OnInit {
       })
       
     })
-
    
     this.appointmentForm = this.fb.group({
       title:['',Validators.required],
@@ -103,7 +102,9 @@ export class AppointmentEditComponent implements OnInit {
         this.appoinment.type = AppointmentType.FREE;
         this.appointmentService.CreateEvent(this.appoinment).subscribe(data => {
           this.toastrService.success('Registered the New Appointment',"Success");
-          this.router.navigate([`/appointment/${data.parent}`]);
+          localStorage.setItem('childappointments','true')
+          localStorage.setItem('appointedChild',data.parent)
+          this.router.navigate([`/appointment/${data.child}`]);
         })
       }
     }

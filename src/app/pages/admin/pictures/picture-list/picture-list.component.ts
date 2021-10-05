@@ -21,7 +21,6 @@ export class PictureListComponent implements OnInit {
               private pictureService:PictureService) { }
 
   ngOnInit(): void {
-    
     this.route.paramMap.pipe(switchMap(
       params => {
         this.childId = Number(params.get('childId'));
@@ -44,11 +43,23 @@ export class PictureListComponent implements OnInit {
   back(){
     this.router.navigate(['..'],{relativeTo:this.route})
   }
-  open(index:number){
-    this._lightbox.open(this._album,index, {
-      centerVertically: true,
-      fitImageInViewPort: false
-    });
+  // open(index:number){
+  //   this._lightbox.open(this._album,index, {
+  //     centerVertically: true,
+  //     fitImageInViewPort: false
+  //   });
+  // }
+  open(index: number): void {
+    // open lightbox
+    this._lightbox.open(this._album, index, {
+          centerVertically: true,
+          fitImageInViewPort: false
+        });
+  }
+
+  close(): void {
+    // close lightbox programmatically
+    this._lightbox.close();
   }
 
 }

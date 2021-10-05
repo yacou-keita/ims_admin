@@ -9,6 +9,7 @@ import { User, USERROLE } from '../../../../@core/models/user';
 import { MustMatch } from '../../../../@core/utils/validators.util';
 import { generateRandomPassword } from '../../../../@core/utils/password.util';
 import { ToastService } from '../../../../@core/services/toast.service';
+import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 
 @Component({
   selector: 'ngx-add-user',
@@ -27,7 +28,8 @@ export class AddUserComponent implements OnInit {
   role_name;
   role;
   title;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder, private userService:UsersService, private toastrService:ToastService,private router:Router) { 
+  constructor(private route:ActivatedRoute,private fb: FormBuilder, private userService:UsersService, private toastrService:ToastService,private router:Router,private dateTimeAdapter: DateTimeAdapter<any>) { 
+    dateTimeAdapter.setLocale('en-IN')
     this.genereatedPwd = generateRandomPassword(12);
     this.role_name = localStorage.getItem('role_name');
     this.profileForm = this.fb.group({

@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { isInvalidControl } from '../../../../@core/utils/form.util';
 import { Subject } from 'rxjs';
 import * as moment from 'moment';
+import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 
 @Component({
   selector: 'ngx-child-detail',
@@ -53,8 +54,10 @@ export class ChildDetailComponent implements OnInit {
     private childService:ChildService,
     private toastService:ToastService,
     private fb:FormBuilder,
-    private dialogService:NbDialogService
+    private dialogService:NbDialogService,
+    private dateTimeAdapter: DateTimeAdapter<any>
   ) { 
+    dateTimeAdapter.setLocale('en-IN')
     this.userService.getCurrentUser().subscribe((user:User)=>{this.currentUser = user;})
     this.route.paramMap.pipe(switchMap(
       params => {

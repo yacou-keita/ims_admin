@@ -38,7 +38,7 @@
 
                       <div class="form-group">
                         <label class="label"> {{'Date of Birth' | translate}}</label>
-                        <input  fullWidth nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [status]="isInvalidControl(profileForm,'dob')?'danger':'basic'" formControlName="dob" placeholder="mm/dd/yyyy">
+                        <input  fullWidth nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [status]="isInvalidControl(profileForm,'dob')?'danger':'basic'" formControlName="dob" placeholder="dd/mm/yyyy">
                             <!-- <div *ngIf="isInvalidControl(profileForm,'dob')">
                                 <span class="error-text" *ngIf="profileForm.get('dob').errors.required">{{'required' | translate}}</span>
                             </div>  -->

@@ -38,6 +38,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   private readonly darkThemeClass = 'dark-theme';
   fromLand = false;
   childSel = false;
+  children:Child;
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -98,11 +99,12 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
           switchMap(
             params => {
               this.userId = Number(params.get('id'));
-              return forkJoin({
-                child:this.childService.getChildById(this.userId),
-                appointments:this.appointmentService.getEventsByUserId(this.userId)
-                // appointments:this.appointmentService.getEventsOfCurrentUser()
-              });
+                return forkJoin({
+                  child:this.childService.getChildById(this.userId),
+                  appointments:this.appointmentService.getEventsByUserId(parseInt(localStorage.getItem('appointedChild')))
+                  // appointments:this.appointmentService.getEventsOfCurrentUser()
+                });
+              
             }
           ),
           map(( {child,appointments}:{child:Child, appointments:Appointment[]} )=>{        

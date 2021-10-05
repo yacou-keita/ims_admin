@@ -265,9 +265,9 @@ export let miniClubs:MiniClub[]=[
 ];
 
 export let books:ExchangeLibrary[]=[
-  {id:0, title:'Hello Book', picture:pictures[0].image,status:BookStatus.PRESENT},
-  {id:1, title:'Test Book', picture:pictures[0].image,status:BookStatus.PRESENT},
-  {id:2, title:'Thank You Book', picture:pictures[0].image,status:BookStatus.RENTED, child:children[0]},
-  {id:3, title:'God Book', picture:pictures[0].image,status:BookStatus.PRESENT}
+  // {id:0, title:'Hello Book', picture:pictures[0].image,status:BookStatus.PRESENT},
+  // {id:1, title:'Test Book', picture:pictures[0].image,status:BookStatus.PRESENT},
+  // {id:2, title:'Thank You Book', picture:pictures[0].image,status:BookStatus.RENTED, child:children[0]},
+  // {id:3, title:'God Book', picture:pictures[0].image,status:BookStatus.PRESENT}
 
 ]

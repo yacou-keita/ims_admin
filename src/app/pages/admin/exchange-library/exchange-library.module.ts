@@ -8,9 +8,14 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { NbAccordionModule, NbAlertModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
+import { ChildListModule } from '../../../shared/child-list/child-list.module';
+import { EditBookComponent } from './edit-book/edit-book.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
-  declarations: [ExchangeLibraryComponent, AddBookComponent, BookFormComponent],
+  declarations: [ExchangeLibraryComponent, AddBookComponent, BookFormComponent, EditBookComponent],
   imports: [
     CommonModule,
     CommonModule,
@@ -25,9 +30,15 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     NbAccordionModule,
     NbUserModule,
     NbBadgeModule,
-
+    ChildListModule,
     SharedTranslateModule,
-    ExchangeLibraryRoutingModule
+    ExchangeLibraryRoutingModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ]
 })
 export class ExchangeLibraryModule { }

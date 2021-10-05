@@ -18,14 +18,20 @@
                 
                 <div class="ml-3 mt-2 w-100"  >
                     <div class="d-flex flex-wrap align-items-center">
+                        <div class="text-1 ml-2">
+                            
+                            <div class="date-text">
+                                <span class="text-primary">{{book.code}}</span>
+                            </div>
+                        </div>
                         <div class="avatar ml-2">                            
-                            <div class="content" [ngStyle]="{'background-image':  'url(' +book.picture + ')'}">
+                            <div class="content" [ngStyle]="{'background-image':  'url(' +book.picture + ')'}" (click)="selectBook(book)">
                             </div>
                         </div>
                         <div class="text-1 ml-2">
                             
                             <div class="date-text">
-                                {{'Title' | translate}}: <span class="text-primary">{{book.title}}</span>
+                                {{'Book Name' | translate}}: <span class="text-primary">{{book.title}}</span>
                             </div>
                         </div>
                         <div class="ml-auto" >

@@ -16,10 +16,10 @@ export class PicturesComponent implements OnInit {
     private router:Router,
     private route:ActivatedRoute
     ) {
+      localStorage.setItem('fromPicture','true');
   }
 
   ngOnInit(): void {
-    
     this.currentClassName = this.childService.getCurrentClassName();
     this.childService.getAllChildren().subscribe(children=>{
       this.children = children;

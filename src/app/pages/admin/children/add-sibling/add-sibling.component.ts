@@ -43,13 +43,13 @@ export class AddSiblingComponent implements OnInit {
         }
         if(child.id == this.childId)
           this.child = child;
-        else if(!child.siblings_data.find((item:SiblingChild)=>{return item.id == this.childId})){
+          //if(!child.siblings_data.find((item:SiblingChild)=>{return item.id == this.childId}))
+        else {
             newData.push(child);
           }
         
         return newData;
-      }, []);
-      console.log(this.children)  
+      }, []);  
     })
   }
   onSelect(selectedChild:Child){
@@ -59,7 +59,6 @@ export class AddSiblingComponent implements OnInit {
     this.router.navigate(['..'],{relativeTo:this.route});
   }
   onSubmit(){
-    alert(this.selectedChildren.length);
     this.childService.AddSiblings(this.childId, this.selectedChildren).subscribe(_=>{
       this.toastrService.success('Add Siblings Succesfully', 'success');
       this.router.navigate(['..'],{relativeTo:this.route});

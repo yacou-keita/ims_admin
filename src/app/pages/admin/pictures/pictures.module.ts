@@ -11,6 +11,7 @@ import { ChildListModule } from '../../../shared/child-list/child-list.module';
 import { NbCardModule, NbButtonModule, NbIconModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { PictureAddComponent } from './picture-add/picture-add.component';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [PicturesComponent, PictureListComponent, PictureAddComponent],
@@ -37,7 +38,8 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
      */
     NgxFileUploadUiCommonModule,
     NgxFileUploadUiProgressbarModule,
-    NgxFileUploadUiToolbarModule
+    NgxFileUploadUiToolbarModule,
+    LightboxModule
   ]
 })
 export class PicturesModule { }

@@ -13,6 +13,7 @@ import { NameOfClass } from '../../../@core/models/child';
 import { ChildService } from '../../../@core/services/child.service';
 import { ToastService } from '../../../@core/services/toast.service';
 import { YesNoDialogComponent } from '../../../components/yes-no-dialog/yes-no-dialog.component';
+import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 @Component({
   selector: 'ngx-user-detail',
   templateUrl: './user-detail.component.html',
@@ -34,7 +35,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private fb: FormBuilder, 
     private userService:UsersService, 
     private toastrService:ToastService,
-    private router:Router,private dialogService:NbDialogService) { }
+    private router:Router,private dialogService:NbDialogService,private dateTimeAdapter: DateTimeAdapter<any>) {
+      dateTimeAdapter.setLocale('en-IN')
+     }
 
   ngOnInit(): void {
     this.genereatedPwd = generateRandomPassword(12);

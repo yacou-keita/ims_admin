@@ -78,6 +78,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     //   this.userService.localSource = this.admin_src;
     // })
     localStorage.setItem('fromChild','false');
+    localStorage.setItem('fromPicture','false')
     this.userService.getRoles().subscribe((roles) =>{
       this.roles = roles;
     })

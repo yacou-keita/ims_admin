@@ -20,7 +20,7 @@ export class ChildListComponent implements OnInit, OnChanges {
   others: User[] = [];
   classNameList=[];
   currentClassName;
-  fromChild ;
+  fromChild = false;
   parent_src: LocalDataSource;
   settings = {
     actions:{
@@ -53,11 +53,14 @@ export class ChildListComponent implements OnInit, OnChanges {
   purpose:string;
   constructor(private userService:UsersService,private childService:ChildService,private router:Router,) {
     this.parent_src = new LocalDataSource();
+    if(localStorage.getItem('fromChild') == 'true' || localStorage.getItem('fromPicture') == 'true')
+        this.fromChild = true;
   }
 
   ngOnInit(): void {
     if(this.data){
-      this.fromChild = localStorage.getItem('fromChild');
+      if(localStorage.getItem('fromChild') == 'true' || localStorage.getItem('fromPicture') == 'true')
+        this.fromChild = true;
       if(localStorage.getItem('role') != 'Parent'){
         this.parents = this.data;
         this.parent_src.load(this.parents);
@@ -65,7 +68,9 @@ export class ChildListComponent implements OnInit, OnChanges {
         this.others = this.data;
         this.parent_src.load(this.others);
       }
+      console.log('this.fromChuld >>', this.fromChild)
     }
+    console.log('data >>', this.data)
     this.classNameList.push({id: 0, name: "All", createdBy: 2});
     this.userService.getClasses().subscribe((classes) => {
      

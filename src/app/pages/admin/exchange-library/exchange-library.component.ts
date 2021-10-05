@@ -28,8 +28,13 @@ export class ExchangeLibraryComponent implements OnInit {
     this.exchangeLibraryService.getAllBooks().subscribe(data => {this.books = data; this.filteredbooks = this.books;
     })
   }
+  selectBook(book){
+    console.log('edit book')
+    localStorage.setItem('bookID',book.id)
+    this.router.navigate(['edit'],{relativeTo:this.route});
+  }
   onSearchWordChange(data){
-    this.filteredbooks = this.books.filter((item:ExchangeLibrary)=>{return item.title.includes(this.searchWord)});
+    this.filteredbooks = this.books.filter((item:ExchangeLibrary)=>{return item.title.toLowerCase().includes(this.searchWord.toLowerCase()) || item.author.toLowerCase().includes(this.searchWord.toLowerCase()) || item.code.includes(this.searchWord)});
   }
   newExchangeLibraryClick(){
     this.router.navigate(['new'],{relativeTo:this.route});

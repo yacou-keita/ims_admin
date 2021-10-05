@@ -2,7 +2,7 @@
     <div class="col-lg-6">
         <nb-card >
             <nb-card-header> 
-                {{'New Book' | translate}}
+                {{pageTitle | translate}}
             </nb-card-header>
             <nb-card-body>
                 <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit()">
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="label mr-4"> {{'Title' | translate}} </label>
+                        <label class="label mr-4"> {{'Book Name' | translate}} </label>
                         <input nbInput type="text" placeholder="{{'Title' | translate }}" [status]="isInvalidControl(bookForm,'title')?'danger':'basic'" formControlName="title">
                         <div *ngIf="isInvalidControl(bookForm,'title')">
                             <span class="error-text" *ngIf="bookForm.get('title').errors.required">{{'required' | translate}}</span>
@@ -34,13 +34,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="label mr-4"> {{'Code' | translate}} </label>
+                        <label class="label mr-4"> {{'Book Code' | translate}} </label>
                         <input nbInput type="text" placeholder="{{'Code' | translate }}" [status]="isInvalidControl(bookForm,'code')?'danger':'basic'" formControlName="code">
                         <div *ngIf="isInvalidControl(bookForm,'code')">
                             <span class="error-text" *ngIf="bookForm.get('code').errors.required">{{'required' | translate}}</span>
                         </div>
                     </div>
-                                  
                     <div class="form-group">
                         <label class="label mr-4"> {{'Donated By' | translate}} </label>
                         <input nbInput type="text" placeholder="{{'Donated By' | translate }}" [status]="isInvalidControl(bookForm,'donator')?'danger':'basic'" formControlName="donator">
@@ -52,7 +51,30 @@
                         <label class="label"> {{'Book Description' | translate}} </label>
                         <textarea nbInput rows="5" fullWidth placeholder="{{'comment' | translate}}" formControlName="comment"></textarea>
                     </div>
-                      <input nbInput type="submit" value="Add" style="float: right;">
+                    <div class="form-group">
+                        <label class="label mr-4"> {{'Booked By' | translate}} </label>
+                        <ngx-child-select [childs]="children" formControlName="child" ></ngx-child-select>
+                        <!-- <div *ngIf="isInvalidControl(bookForm,'donator')">
+                            <span class="error-text" *ngIf="bookForm.get('child').errors.required">{{'required' | translate}}</span>
+                        </div> -->
+                    </div>           
+                    <div class="form-group">
+                        <label class="label mr-4"> {{'Booked Date' | translate}} </label>
+                        <input  fullWidth nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [status]="isInvalidControl(bookForm,'booked_on')?'danger':'basic'" formControlName="booked_on" placeholder="dd/mm/yyyy">
+                        <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+                        <!-- <div *ngIf="isInvalidControl(bookForm,'booked_on')">
+                            <span class="error-text" *ngIf="bookForm.get('booked_on').errors.required">{{'required' | translate}}</span>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label class="label mr-4"> {{'Returned Date' | translate}} </label>
+                        <input  fullWidth nbInput [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" [status]="isInvalidControl(bookForm,'returned_on')?'danger':'basic'" formControlName="returned_on" placeholder="dd/mm/yyyy">
+                        <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
+                        <!-- <div *ngIf="isInvalidControl(bookForm,'donator')">
+                            <span class="error-text" *ngIf="bookForm.get('donatedBy').errors.required">{{'required' | translate}}</span>
+                        </div> -->
+                    </div>
+                    <input nbInput type="submit" value="{{submit}}" style="float: right;">
                 </form>
             </nb-card-body>
         </nb-card>

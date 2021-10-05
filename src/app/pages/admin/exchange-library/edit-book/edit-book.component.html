@@ -1,0 +1,9 @@
+<nb-card>
+    <nb-card-header>
+        <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
+        {{"Edit Book" | translate}}
+    </nb-card-header>
+    <nb-card-body>
+        <ngx-book-form [edit]="true" [data]="books" (onSubmit)="onSubmit($event)"></ngx-book-form>
+    </nb-card-body>
+</nb-card>

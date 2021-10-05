@@ -11,6 +11,6 @@ export function calendarEventFromAppointment(item:Appointment, actions?:Calendar
       actions:actions,
       meta: item.type
     }
-    console.log(ret_item);
+   // console.log(ret_item);
     return ret_item;
   }
