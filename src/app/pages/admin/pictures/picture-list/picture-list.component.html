@@ -5,10 +5,10 @@
     </nb-card-header>
     <nb-card-body class="row">
         <div class="item col-sm-2 mb-4" (click)="add()">
-            <div class="img-content" [ngStyle]="{'background-image':  'url(/assets/images/icon-add.png)'}"></div>
+            <div class="img-content" style="padding-top: 100%;" [ngStyle]="{'background-image':  'url(/assets/images/icon-add.png)'}"></div>
         </div>
         <div class="item col-sm-2 mb-4" *ngFor="let picture of pictures; let i= index">
-            <img [src]="picture.image" (click)="open(i)" />
+            <img  class="img-content" [src]="picture.image" (click)="open(i)" />
             <!-- <div class="img-content" [ngStyle]="{'background-image':  'url(' + picture.image + ')'}"></div> -->
         </div>
     </nb-card-body>

@@ -140,8 +140,11 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   }
   
   onDetailEvent(event: CalendarEvent): void {
+    this.route.params['_value'] = {id:'40'}
+    this.route.snapshot.params = {id:'40'}
     if(event.meta == AppointmentType.FREE)
       this.router.navigate([event.id],{relativeTo:this.route})
+      // this.router.navigate([event.id,event.id])
     if(event.meta == AppointmentType.PRESET){
       this.router.navigate([`/appointment/preset/${event.id}`]);
     }

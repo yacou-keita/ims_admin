@@ -52,7 +52,7 @@ export class AppointmentService {
   }
   deleteEventById(eventId):Observable<any>{
     appointmentsOfOneUser.splice(eventId,1);
-    return of("success");
+    return this.httpClient.delete(`${this.api_url}/appointments/${eventId}/`);
   }
   
   

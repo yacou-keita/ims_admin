@@ -77,7 +77,7 @@ export class BookFormComponent implements OnInit {
       child:['',Validators.nullValidator],
       booked_on:['',Validators.nullValidator],
       returned_on:['',Validators.nullValidator],
-      booked_status:['',Validators.nullValidator]
+      booked_status:[false,Validators.nullValidator]
     })
     if(!this.initdata)
     {
@@ -122,15 +122,22 @@ export class BookFormComponent implements OnInit {
     if(this.bookForm.valid){
       
       if(this.bookForm.value.booked_on){
-        this.bookForm.value.booked_on = moment(this.bookForm.value.booked_on).format("YYYY-MM-DD")
+        this.bookForm.value.booked_on = moment(this.bookForm.value.booked_on).format("YYYY-MM-DD") + 'T08:05:53.000Z'
         this.bookForm.value.booked_status = true
       }else
-        this.bookForm.value.booked_on = null;
+        //this.bookForm.value.booked_on = null;
+        delete this.bookForm.value.booked_on
       if(this.bookForm.value.returned_on){
-        this.bookForm.value.returned_on = moment(this.bookForm.value.returned_on).format("YYYY-MM-DD")
+        this.bookForm.value.returned_on = moment(this.bookForm.value.returned_on).format("YYYY-MM-DD") + 'T08:05:53.000Z'
         this.bookForm.value.booked_status = false
       }else
-        this.bookForm.value.returned_on = null;
+        //this.bookForm.value.returned_on = null;
+        delete this.bookForm.value.returned_on
+      if(this.bookForm.value.pictureFile == null){
+        delete this.bookForm.value.pictureFile
+        delete this.bookForm.value.picture
+        delete this.initdata.picture
+      }
       this.book = Object.assign(this.initdata, this.bookForm.value);
       this.submitEvent.emit(this.book);
     }
