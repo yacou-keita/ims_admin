@@ -42,6 +42,10 @@ export class BookFormComponent implements OnInit {
       }).subscribe(ret=>{
         this.children = ret.children;
         this.book = ret.books
+        this.children.forEach(val => {
+          if(val.id == this.book.child)
+            this.book.child = val
+        })
         this.bookForm.reset(this.book)  
       })
     }else{

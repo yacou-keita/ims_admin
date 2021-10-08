@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CalendarEvent, CalendarView, CalendarEventAction, DAYS_OF_WEEK } from "angular-calendar";
 import { DOCUMENT } from '@angular/common';
@@ -29,7 +29,7 @@ import { Child } from '../../../../@core/models/child';
 export class AppointmentDetailComponent implements OnInit, OnDestroy {
   view: CalendarView = CalendarView.Month;
   viewDate = new Date();
-  events: CalendarEvent[];
+  events: CalendarEvent[]
   activeDayIsOpen:boolean = true;
   weekStartsOn;
   userId:number;
@@ -39,6 +39,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   fromLand = false;
   childSel = false;
   children:Child;
+  parentIds = [];
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -87,7 +88,8 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
         ),
         map(( {appointments}:{ appointments:Appointment[]} )=>{        
          // this.user= user;        
-          return appointments.map(item=>{                    
+          return appointments.map(item=>{       
+            this.parentIds.push({id:item.id, val:item.parent.id})        
             return calendarEventFromAppointment(item, this.actions);
           })
         })
@@ -140,14 +142,27 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   }
   
   onDetailEvent(event: CalendarEvent): void {
-    this.route.params['_value'] = {id:'40'}
-    this.route.snapshot.params = {id:'40'}
-    if(event.meta == AppointmentType.FREE)
-      this.router.navigate([event.id],{relativeTo:this.route})
+    if(this.fromLand == true){}
+    if(event.meta == AppointmentType.FREE){
+      if(this.fromLand == true){
+        let childID;
+        this.parentIds.forEach(val => {
+          if(val.id == event.id){
+            this.router.navigate([`/appointment/${val.val}/${event.id}`])
+          }
+        })
+        
+      }else{
+        this.router.navigate([event.id],{relativeTo:this.route})
+      }
+    }
       // this.router.navigate([event.id,event.id])
     if(event.meta == AppointmentType.PRESET){
       this.router.navigate([`/appointment/preset/${event.id}`]);
     }
+  }
+  eventClicked({ event }: { event: CalendarEvent }): void {
+    console.log('event cliekces', event);
   }
   onDeleteEvent(event: CalendarEvent): void {
     this.dialogService.open(YesNoDialogComponent,{context:{

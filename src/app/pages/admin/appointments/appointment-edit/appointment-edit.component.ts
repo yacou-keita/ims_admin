@@ -68,13 +68,17 @@ export class AppointmentEditComponent implements OnInit {
         switchMap(
           params => {
             this.appointmentId = Number(params.get('appointment_id'));
-            this.userId = Number(params.get('id'));
+            //this.userId = Number(params.get('id'));
             return this.appointmentService.getEventById(this.appointmentId);
           }
         )
       ).subscribe((res:Appointment)=>{
         console.log(res);
         this.appoinment = res;
+        if(localStorage.getItem('childappointments') == 'false'){
+          this.userId = this.appoinment.teacher.id;
+        }else
+          this.userId = this.appoinment.child.id;
         this.InitForm(res);
       })  
     }
@@ -104,6 +108,7 @@ export class AppointmentEditComponent implements OnInit {
           this.toastrService.success('Registered the New Appointment',"Success");
           localStorage.setItem('childappointments','true')
           localStorage.setItem('appointedChild',data.parent)
+          this.userId = data.child
           this.router.navigate([`/appointment/${data.child}`]);
         })
       }
