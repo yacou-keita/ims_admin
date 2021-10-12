@@ -84,7 +84,6 @@ export class SetChildPWDComponent implements OnInit {
           this.toastrService.warning(err.error,"Error");
         }
       )
-      alert(this.passwordForm.value);
     }
   }
   setPassword(elem){

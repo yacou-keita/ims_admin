@@ -79,8 +79,8 @@ export class BookFormComponent implements OnInit {
       comment:['', Validators.nullValidator],
       status:[BookStatus.PRESENT, Validators.nullValidator],
       child:['',Validators.nullValidator],
-      booked_on:['',Validators.nullValidator],
-      returned_on:['',Validators.nullValidator],
+      booked_on:[null,Validators.nullValidator],
+      returned_on:[null,Validators.nullValidator],
       booked_status:[false,Validators.nullValidator]
     })
     if(!this.initdata)
@@ -118,6 +118,7 @@ export class BookFormComponent implements OnInit {
       }
       this.bookForm.get('pictureFile').setValue(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
+      console.log('photo >>', this.bookForm)
     }
   }
   get picture():string { return this.bookForm.get('picture').value}
@@ -128,15 +129,21 @@ export class BookFormComponent implements OnInit {
       if(this.bookForm.value.booked_on){
         this.bookForm.value.booked_on = moment(this.bookForm.value.booked_on).format("YYYY-MM-DD") + 'T08:05:53.000Z'
         this.bookForm.value.booked_status = true
-      }else
+      }else{
         //this.bookForm.value.booked_on = null;
         delete this.bookForm.value.booked_on
+        delete this.initdata.booked_on
+        delete this.bookForm.value.child
+        delete this.initdata.child
+      }
       if(this.bookForm.value.returned_on){
         this.bookForm.value.returned_on = moment(this.bookForm.value.returned_on).format("YYYY-MM-DD") + 'T08:05:53.000Z'
         this.bookForm.value.booked_status = false
-      }else
+      }else{
         //this.bookForm.value.returned_on = null;
         delete this.bookForm.value.returned_on
+        delete this.initdata.returned_on
+      }
       if(this.bookForm.value.pictureFile == null){
         delete this.bookForm.value.pictureFile
         delete this.bookForm.value.picture

@@ -21,26 +21,26 @@ export class ExchangeLibraryService {
   }
   addBook(book:ExchangeLibrary):Observable<any>{
     let data:any = book;
-    // const formData = new FormData();
-    // Object.keys(book).forEach((key)=>{
-    //   formData.append(key, book[key]);
-    // })    
-    // if(data.pictureFile) formData.set('picture', data.pictureFile);
-    // if(data.child) formData.set('child', data.child.id)
-    // if(data.pictureFile) data.picture = data.pictureFile;
-    if(data.child) data.child = data.child.id
-    return this.httpClient.post(`${this.api_url}/exchangelibraries/`, data);    
+    const formData = new FormData();
+    Object.keys(book).forEach((key)=>{
+      formData.append(key, book[key]);
+    })    
+    if(data.pictureFile) formData.set('picture', data.pictureFile);
+    if(data.child) formData.set('child', data.child.id)
+    if(data.pictureFile) data.picture = data.pictureFile;
+    // if(data.child) data.child = data.child.id
+    return this.httpClient.post(`${this.api_url}/exchangelibraries/`, formData);    
   }
   updateBook(id:number,book:ExchangeLibrary):Observable<any>{
     let data:any = book;
-    // const formData = new FormData();
-    // Object.keys(book).forEach((key)=>{
-    //   formData.append(key, book[key]);
-    // })    
-    // if(data.pictureFile) formData.set('picture', data.pictureFile);
-    // if(data.child) formData.set('child', data.child.id)
-    if(data.child) data.child = data.child.id
-    return this.httpClient.put(`${this.api_url}/exchangelibraries/${id}/`, data);    
+    const formData = new FormData();
+    Object.keys(book).forEach((key)=>{
+      formData.append(key, book[key]);
+    })    
+    if(data.pictureFile) formData.set('picture', data.pictureFile);
+    if(data.child) formData.set('child', data.child.id)
+    // if(data.child) data.child = data.child.id
+    return this.httpClient.put(`${this.api_url}/exchangelibraries/${id}/`, formData);    
   }
   deleteBook(book:ExchangeLibrary):Observable<any>{
     return this.httpClient.delete(`${this.api_url}/exchangelibraries/${book.id}/`);    
