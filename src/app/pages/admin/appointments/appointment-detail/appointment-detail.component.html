@@ -28,6 +28,7 @@
               *ngSwitchCase="'month'"
               [viewDate]="viewDate"
               [events]="events"
+              (eventClicked)="eveclicked($event)"
               [activeDayIsOpen]="activeDayIsOpen"
               (dayClicked)="dayClicked($event.day)"
               [weekStartsOn] = "1"

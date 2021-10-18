@@ -41,13 +41,13 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   children:Child;
   parentIds = [];
   actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Detail',
-      onClick: ({ event }: { event: CalendarEvent }): void => {        
-        this.onDetailEvent(event);
-      },
-    },    
+   // {
+      // label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+      // a11yLabel: 'Detail',
+      // onClick: ({ event }: { event: CalendarEvent }): void => {        
+      //   this.onDetailEvent(event);
+     // },
+   // },    
     {
       label: '<i class="fas fa-fw fa-trash-alt"></i>',
       a11yLabel: 'Delete',
@@ -140,7 +140,10 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
     }
     
   }
-  
+  eveclicked({ event }: { event: CalendarEvent }): void {
+    console.log( event);
+    this.onDetailEvent(event);
+  }
   onDetailEvent(event: CalendarEvent): void {
     if(this.fromLand == true){}
     if(event.meta == AppointmentType.FREE){
@@ -213,4 +216,6 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
       if(user.child) return user.child.photo
     return user.picture
   }
+  
 }
+
