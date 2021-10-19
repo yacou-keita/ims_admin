@@ -100,7 +100,7 @@ export class AppointmentsComponent implements OnInit {
     this.router.navigate(['/appointment/new'])
   }
   newPreset(){
-    this.router.navigate(['/appointment/preset'])
+    this.router.navigate(['/appointment/new/preset'])
   }
 
 }

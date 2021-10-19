@@ -41,13 +41,13 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   children:Child;
   parentIds = [];
   actions: CalendarEventAction[] = [
-   // {
-      // label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      // a11yLabel: 'Detail',
-      // onClick: ({ event }: { event: CalendarEvent }): void => {        
-      //   this.onDetailEvent(event);
-     // },
-   // },    
+    // {
+    //   label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+    //   a11yLabel: 'Detail',
+    //   onClick: ({ event }: { event: CalendarEvent }): void => {        
+    //     this.onDetailEvent(event);
+    //   },
+    // },    
     {
       label: '<i class="fas fa-fw fa-trash-alt"></i>',
       a11yLabel: 'Delete',
@@ -164,9 +164,6 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
       this.router.navigate([`/appointment/preset/${event.id}`]);
     }
   }
-  eventClicked({ event }: { event: CalendarEvent }): void {
-    console.log('event cliekces', event);
-  }
   onDeleteEvent(event: CalendarEvent): void {
     this.dialogService.open(YesNoDialogComponent,{context:{
       title:'Are you sure?'
@@ -216,6 +213,4 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
       if(user.child) return user.child.photo
     return user.picture
   }
-  
 }
-

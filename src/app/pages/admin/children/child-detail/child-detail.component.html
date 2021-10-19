@@ -17,6 +17,7 @@
                 <nb-card>
                     <nb-card-header>
                         {{'Basic Information' | translate}}
+                        <button nbButton (click)="dailyInfo()" style="float:right;">{{'Child`s Daily Information' | translate}}</button>
                     </nb-card-header>
                     <nb-card-body>
                         <form [formGroup]="childForm" (ngSubmit)="onSubmit()">

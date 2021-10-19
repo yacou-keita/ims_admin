@@ -13,6 +13,8 @@ import { ChildService } from '../../../../@core/services/child.service';
 import { Child, NameOfClass } from '../../../../@core/models/child';
 import { children } from '../../../../@core/dummy';
 import { ToastService } from '../../../../@core/services/toast.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustAfter } from '../../../../@core/utils/validators.util';
 interface SlotInfo{
   start: Date,
   end: Date,
@@ -46,7 +48,7 @@ export class AppointmentPresetEditComponent implements OnInit {
   selectedTimeRange: TimeRangeItem;
   start: Date;
   end: Date
-  
+  appointmentForm:FormGroup
   constructor(
     private route:ActivatedRoute,
     private childService:ChildService,
@@ -54,8 +56,8 @@ export class AppointmentPresetEditComponent implements OnInit {
     private dialogService: NbDialogService,
     private toastrService:ToastService,
     private router:Router,
-    private userService:UsersService
-
+    private userService:UsersService,
+    private fb: FormBuilder
 
     ) { 
     this.isEditmode = true;
@@ -63,6 +65,16 @@ export class AppointmentPresetEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.appointmentForm = this.fb.group({
+      title:['',Validators.required],
+      presetInfo:[''],
+      startDate:[moment().toDate(),Validators.required],
+      endDate:[moment().toDate(),Validators.required],
+      startTime:[''],
+      endTime:[''],
+      className:[''],
+      duration:['']
+    })
     this.appointmentService.GetCurrentPresetRecord().subscribe(res=>{this.currentPresetRecord = res;})
     this.userService.getClasses().subscribe((classes) => {
       this.classNameList = classes;
@@ -168,6 +180,31 @@ export class AppointmentPresetEditComponent implements OnInit {
     if (!child1.id) return false;
     if (!child2.id) return false;
     return child1.id == child2.id;
+  }
+  onSubmit(){
+    console.log('app >>', this.appointmentForm)
+    this.appointmentForm.markAllAsTouched();
+    this.appointmentForm.value.startTime = this.appointmentForm.value.startDate.getTime()
+    this.appointmentForm.value.endTime = this.appointmentForm.value.endDate.getTime()
+    if(this.appointmentForm.valid){
+      // if(this.isEditmode){
+      //   Object.assign(this.appoinment, this.appointmentForm.value);
+      //   this.appointmentService.UpdateEventById(this.appoinment).subscribe(()=>{})
+      //   this.toastrService.success('Updated the Appointment Info',"Success");
+      // }else{
+        this.appoinment = Object.assign({}, this.appointmentForm.value);
+        this.appoinment['className'] = this.appointmentForm.value.className.id;
+        this.appoinment['startDate'] = moment(this.appoinment['startDate']).format("DD-MM-YYYY")
+        this.appoinment['endDate'] = moment(this.appoinment['endDate']).format("DD-MM-YYYY")
+        this.appoinment['startTime'] = moment(this.appoinment['startTime']).format("HH:mm:ss")
+        this.appoinment['endTime'] = moment(this.appoinment['endTime']).format("HH:mm:ss")
+        console.log('app >>', this.appoinment)
+        this.appointmentService.createPresetAppointment(this.appoinment).subscribe(data => {
+          this.toastrService.success('Registered the New Preset Appointment',"Success");
+          this.router.navigate([`/appointment`]);
+        })
+      //}
+    }
   }
   onConfirm($event){
     let start:moment.Moment = moment($event.start);

@@ -95,7 +95,7 @@ export class AppointmentService {
 
   createPresetAppointment(apnt:PresetAppointment):Observable<any>{
     let data:any=Object.assign({},apnt);
-    data.child = apnt.child.id;
+    //data.child = apnt.child.id;
     //data.timerange = apnt.timerange.id;    
     return this.httpClient.post(`${this.api_url}/appointments/preset_appointments/`,data);
   }

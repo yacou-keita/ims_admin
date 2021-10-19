@@ -275,7 +275,11 @@ export class ChildDetailComponent implements OnInit {
       }
       this.childForm.get('photoFile').setValue(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
+      console.log('photo >>', this.childForm)
     }
+  }
+  dailyInfo(){
+    this.router.navigate([`/childdailyinformation/${this.child.id}`])
   }
   onSubmit(){ 
     this.childForm.markAllAsTouched();

@@ -12,72 +12,103 @@
       <h5 class="text-center"> {{'There is not available Preset ' | translate}}</h5>
     </nb-card-body>
     <nb-card-body *ngIf="!isClosed()">
-      
-      <div class="form-group row align-items-center">
-          <label class="label col-sm-3"> {{'Classroom' | translate}}</label>
-          <div class="col-sm-9">
-            <nb-select [(ngModel)]="selectedClassroom">
-              <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate}} </nb-option>
-            </nb-select>
-          </div>
-      </div>      
-      <!-- <div class="form-group row align-items-center">
-        <label class="label col-sm-3"> {{'Date' | translate}} </label>
-        <div class="col-sm-9">
-          <input  nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" >
-          [status]="isInvalidControl(appointmentForm,'start')?'danger':'basic'" formControlName="start"
-            <div *ngIf="isInvalidControl(appointmentForm,'start')">
-              <span class="error-text" *ngIf="appointmentForm.get('start').errors.required">{{'required' | translate}}</span>
-          </div>
-          <owl-date-time #dt></owl-date-time>              
-        </div> 
+      <form class="row justify-content-center " [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+        <div class="col-sm-6">
+          <div class="form-group row align-items-center">
+              <label class="label col-sm-3"> {{'Classroom' | translate}}</label>
+              <div class="col-sm-9">
+                <nb-select [(ngModel)]="selectedClassroom" formControlName="className">
+                  <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate}} </nb-option>
+                </nb-select>
+              </div>
+          </div>      
+          <!-- <div class="form-group row align-items-center">
+            <label class="label col-sm-3"> {{'Date' | translate}} </label>
+            <div class="col-sm-9">
+              <input  nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" >
+              [status]="isInvalidControl(appointmentForm,'start')?'danger':'basic'" formControlName="start"
+                <div *ngIf="isInvalidControl(appointmentForm,'start')">
+                  <span class="error-text" *ngIf="appointmentForm.get('start').errors.required">{{'required' | translate}}</span>
+              </div>
+              <owl-date-time #dt></owl-date-time>              
+            </div> 
 
-      </div> -->
-      <div class="form-group row">
-        <label class="label col-sm-3">{{'Start Time' | translate}}</label>
-        <div class="col-sm-9">
-            <input  nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="start">
-            <!--  [status]="isInvalidControl(appointmentForm,'start')?'danger':'basic'" 
-               <div *ngIf="isInvalidControl(appointmentForm,'start')">
-                <span class="error-text" *ngIf="appointmentForm.get('start').errors.required">{{'required' | translate}}</span>
+          </div> -->
+          <div class="form-group row">
+            <label class="label col-sm-3">{{'Start Time' | translate}}</label>
+            <div class="col-sm-9">
+                <input  nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="start" formControlName="startDate">
+                <!--  [status]="isInvalidControl(appointmentForm,'start')?'danger':'basic'" 
+                  <div *ngIf="isInvalidControl(appointmentForm,'start')">
+                    <span class="error-text" *ngIf="appointmentForm.get('start').errors.required">{{'required' | translate}}</span>
+                </div>  -->
+                <owl-date-time #dt></owl-date-time>              
+            </div>                
+          </div>                  
+          <div class="form-group row">
+              <label class="label col-sm-3">{{'End Time' | translate}}</label>
+              <div class="col-sm-9">
+                  <input  nbInput [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [(ngModel)]="end" formControlName="endDate">
+                  <!-- <div *ngIf="isInvalidControl(appointmentForm,'end')">
+                      <span class="error-text" *ngIf="appointmentForm.get('end').errors.required">{{'required' | translate}}</span>
+                      <span class="error-text" *ngIf="appointmentForm.get('end').errors.mustAfter">{{'End Time is not After Start Time' | translate}}</span>
+                  </div>  -->
+                  <owl-date-time #dt2></owl-date-time>              
+              </div>                
+          </div>   
+          <!-- <div class="form-group row align-items-center">
+            <label class="label col-sm-3"> {{'Child' | translate}}</label>
+            <div class="col-sm-9">
+                <ngx-child-select [childs]="childs" title="{{'Select Child'| translate}}" [(ngModel)]="selectedChild" (ngModelChange)="onChildChange($event)" [disabled]="isEditmode"></ngx-child-select>
+            </div>
+          </div> -->
+          <div class="form-group row align-items-center">
+            <label class="label col-sm-3"> {{'Title' | translate}}</label>
+            <div class="col-sm-9">
+              <input nbInput type="text"  formControlName="title">
+              <!-- <div *ngIf="isInvalidControl(appointmentForm,'title')">
+                  <span class="error-text" *ngIf="appointmentForm.get('title').errors.required">{{'required' | translate}}</span>
+              </div>   -->
+            </div>
+          </div>
+          <div class="form-group row align-items-center">
+            <label class="label col-sm-3"> {{'Preset Info' | translate}}</label>
+            <div class="col-sm-9">
+              <input nbInput type="text"  formControlName="presetInfo">
+              <!-- <div *ngIf="isInvalidControl(appointmentForm,'title')">
+                  <span class="error-text" *ngIf="appointmentForm.get('title').errors.required">{{'required' | translate}}</span>
+              </div>   -->
+            </div>
+          </div>
+          <div class="form-group align-items-center">
+            <label class="label mr-4"> {{'Duration' | translate}}</label>
+            <nb-select formControlName="duration">
+                <nb-option [value]="10">10</nb-option>
+                <nb-option [value]="15">15</nb-option>
+                <nb-option [value]="20">20</nb-option>
+                <nb-option [value]="30">30</nb-option>
+                <nb-option [value]="40">40</nb-option>
+                <nb-option [value]="50">50</nb-option>
+                <nb-option [value]="60">60</nb-option>                                            
+            </nb-select>
+            {{'minutes' | translate}}
+            <!-- <div *ngIf="isInvalidControl(presetItemForm,'duration')">
+                <span class="error-text" *ngIf="presetItemForm.get('duration').errors.required">{{'required' | translate}}</span>
             </div>  -->
-            <owl-date-time #dt></owl-date-time>              
-        </div>                
-    </div>                  
-    <div class="form-group row">
-        <label class="label col-sm-3">{{'End Time' | translate}}</label>
-        <div class="col-sm-9">
-            <input  nbInput [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [(ngModel)]="end">
-            <!-- <div *ngIf="isInvalidControl(appointmentForm,'end')">
-                <span class="error-text" *ngIf="appointmentForm.get('end').errors.required">{{'required' | translate}}</span>
-                <span class="error-text" *ngIf="appointmentForm.get('end').errors.mustAfter">{{'End Time is not After Start Time' | translate}}</span>
-            </div>  -->
-            <owl-date-time #dt2></owl-date-time>              
-        </div>                
-    </div>   
-      <div class="form-group row align-items-center">
-        <label class="label col-sm-3"> {{'Child' | translate}}</label>
-        <div class="col-sm-9">
-            <ngx-child-select [childs]="childs" title="{{'Select Child'| translate}}" [(ngModel)]="selectedChild" (ngModelChange)="onChildChange($event)" [disabled]="isEditmode"></ngx-child-select>
         </div>
-      </div>
-      <!-- <div class="form-group row align-items-center">
-        <label class="label col-sm-3"> {{'Subject' | translate}}</label>
-        <div class="col-sm-9">
-          <input nbInput type="text"  formControlName="subject">
-          <div *ngIf="isInvalidControl(appointmentForm,'title')">
-              <span class="error-text" *ngIf="appointmentForm.get('title').errors.required">{{'required' | translate}}</span>
-          </div>  
+          <div class="row justify-content-end">
+            <input nbInput type="submit" value="SEND" >
         </div>
-      </div> -->
+        </div>          
+      </form>
     <div class="d-flex flex-wrap align-items-center mt-4">
         <ng-container *ngFor="let slot of slots;">
           <ngx-preset-slot-item [start]="slot.start" [end]="slot.end" [confirmed]="slot.booked" (confirmClick)="onConfirm($event)" [isCurrentChild]="isSameChild(slot.child, selectedChild)" ></ngx-preset-slot-item>    
         </ng-container>            
     </div>
     </nb-card-body>
-    <nb-card-footer>
+    <!-- <nb-card-footer>
       <button style="float: right;" type="button"  nbTooltip="{{'Update the details' | translate}}"  nbButton ghost (click)="onConfirm($event)"> {{'Send' | translate}} </button>
-  </nb-card-footer>
+  </nb-card-footer> -->
 </nb-card>
 
