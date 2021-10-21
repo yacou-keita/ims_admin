@@ -62,6 +62,9 @@ export class MenuOfYearComponent implements OnInit {
     this.selectedDay = $event;
     this._updateSelectedFoods();
   }
+  addNewFood(){
+    this.router.navigate([`/menuofyear/food/new`]);
+  }
   onAddFood(){
     this.mealMenuService.getAllFoods().subscribe((foods:Food[]) => {
       

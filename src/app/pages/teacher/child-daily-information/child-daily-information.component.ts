@@ -28,12 +28,12 @@ export class ChildDailyInformationComponent implements OnInit {
     this.childService.getAllChildren().subscribe((children=>{
       this.children = children;
     }))
-      this.route.params.forEach(i => {
-        if(i["id"] != null){
-          this.data.id = i["id"];
-          this.onSelect(this.data);
-        }
-      });
+    this.route.params.forEach(i => {
+      if(i["id"] != null){
+        this.data.id = i["id"];
+        this.onSelect(this.data);
+      }
+    });
   }
   onSelect(selectedChild:any){
     this.router.navigate([selectedChild.id],{relativeTo:this.route,skipLocationChange: true})

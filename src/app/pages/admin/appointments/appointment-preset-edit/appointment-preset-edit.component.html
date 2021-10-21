@@ -35,7 +35,7 @@
 
           </div> -->
           <div class="form-group row">
-            <label class="label col-sm-3">{{'Start Time' | translate}}</label>
+            <label class="label col-sm-3">{{'Start Date Time' | translate}}</label>
             <div class="col-sm-9">
                 <input  nbInput [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="start" formControlName="startDate">
                 <!--  [status]="isInvalidControl(appointmentForm,'start')?'danger':'basic'" 
@@ -46,7 +46,7 @@
             </div>                
           </div>                  
           <div class="form-group row">
-              <label class="label col-sm-3">{{'End Time' | translate}}</label>
+              <label class="label col-sm-3">{{'End Date Time' | translate}}</label>
               <div class="col-sm-9">
                   <input  nbInput [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [(ngModel)]="end" formControlName="endDate">
                   <!-- <div *ngIf="isInvalidControl(appointmentForm,'end')">
@@ -80,9 +80,10 @@
               </div>   -->
             </div>
           </div>
-          <div class="form-group align-items-center">
-            <label class="label mr-4"> {{'Duration' | translate}}</label>
-            <nb-select formControlName="duration">
+          <div class="form-group row align-items-center">
+            <label class="label col-sm-3"> {{'Duration' | translate}}</label>
+            <div class="col-sm-9">
+              <nb-select formControlName="duration">
                 <nb-option [value]="10">10</nb-option>
                 <nb-option [value]="15">15</nb-option>
                 <nb-option [value]="20">20</nb-option>
@@ -90,8 +91,10 @@
                 <nb-option [value]="40">40</nb-option>
                 <nb-option [value]="50">50</nb-option>
                 <nb-option [value]="60">60</nb-option>                                            
-            </nb-select>
-            {{'minutes' | translate}}
+              </nb-select>
+              {{'minutes' | translate}}
+            </div>
+            
             <!-- <div *ngIf="isInvalidControl(presetItemForm,'duration')">
                 <span class="error-text" *ngIf="presetItemForm.get('duration').errors.required">{{'required' | translate}}</span>
             </div>  -->
