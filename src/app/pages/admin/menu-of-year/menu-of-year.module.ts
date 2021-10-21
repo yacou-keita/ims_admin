@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MenuOfYearRoutingModule } from './menu-of-year-routing.module';
 import { MenuOfYearComponent } from './menu-of-year.component';
 import { FoodFormComponent } from "./food-form/food-form.component";
-import { NbCardModule, NbIconModule, NbToastrModule, NbInputModule, NbButtonModule, NbSelectModule, NbTooltipModule } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbToastrModule, NbInputModule, NbButtonModule, NbSelectModule, NbTooltipModule, NbTabsetModule } from '@nebular/theme';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddFoodComponent } from './add-food/add-food.component';
 import { EditFoodComponent } from './edit-food/edit-food.component';
@@ -30,7 +30,8 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     Ng2SmartTableModule,
     ReactiveFormsModule,
     SharedTranslateModule,
-    FormsModule
+    FormsModule,
+    NbTabsetModule,
   ],
 })
 export class MenuOfYearModule { }

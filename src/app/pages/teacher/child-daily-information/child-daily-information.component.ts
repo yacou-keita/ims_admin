@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ChildDailyInformationComponent implements OnInit {
   children:Child[];
   teacher:User;
+  data = {id : 0}
   constructor(
     private childService:ChildService,
     private usersService:UsersService,
@@ -27,9 +28,14 @@ export class ChildDailyInformationComponent implements OnInit {
     this.childService.getAllChildren().subscribe((children=>{
       this.children = children;
     }))
-    
+      this.route.params.forEach(i => {
+        if(i["id"] != null){
+          this.data.id = i["id"];
+          this.onSelect(this.data);
+        }
+      });
   }
-  onSelect(selectedChild:Child){
-    this.router.navigate([selectedChild.id],{relativeTo:this.route})
+  onSelect(selectedChild:any){
+    this.router.navigate([selectedChild.id],{relativeTo:this.route,skipLocationChange: true})
   }
 }

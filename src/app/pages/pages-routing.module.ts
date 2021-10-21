@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: 'notallowed', component:NotAllowedComponent},
       { path: 'default', component:DefaultComponent},   
       { path: 'add/classname', component:AddClassNameComponent},
-      { path: 'childdailyinformation/:id', component:DailyDetailComponent}//loadChildren: () => import('./teacher/child-daily-information/daily-detail/daily-detail.component').then(m => m.ChildDailyInformationModule)}
+      { path: 'childdailyinformation/:id', loadChildren: () => import('./teacher/child-daily-information/child-daily-information.module').then(m => m.ChildDailyInformationModule) },
 
     ]
   },
