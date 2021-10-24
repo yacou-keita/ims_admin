@@ -20,7 +20,7 @@
                     <nb-tab tabTitle="For Classrooms">
                         <nb-card>
                             <nb-card-header>
-                                <nb-select placeholder="Select class name" (selectedChange)="selectClass($event)"  [(selected)]="currentClassName" style="padding-right: 10px;">
+                                <nb-select placeholder="{{'Select class name'| translate}}" (selectedChange)="selectClass($event)"  [(selected)]="currentClassName" style="padding-right: 10px;">
                                     <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item |translate |titlecase}} </nb-option>
                                 </nb-select>
                             </nb-card-header>

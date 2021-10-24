@@ -77,7 +77,7 @@
                             <span class="error-text" *ngIf="profileForm.get('notes').errors.required">{{'required' | translate}}</span>
                         </div>
                       </div>
-                      <input nbInput type="submit" value="Update" style="float: right;">
+                      <input nbInput type="submit" value="{{'Update' | translate }}" style="float: right;">
                 </form>
             </nb-card-body>
         </nb-card>
@@ -112,14 +112,14 @@
                             <span class="error-text" *ngIf="passwordForm.get('confirm_pwd').errors.mustMatch">Passwords doesn't match</span>
                         </div>
                     </div>
-                    <input nbInput type="submit" value="Change Password" style="float: right;">
+                    <input nbInput type="submit" value="{{'Change Password' | translate}}" style="float: right;">
                 </form>
             </nb-card-body>
         </nb-card>
         <nb-card >
             <nb-card-header> 
                 Classrooms 
-                <input nbInput type="submit" value="Update" (click)="onUpdateClassroom()" style="float: right;">
+                <input nbInput type="submit" value="{{'Update' | translate }}" (click)="onUpdateClassroom()" style="float: right;">
             </nb-card-header>
             <nb-card-body>
                 <nb-checkbox class="mr-2" (checkedChange)="classroomChange($event, item.name)" *ngFor="let item of classNameList" [value]="user?.classNames.includes(item.name)">{{item.name|translate}}</nb-checkbox>

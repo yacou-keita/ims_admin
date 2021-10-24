@@ -83,7 +83,7 @@
                             <span class="error-text" *ngIf="profileForm.get('address').errors.required">{{'required' | translate}}</span>
                         </div>
                       </div>
-                      <input nbInput type="submit" value="Update" style="float: right;">
+                      <input nbInput type="submit" value="{{'Update' | translate }}" style="float: right;">
                 </form>
             </nb-card-body>
         </nb-card>
@@ -129,7 +129,7 @@
                             <span class="error-text" *ngIf="passwordForm.get('confirm_pwd').errors.mustMatch">Passwords doesn't match</span>
                         </div>
                     </div>
-                    <input nbInput type="submit" value="Change Password" style="float: right;">
+                    <input nbInput type="submit" value="{{'Change Password' | translate}}" style="float: right;">
                 </form>
             </nb-card-body>
         </nb-card>
