@@ -13,6 +13,7 @@ import { ChooseClassNameComponent } from './choose-class-name/choose-class-name.
 import { ClassRoomGuard } from '../@core/guards/class-room.guard';
 import { AddClassNameComponent } from './add-class-name/add-class-name.component';
 import { DailyDetailComponent } from './teacher/child-daily-information/daily-detail/daily-detail.component';
+import { NotificationComponent } from './admin/notification/notification.component';
 const routes: Routes = [
   {
     path: '',
@@ -34,7 +35,7 @@ const routes: Routes = [
       { path: 'default', component:DefaultComponent},   
       { path: 'add/classname', component:AddClassNameComponent},
       { path: 'childdailyinformation/:id', loadChildren: () => import('./teacher/child-daily-information/child-daily-information.module').then(m => m.ChildDailyInformationModule) },
-
+      { path: 'notifications', component:NotificationComponent}
     ]
   },
 ];

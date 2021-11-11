@@ -46,7 +46,7 @@ export interface Child{
     lastNameOfFather?:string,
     phoneOfFather?:string,
     emailOfFather?:string,
-    emergenyContacts?:EmergencyContact[],
+    emergencyContacts?:EmergencyContact[],
     authPersons?:AuthPersonContact[],
     allgeries?:string,
     food_restriction?:string,

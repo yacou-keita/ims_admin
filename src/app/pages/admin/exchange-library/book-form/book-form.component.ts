@@ -43,8 +43,13 @@ export class BookFormComponent implements OnInit {
         this.children = ret.children;
         this.book = ret.books
         this.children.forEach(val => {
+          let name = val.first_name + ' ' + val.last_name
           if(val.id == this.book.child)
             this.book.child = val
+          if(name == this.book.donator)
+            this.book.donator = val
+          else if(this.book.donator == 'IMS')
+            this.book.donator = undefined
         })
         this.bookForm.reset(this.book)  
       })

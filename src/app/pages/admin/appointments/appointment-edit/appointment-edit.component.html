@@ -31,7 +31,7 @@
                 <div class="form-group row">
                     <label class="label col-sm-3">{{'Title' | translate}}</label>
                     <div class="col-sm-9">
-                        <input nbInput type="text"  [status]="isInvalidControl(appointmentForm,'title')?'danger':'basic'" formControlName="title">
+                        <input nbInput type="text"  [status]="isInvalidControl(appointmentForm,'title')?'danger':'basic'" formControlName="title" >
                         <div *ngIf="isInvalidControl(appointmentForm,'title')">
                             <span class="error-text" *ngIf="appointmentForm.get('title').errors.required">{{'required' | translate}}</span>
                         </div>    
@@ -59,7 +59,8 @@
                     </div>                
                 </div>                
                 <div class="row justify-content-end">
-                    <input nbInput type="submit" value="SEND" >
+                    <input nbInput type="submit" value="{{submitButton}}">
+                    <input nbInput type="submit" value="Accept" (click)="accept()" *ngIf="accpt">
                 </div>
                 
             </div>

@@ -80,12 +80,12 @@ export class MessageDetailComponent implements OnInit {
   goToMessageCenter(){
     this._location.back()
   }
-  onDelete(){
+  onDelete(id){
     this.dialogService.open(YesNoDialogComponent,{context:{
       title:'Are you going to delete?'
     }}).onClose.subscribe(ret=>{
       if(ret==true){
-        this.messageSerivce.deleteMessage(this.headermsgId).subscribe(res=>{
+        this.messageSerivce.deleteMessage(id).subscribe(res=>{
           // if(this.userService.localSource){
           //   this.userService.localSource.remove(this.user);
           // }

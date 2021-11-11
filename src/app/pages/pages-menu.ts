@@ -51,7 +51,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Photos',
-    link: '/admin/pictures/',
+    link: '/pictures',
     icon: 'image-outline',
   },
   // {

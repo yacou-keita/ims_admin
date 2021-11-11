@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from "../../../environments/environment";
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { events, appointmentsOfOneUser,presetInfos, presetApnts } from "../dummy";
 import { Appointment, colors, COLOR, AppointmentType, PresetRecord, AppointmentStatus, PresetStatus, PresetAppointment } from "../models/appointment";
 import { NameOfClass } from '../models/child';
+import { find, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -74,7 +75,9 @@ export class AppointmentService {
     // Return PresetAppointments of classroom of current PresetRecord
     return this.httpClient.get<PresetAppointment[]>(`${this.api_url}/appointments/preset_appointments?current_preset=true&className=${classroom}`);
   }
- 
+  GetAllPresetAppointments():Observable<PresetAppointment[]>{
+    return this.httpClient.get<PresetAppointment[]>(`${this.api_url}/appointments/preset_appointments`)
+  }
   CloseCurrentPreset(presetId:number):Observable<any>{
     return this.httpClient.patch(`${this.api_url}/appointments/preset_record/${presetId}/`,{status:PresetStatus.Closed});
   }
@@ -119,5 +122,28 @@ export class AppointmentService {
     data.parent = appointment.parent.id;
     data.teacher = appointment.teacher.id;
     return this.httpClient.post(`${this.api_url}/appointments/`, appointment);
+  }
+
+  presetAppointments():Observable<ArrayBuffer>{
+    let headers = new HttpHeaders();
+
+    const options: {
+        headers?: HttpHeaders;
+        observe?: 'body';
+        params?: HttpParams;
+        reportProgress?: boolean;
+        responseType: 'arraybuffer';
+        withCredentials?: boolean;
+    } = {
+        responseType: 'arraybuffer'
+    };
+    return this.httpClient.get(`${this.api_url}/appointments/download_session_details/`, options).pipe(
+      map((file: ArrayBuffer) => {
+          return file;
+      })
+  );
+  }
+  updateAppointment(data):Observable<any>{
+    return this.httpClient.put(`${this.api_url}/appointments/update_Appointmentstatus/`,data)
   }
 }

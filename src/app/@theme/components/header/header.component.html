@@ -34,7 +34,9 @@
       
     </nb-action>
     
-    <nb-action class="sss" icon="bell-outline" (click)="onNotification()"></nb-action>
+    <nb-action class="sss" icon="bell-outline" badgeText="{{notificationLength}}"
+    badgePosition="top right"
+    badgeStatus="info" (click)="onNotification()"></nb-action>
     <nb-action class="user-action">
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"

@@ -14,6 +14,7 @@ import { NameOfClass } from '../../../@core/models/child';
 import { Router } from '@angular/router';
 import { DateTimeAdapter } from "@danielmoncada/angular-datetime-picker";
 import * as moment from 'moment';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'ngx-header',
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   selectedCountryCode = 'gb';
   countryCodes = ['gb', 'fr'];
   private current_user:User;
+  notificationLength;
   //public nameList:NameOfClass[]
   classes = []
   userMenu = [ 
@@ -76,6 +78,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.currentUserSubscription = this.userService.currentUserSubject.subscribe(user=>{
       this.user = user;
+      
     })
     this.currentClassName = this.childService.getCurrentClassName();
     this.userService.getCurrentUser().subscribe((user:User)=>{
@@ -83,6 +86,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.title = "Admin Center";
       if(user.role_name == USERROLE.Teacher)
         this.title = "Teacher Center";
+      interval(30000)
+      .subscribe(() => {
+        console.log('notifications')
+        this.userService.getNotification(user.id).subscribe(data => {
+          this.notificationLength = data.length;
+        });
+      });
+     
     })
     this.menuService.onItemClick
     this.menuService.onItemClick().pipe(
@@ -173,7 +184,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return false;
   }
   onNotification(){
-    alert("Notificaiton")
+    this.router.navigate(['/notifications']);
   }
   logout(){
     this.authService.logout();

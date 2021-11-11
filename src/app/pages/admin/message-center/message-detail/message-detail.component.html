@@ -2,14 +2,14 @@
     <nb-card-header>
         <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="goToMessageCenter()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
         {{'Messages' | translate}}
-        <button style="float: right;" nbButton ghost status="danger" (click)="onDelete()">{{'Delete' | translate}} </button> 
+        
     </nb-card-header>
     <nb-card-body>
         <nb-list style="max-height: 800px;">
             <nb-list-item *ngFor="let msg of messages">
                 <div class="row w-100" *ngIf="msg.sender.id!=messages[0].sender.id; else hostContent">
                     <div class="col-2">
-
+                        
                     </div>
                     <div class="col-10 justify-content-end  w-100">
                         <div class="row justify-content-end">
@@ -19,12 +19,12 @@
                                 </div>
                                 From: <span >{{getSenderName(msg) | translate}}</span>
                                 To:<span >{{getReceiverName(msg) | translate}}</span>
-                                
                             </div>   
                             <div class="avatar ml-2">                            
                                 <div class="content" [ngStyle]="{'background-image':  'url(' +getSenderPhotoUrl(msg) + ')'}">
                                 </div>
-                            </div>                  
+                            </div>     
+                            <button  nbButton ghost status="danger" (click)="onDelete(msg.id)">{{'Delete' | translate}} </button>          
                         </div>                        
                         <div class="ml-3">                                                     
                             <div class="mt-2 mb-2 text-right"> {{msg.content}} </div>
@@ -51,7 +51,8 @@
                                     From: <span >{{getSenderName(msg)}}</span>
                                     To:<span >{{getReceiverName(msg)}}</span>
                                     
-                                </div>            
+                                </div>   
+                                <button  nbButton ghost status="danger" (click)="onDelete(msg.id)">{{'Delete' | translate}} </button>         
                             </div>                        
                             <div class="ml-3">                                                     
                                 <div class="mt-2 mb-2"> {{msg.content}} </div>

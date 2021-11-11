@@ -27,6 +27,7 @@ export class ExchangeLibraryService {
     })    
     if(data.pictureFile) formData.set('picture', data.pictureFile);
     if(data.child) formData.set('child', data.child.id)
+    if(data.donator) formData.set('donator',data.donator.first_name+' '+data.donator.last_name)
     if(data.pictureFile) data.picture = data.pictureFile;
     // if(data.child) data.child = data.child.id
     return this.httpClient.post(`${this.api_url}/exchangelibraries/`, formData);    
@@ -39,7 +40,7 @@ export class ExchangeLibraryService {
     })    
     if(data.pictureFile) formData.set('picture', data.pictureFile);
     if(data.child) formData.set('child', data.child.id)
-    // if(data.child) data.child = data.child.id
+    if(data.donator) formData.set('donator',data.donator.first_name+' '+data.donator.last_name)
     return this.httpClient.put(`${this.api_url}/exchangelibraries/${id}/`, formData);    
   }
   deleteBook(book:ExchangeLibrary):Observable<any>{

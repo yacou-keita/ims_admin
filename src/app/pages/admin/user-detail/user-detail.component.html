@@ -90,7 +90,8 @@
 
                     <div class="form-group">
                         <label class="label">{{'New Password' | translate}}</label>
-                        <input [nbPopover]="card" nbPopoverPlacement="bottom" nbInput type="password"  fullWidth [status]="isInvalidControl(passwordForm,'pwd')?'danger':'basic'" formControlName="pwd">
+                        <input [nbPopover]="card" nbPopoverPlacement="bottom" nbInput [type]="showPassword ? 'text' : 'password'"  fullWidth [status]="isInvalidControl(passwordForm,'pwd')?'danger':'basic'" formControlName="pwd">
+                        <i class="fa fa-eye-slash" (click)="showPassword = !showPassword"></i>
                         <div *ngIf="isInvalidControl(passwordForm,'pwd')">
                             <span class="error-text" *ngIf="passwordForm.get('pwd').errors.required">{{'required' | translate}}</span>
                         </div>
@@ -107,12 +108,13 @@
 
                     <div class="form-group">
                         <label class="label">{{'Confirm Password' | translate}}</label>
-                        <input nbInput type="password"  fullWidth [status]="isInvalidControl(passwordForm,'confirm_pwd')?'danger':'basic'" formControlName="confirm_pwd">
+                        <input nbInput [type]="showPassword1 ? 'text' : 'password'"  fullWidth [status]="isInvalidControl(passwordForm,'confirm_pwd')?'danger':'basic'" formControlName="confirm_pwd">
+                        <i class="fa fa-eye-slash" (click)="showPassword1 = !showPassword1"></i>
                         <div *ngIf="isInvalidControl(passwordForm,'confirm_pwd')">
                             <span class="error-text" *ngIf="passwordForm.get('confirm_pwd').errors.mustMatch">Passwords doesn't match</span>
                         </div>
                     </div>
-                    <input nbInput type="submit" value="{{'Change Password' | translate}}" style="float: right;">
+                    <input nbInput type="submit" value="{{'Change Password' | translate }}" style="float: right;">
                 </form>
             </nb-card-body>
         </nb-card>

@@ -27,7 +27,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   genereatedPwd:string;
   classNameList = [];
   errors:any;
-
+  showPassword:boolean = false;
+  showPassword1:boolean = false;
   private destroy$:Subject<void>=new Subject<void>();
 
   constructor(private route:ActivatedRoute,

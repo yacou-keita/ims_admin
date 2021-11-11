@@ -24,7 +24,8 @@ export class AppointmentEditComponent implements OnInit {
   appointmentId:number;
   user:User;
   appoinment:Appointment;
-
+  submitButton;
+  accpt:boolean = false;
   appointmentForm:FormGroup
   children:Child[];
   teachers:User[];
@@ -75,6 +76,13 @@ export class AppointmentEditComponent implements OnInit {
       ).subscribe((res:Appointment)=>{
         console.log(res);
         this.appoinment = res;
+        if(this.appoinment.color == 'red'){
+          this.submitButton = 'Reschedule'
+          this.accpt = true;
+        }else{
+          this.accpt = false;
+          this.submitButton = 'Send'
+        }
         if(localStorage.getItem('childappointments') == 'false'){
           this.userId = this.appoinment.teacher.id;
         }else
@@ -97,9 +105,9 @@ export class AppointmentEditComponent implements OnInit {
     this.appointmentForm.markAllAsTouched();
     if(this.appointmentForm.valid){
       if(this.isEditmode){
-        Object.assign(this.appoinment, this.appointmentForm.value);
-        this.appointmentService.UpdateEventById(this.appoinment).subscribe(()=>{})
-        this.toastrService.success('Updated the Appointment Info',"Success");
+          Object.assign(this.appoinment, this.appointmentForm.value);
+          this.appointmentService.UpdateEventById(this.appoinment).subscribe(()=>{})
+          this.toastrService.success('Updated the Appointment Info',"Success");
       }else{
         this.appoinment = Object.assign({}, this.appointmentForm.value);
         this.appoinment.parent = this.appoinment.child.parent;
@@ -113,6 +121,19 @@ export class AppointmentEditComponent implements OnInit {
         })
       }
     }
+  }
+  accept(){
+    let dat = { 
+      "appointment_id":this.appoinment.id,
+      "status": "accept",
+      "child_id":this.appoinment.child.id,
+      "teacher_id":this.appoinment.parent.id
+    }
+    this.appointmentService.updateAppointment(dat).subscribe(ret => {
+      console.log('ret >>',ret)
+      //this.navCtrl.navigateBack('/normal_appointment');
+      this.toastrService.success('Appointment has been accepted',"Success")
+    })
   }
   back(){
     if(this.userId)

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NotificationRoutingModule } from './notification-routing.module';
 import { NotificationComponent } from './notification.component';
 import { SendNotificationComponent } from './send-notification/send-notification.component';
-import { NbCardModule, NbButtonModule, NbInputModule, NbCheckboxModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbInputModule, NbCheckboxModule, NbListModule, NbTooltipModule, NbIconModule } from '@nebular/theme';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
@@ -21,7 +21,10 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     NbCheckboxModule,
     ReactiveFormsModule,
     SharedModule,
-    SharedTranslateModule
+    SharedTranslateModule,
+    NbListModule,
+    NbTooltipModule,
+    NbIconModule,
   ]
 })
 export class NotificationModule { }

@@ -109,4 +109,10 @@ export class UsersService {
   getUserById(id:number):Observable<User>{
     return this.httpClient.get<User>(`${this.api_url}/user/${id}/`);
   }
+  getNotification(userId) :Observable<any>{
+    return this.httpClient.get(`${this.api_url}/notification/getUserNotif/${userId}`)
+  }
+  putNotification(id) :Observable<any>{
+    return this.httpClient.put(`${this.api_url}/notification/global/${id}/`,{'is_read': true})
+  }
 }

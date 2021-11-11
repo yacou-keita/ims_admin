@@ -57,7 +57,7 @@ export class ExchangeLibraryComponent implements OnInit {
     })
   }
   isBooked(book:ExchangeLibrary){
-    return book.status == BookStatus.RENTED
+    return book.booked_status == true
   }
 
 }

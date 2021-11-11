@@ -264,18 +264,20 @@
                     </nb-card-header>
                     <nb-card-body>
                         <div class="row" >
-                            <div *ngFor="let item of child?.emergenyContacts" class="emergency-item">
-                                <div>
-                                    <span class="label">{{'Name' | translate}}:</span>
-                                <span class="text-info ml-2">{{item.name | titlecase }}</span>
-                                </div>
-                                <div>
-                                    <span class="label">{{'Email' | translate}}:</span>
-                                    <span class="text-info ml-2">{{item.email}}</span>
-                                </div>
-                                <div>
-                                    <span class="label">{{'Phone Number' | translate}}:</span>
-                                    <span class="text-info ml-2">{{item.phone_number}}</span>
+                            <div *ngFor="let item of child?.emergencyContacts">
+                                <div *ngIf="item.name" style="margin-right: 12px;">
+                                    <div>
+                                        <span class="label">{{'Name' | translate}}:</span>
+                                    <span class="text-info ml-2">{{item.name | titlecase }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="label">{{'Email' | translate}}:</span>
+                                        <span class="text-info ml-2">{{item.email}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="label">{{'Phone Number' | translate}}:</span>
+                                        <span class="text-info ml-2">{{item.phone_number}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -287,8 +289,8 @@
                     </nb-card-header>
                     <nb-card-body>
                         <div class="row" >
-                            <div *ngFor="let item of child?.authPersons" class="ml-4 mt-4">
-                                <nb-user [picture]="item.photo" [name]="item.first_name + ' ' + item.last_name" [title]="item.phone_number"></nb-user>
+                            <div *ngFor="let item of child?.authPersons" class="ml-4 mt-4" >
+                                <nb-user [picture]="item.photo" *ngIf="item.first_name" [name]="item.first_name + ' ' + item.last_name" [title]="item.phone_number"></nb-user>
                             </div>
                         </div>
                     </nb-card-body>

@@ -208,7 +208,8 @@
     "User has been deleted" : "L'utilisateur a été supprimé",
     "User Info updated Succesfully" : "Informations utilisateur mises à jour avec succès",
     "Username has been updated succesfully" : "Le nom d'utilisateur a été mis à jour avec succès",
-
+    "Borrow":"Emprunter",
+    "Borrowed":"Emprunté",
     "Basic Information" : "Informations de base",
     "Emergency Contacts" : "Contacts d'urgence",
     "Authorization Person" : "Personne autorisée",
@@ -245,7 +246,7 @@
     "Privacy Rights":"Droits de confidentialité",
     "Other Options":"Autres options",
     "How well I ate" : "Comme j'ai bien mangé",
-    "What the child needs in the class":"Ce dont l'enfant a besoin en classe",
+    "What I need":"Ce dont j'ai besoin",
     "Submit":"Soumettre",
     "Very Well" : "Très bien",
     "Easily" : "Facilement",

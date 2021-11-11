@@ -53,8 +53,10 @@
                 </ng-template>
             </div>
             <div class="form-group mt-2">
-                <span class="text-hint" > {{'What the child needs in the class' | translate}} : </span>
-                <textarea rows="5" nbInput fullWidth shape="round"  placeholder="comment" formControlName="comment"></textarea>
+                <span class="text-hint" > {{'What I need' | translate}} : </span>
+                <!-- <textarea rows="5" nbInput fullWidth shape="round"  placeholder="comment" formControlName="comment"></textarea> -->
+
+                <textarea rows="5" nbInput fullWidth shape="round"  placeholder="{{'comment' | translate}}" formControlName="comment"></textarea>
             </div>
             <div class="form-group">
                 <span class="text-hint" >{{'Nap Time' | translate}} : </span>
@@ -75,11 +77,11 @@
                     <span class="error-text" *ngIf="formGroup.get('nap_end_time').errors.mustAfter">{{'End Time is not After Start Time' | translate}}</span>
                 </div>                
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <div class="d-flex align-items-center">
                     <div class="text-hint mr-4" >{{'Bowel Movement' | translate}} : </div>
                     <nb-toggle style="margin-top:8px" status="basic" labelPosition="end" formControlName="is_bowel_move" (checkedChange)="IsBowelChange($event)" [disabled] = "!isToddler"> {{IsBowelled}}</nb-toggle>                
-                    <span class="text-hint mr-4" *ngIf = "!isToddler"> &nbsp;&nbsp; (N/A) </span>
+                    <span class="text-hint mr-4" *ngIf = "!isToddler"> &nbsp;&nbsp; (N/A) </span>                
                 </div>
                 <div class="ml-4">
                     <span class="text-hint mr-4"> {{'How many a day' | translate}}? :</span>
@@ -87,7 +89,7 @@
                         <nb-option [value]="1"> 1 {{'Time' | translate }}</nb-option>
                         <nb-option [value]="2"> 2 {{'Times' | translate }}</nb-option>
                         <nb-option [value]="3"> 3 {{'Times' | translate }}</nb-option>
-                    </nb-select> 
+                    </nb-select>
                 </div>                
             </div>
             <div class="form-group">

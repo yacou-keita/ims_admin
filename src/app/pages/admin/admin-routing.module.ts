@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   { path: 'appointment', loadChildren: () => import('./appointments/appointments.module').then(m => m.AppointmentsModule), canActivate:[RoleGuard],data: {role_name: USERROLE.Admin}},
   { path: 'messagecenter', loadChildren: () => import('./message-center/message-center.module').then(m => m.MessageCenterModule), canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} },
-  { path: 'admin/pictures', loadChildren: () => import('./pictures/pictures.module').then(m => m.PicturesModule) },
+  { path: 'pictures', loadChildren: () => import('./pictures/pictures.module').then(m => m.PicturesModule) },
   { path: 'schooldocuments', loadChildren: () => import('./school-documents/school-documents.module').then(m => m.SchoolDocumentsModule), canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} },
   { path: 'parents/:purpose', loadChildren: () => import('./parent-list/parent-list.module').then(m => m.ParentListModule), canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} },
   { path: 'parents/pictures/:id', loadChildren: () => import('./parent-pictures/parent-pictures.module').then(m => m.ParentPicturesModule), canActivate:[RoleGuard],data: {role_name: USERROLE.Admin} },

@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ChildService } from '../../../@core/services/child.service';
 import { Child } from '../../../@core/models/child';
+import { AppointmentService } from '../../../@core/services/appointment.service';
 @Component({
   selector: 'ngx-appointments',
   templateUrl: './appointments.component.html',
@@ -53,7 +54,8 @@ export class AppointmentsComponent implements OnInit {
   constructor(private userService: UsersService, 
     private childService:ChildService,
     private router:Router,
-    private route:ActivatedRoute) {
+    private route:ActivatedRoute,
+    private apntService: AppointmentService) {
     this.teacher_src = new LocalDataSource();
     this.parent_src = new LocalDataSource();
   }
@@ -95,6 +97,13 @@ export class AppointmentsComponent implements OnInit {
     this.teacherSelected = false;
     this.childSelected = false;
     this.router.navigate(['/appointment'])
+  }
+  preset(){
+    this.apntService.presetAppointments().subscribe((data: any) => {
+      const blob = new Blob([data], { type: 'application/octet-stream' });
+      const fileName = 'preset-appointments.csv';
+      //saveAs(blob, fileName);
+  });
   }
   newAppointment(){
     this.router.navigate(['/appointment/new'])

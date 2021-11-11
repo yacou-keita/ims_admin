@@ -82,11 +82,12 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
             return forkJoin({
              // user:this.userService.getUserById(this.userId),
               //appointments:this.appointmentService.getEventsByUserId(this.userId)
-              appointments:this.appointmentService.getEventsOfCurrentUser()
+              appointments:this.appointmentService.getEventsOfCurrentUser(),
+              presetappointments:this.appointmentService.GetAllPresetAppointments()
             });
           }
         ),
-        map(( {appointments}:{ appointments:Appointment[]} )=>{        
+        map(( {appointments,presetappointments}:{ appointments:Appointment[],presetappointments} )=>{        
          // this.user= user;        
           return appointments.map(item=>{       
             this.parentIds.push({id:item.id, val:item.parent.id})        
@@ -111,8 +112,9 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
           ),
           map(( {child,appointments}:{child:Child, appointments:Appointment[]} )=>{        
             this.child= child;        
-            return appointments.map(item=>{                    
-              return calendarEventFromAppointment(item, this.actions);
+            return appointments.map(item=>{     
+              if(item.child.id == this.child.id)               
+                return calendarEventFromAppointment(item, this.actions);
             })
           })
         ).subscribe((res:CalendarEvent[])=>{this.events = res;})
