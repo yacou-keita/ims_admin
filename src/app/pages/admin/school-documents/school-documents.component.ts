@@ -13,12 +13,12 @@ export class SchoolDocumentsComponent implements OnInit {
 
   public documents:any[];
   public isAdd:boolean = false;
-  public selectList = ['All','Teacher','Admin'];
+  public selectList = ['All','Teacher','Admin','Parents'];
   public selectedItem = 'All'
-  public currentClassName = 'Classroom'
+  public currentClassName = 'All'
   public docFor = 'All';
-  public docForClass = 'Classroom'
-  public classNameList = ['Classroom'];
+  public docForClass = 'All'
+  public classNameList = ['All','Teachers','Admin','Parents','All ClassRooms'];
   constructor(private documentService:DocumentsService, private toastService:ToastService, private userService:UsersService) { }
 
   ngOnInit(): void {
@@ -30,6 +30,9 @@ export class SchoolDocumentsComponent implements OnInit {
       classes.forEach((val,i)=>{
         this.classNameList.push(val.name);
       })
+      // this.selectList.forEach((val,i)=>{
+      //   this.classNameList.push(val)
+      // })
     })
   }
   get forClassroomDocuments(){
@@ -44,12 +47,21 @@ export class SchoolDocumentsComponent implements OnInit {
   }
   selectValue(event){
     console.log('eve >>', event)
-    this.docFor = event;
+    if(event=='Teachers')
+    {this.docFor ='Teacher'}
+    else{this.docFor = event;}
+    
     this.forAllDocuments
   }
   selectClass(event){
     console.log('eve >>', event)
+    if(event=='Teachers')
+    {this.docForClass ='Teacher'}
+    else if(event=='All ClassRooms')
+    {this.docForClass ='Classroom'}
+    else{
     this.docForClass = event;
+    }
     this.forClassroomDocuments
   }
   onUploaded(data){
@@ -69,6 +81,7 @@ export class SchoolDocumentsComponent implements OnInit {
           retArray.push(item);
         return retArray
       }, [])
+      window.location.reload();
     })
   }
 

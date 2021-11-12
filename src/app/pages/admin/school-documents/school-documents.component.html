@@ -15,12 +15,12 @@
             </nb-card-header>
             <nb-card-body >
                 
-                <nb-tabset fullWidth>  
+                <!-- <nb-tabset fullWidth>   -->
 
-                    <nb-tab tabTitle="For Classrooms">
+                    <!-- <nb-tab tabTitle="For Classrooms"> -->
                         <nb-card>
                             <nb-card-header>
-                                <nb-select placeholder="{{'Select class name'| translate}}" (selectedChange)="selectClass($event)"  [(selected)]="currentClassName" style="padding-right: 10px;">
+                                <nb-select fullWidth laceholder="Select class name" (selectedChange)="selectClass($event)"  [(selected)]="currentClassName" style="padding-right: 10px;">
                                     <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item |translate |titlecase}} </nb-option>
                                 </nb-select>
                             </nb-card-header>
@@ -35,9 +35,9 @@
                                 </nb-list>
                             </nb-card-body>
                         </nb-card>         
-                    </nb-tab>
+                    <!-- </nb-tab> -->
                 
-                    <nb-tab tabTitle="For All">
+                    <!-- <nb-tab tabTitle="For All">
                         <nb-card>
                             <nb-card-header>
                                 <nb-select (selectedChange)="selectValue($event)" [(selected)]="selectedItem">
@@ -56,7 +56,7 @@
                             </nb-card-body>
                         </nb-card>                     
                     </nb-tab>  
-                </nb-tabset>
+                </nb-tabset> -->
                 
             </nb-card-body>
         </nb-card> 
