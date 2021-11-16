@@ -83,4 +83,7 @@ export class MessageService {
     if(msg.receiver.role_name == USERROLE.Parent)  return msg.child.photo
     else return msg.receiver.picture
   }
+  updateMessage(id) :Observable<any>{
+    return this.httpClient.put(`${this.api_url}/messages/update_message/${id}/`,{'is_read': true})
+  }
 }

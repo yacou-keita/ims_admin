@@ -99,7 +99,7 @@ export class BookFormComponent implements OnInit {
           picture:undefined,
           author:undefined,
           code:undefined,
-          status:BookStatus.PRESENT,
+          status:undefined,
           donator:undefined,
           child:undefined,
           booked_on:null,
@@ -144,6 +144,7 @@ export class BookFormComponent implements OnInit {
       if(this.bookForm.value.returned_on){
         this.bookForm.value.returned_on = moment(this.bookForm.value.returned_on).format("YYYY-MM-DD") + 'T08:05:53.000Z'
         this.bookForm.value.booked_status = false
+        this.bookForm.value.status = BookStatus.PRESENT
       }else{
         //this.bookForm.value.returned_on = null;
         delete this.bookForm.value.returned_on

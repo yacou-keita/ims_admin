@@ -39,6 +39,9 @@ export class MessageCenterComponent implements OnInit {
     return '';
   }
   goToMessageDetail(msg:Message){
+    this.messageSerivce.updateMessage(msg.id).subscribe(res =>{
+      console.log('ret >>', res)
+    })
     if(msg.headerMessage)
       this.router.navigate([msg.headerMessage],{relativeTo:this.route})
     else

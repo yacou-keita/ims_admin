@@ -8,38 +8,38 @@
                 <div class="form-group row align-items-center">
                     <label class="label col-sm-3">{{'To' | translate}}</label>
                     <div class="col-sm-9">
-                        <ngx-user-select [users]="parents" [title]="'Select Parent'" formControlName="to" [multi]="true"></ngx-user-select>
-                        <div *ngIf="isInvalidControl(notificationForm,'to')">
-                            <span class="error-text" *ngIf="notificationForm.get('to').errors.minLength">{{'required' | translate}}</span>
+                        <ngx-user-select [users]="children" [title]="'Select Child'" formControlName="user_ids" [multi]="true"></ngx-user-select>
+                        <div *ngIf="isInvalidControl(notificationForm,'user_ids')">
+                            <span class="error-text" *ngIf="notificationForm.get('user_ids').errors.minLength">{{'required' | translate}}</span>
                         </div>  
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="label col-sm-3">{{'Title' | translate}}</label>
                     <div class="col-sm-9">
-                        <input nbInput type="text" fullWidth [status]="isInvalidControl(notificationForm,'title')?'danger':'basic'" formControlName="title">
-                        <div *ngIf="isInvalidControl(notificationForm,'title')">
-                            <span class="error-text" *ngIf="notificationForm.get('title').errors.required">{{'required' | translate}}</span>
+                        <input nbInput type="text" fullWidth [status]="isInvalidControl(notificationForm,'module')?'danger':'basic'" formControlName="module">
+                        <div *ngIf="isInvalidControl(notificationForm,'module')">
+                            <span class="error-text" *ngIf="notificationForm.get('module').errors.required">{{'required' | translate}}</span>
                         </div>    
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="label col-sm-3">{{'Content' | translate}}</label>
                     <div class="col-sm-9">
-                        <textarea nbInput type="text" fullWidth rows="5" [status]="isInvalidControl(notificationForm,'content')?'danger':'basic'" formControlName="content"></textarea>                            
-                        <div *ngIf="isInvalidControl(notificationForm,'content')">
-                            <span class="error-text" *ngIf="notificationForm.get('content').errors.required">{{'required' | translate}}</span>
+                        <textarea nbInput type="text" fullWidth rows="5" [status]="isInvalidControl(notificationForm,'notificationMessage')?'danger':'basic'" formControlName="notificationMessage"></textarea>                            
+                        <div *ngIf="isInvalidControl(notificationForm,'notificationMessage')">
+                            <span class="error-text" *ngIf="notificationForm.get('notificationMessage').errors.required">{{'required' | translate}}</span>
                         </div>    
                     </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <div class="col-sm-3"> </div>
                     <div class="col-sm-9" >
                         <nb-checkbox  formControlName="isBroadCast">{{'BroadCast' | translate}}</nb-checkbox>
                     </div>                    
-                </div>
+                </div> -->
                 <div class="row justify-content-end">
-                    <input nbInput type="submit" value="Save" >
+                    <input nbInput type="submit" value="Send" >
                 </div>
             </div>
            

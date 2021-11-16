@@ -11,5 +11,14 @@ export class NotificationService {
   api_url = environment.API_URL;
   constructor(private httpClient:HttpClient) { 
   }
-  
+  getNotification(userId) :Observable<any>{
+    return this.httpClient.get(`${this.api_url}/notification/getUserNotif/${userId}`)
+  }
+  putNotification(id) :Observable<any>{
+    return this.httpClient.put(`${this.api_url}/notification/global/${id}/`,{'is_read': true})
+  }
+  composeNotification(data) :Observable<any>{
+    console.log(data)
+    return this.httpClient.post(`${this.api_url}/notification/global/`,data)
+  }
 }

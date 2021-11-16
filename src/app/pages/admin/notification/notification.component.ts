@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { User } from '../../../@core/models/user';
+import { NotificationService } from '../../../@core/services/notification.service';
 import { UsersService } from '../../../@core/services/users.service';
 
 @Component({
@@ -14,12 +15,12 @@ export class NotificationComponent implements OnInit {
   //private currentUserSubscription:Subscription;
   private user:User;
   notifications
-  constructor(private router:Router,private userService:UsersService) { }
+  constructor(private router:Router,private userService:UsersService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((user:User)=>{
       this.user = user;
-      this.userService.getNotification(user.id).subscribe(data => {
+      this.notificationService.getNotification(user.id).subscribe(data => {
         this.notifications = data;
        })
     })
@@ -35,7 +36,7 @@ export class NotificationComponent implements OnInit {
     return '';
   }
   goTo(not){
-    this.userService.putNotification(not.id).subscribe(res =>{
+    this.notificationService.putNotification(not.id).subscribe(res =>{
       console.log('ret >>', res)
     })
     if(not.module == 'Appointment')

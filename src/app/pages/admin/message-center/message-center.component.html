@@ -11,7 +11,7 @@
                         <div class="content" [ngStyle]="{'background-image':  'url(' +getSenderPhotoUrl(msg) + ')'}">
                         </div>
                     </div>
-                    <div class="ml-3">
+                    <div class="ml-3" [ngStyle]="!msg.is_read&&{'font-weight':'bolder'}||{'font-weight':'normal'}">
                         <div class="text-1">
                             From: <span >{{getSenderName(msg) }}</span>
                             To:<span >{{getReceiverName(msg) }}</span>

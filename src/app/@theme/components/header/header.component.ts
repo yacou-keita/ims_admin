@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { DateTimeAdapter } from "@danielmoncada/angular-datetime-picker";
 import * as moment from 'moment';
 import { interval } from 'rxjs';
+import { NotificationService } from '../../../@core/services/notification.service';
 
 @Component({
   selector: 'ngx-header',
@@ -54,6 +55,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router:Router,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
+    private notificationService: NotificationService
   ) {
     this.userService.getClasses().subscribe((classes) =>{
       this.classes = classes;
@@ -89,7 +91,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       interval(30000)
       .subscribe(() => {
         console.log('notifications')
-        this.userService.getNotification(user.id).subscribe(data => {
+        this.notificationService.getNotification(user.id).subscribe(data => {
           this.notificationLength = data.length;
         });
       });
@@ -192,5 +194,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+  redirecturl(){
+    console.log('logo clicked')
+    window.open('https://www.ivorymontessorischool.com/wp-admin/')
   }
 }
