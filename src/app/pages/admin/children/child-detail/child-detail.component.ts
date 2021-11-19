@@ -28,9 +28,9 @@ export class ChildDetailComponent implements OnInit {
   selectedItem;
   nationalities = [];
   selectedNation = [];
-  privacy = ['video','newsLetter','fridaysLetter','internetSite','yearbook','flyer','magazine','facebook','instagram'];
+  privacy = ['Video','NewsLetter','FridaysLetter','InternetSite','Yearbook','Flyer','Magazine','Facebook','Instagram'];
   privacySelected = [];
-  others = ['reenrollment','dischargeOfResponibility','imageRights','healthProtocol','financialContract','interieurRules'];
+  others = ['Reenrollment','DischargeOfResponibility','ImageRights','HealthProtocol','FinancialContract','InterieurRules'];
   othersSelected = [];
   video:boolean = false;
   newsLetter:boolean = false;
@@ -202,52 +202,52 @@ export class ChildDetailComponent implements OnInit {
     this.router.navigate(['setpwd'],{relativeTo:this.route});
   }
   privacyCheck(event,name){
-    if(name == 'video'){
+    if(name == 'Video'){
       this.video = true
     }
-    if(name == 'newsLetter'){
+    if(name == 'NewsLetter'){
       this.newsLetter = true
     }
-    if(name == 'fridaysLetter'){
+    if(name == 'FridaysLetter'){
       this.fridaysLetter = true
     }
-    if(name == 'internetSite'){
+    if(name == 'InternetSite'){
       this.internetSite = true
     }
-    if(name == 'yearbook'){
+    if(name == 'Yearbook'){
       this.yearbook = true
     }
-    if(name == 'flyer'){
+    if(name == 'Flyer'){
       this.flyer = true
     }
-    if(name == 'magazine'){
+    if(name == 'Magazine'){
       this.magazine = true
     }
-    if(name == 'facebook'){
+    if(name == 'Facebook'){
       this.facebook = true
     }
-    if(name == 'instagram'){
+    if(name == 'Instagram'){
       this.instagram = true
     }
 
   }
   othersCheck(event,name){
-    if(name == 'reenrollment'){
+    if(name == 'Reenrollment'){
       this.reenrollment = true
     }
-    if(name == 'dischargeOfResponibility'){
+    if(name == 'DischargeOfResponibility'){
       this.dischargeOfResponibility = true
     }
-    if(name == 'imageRights'){
+    if(name == 'ImageRights'){
       this.imageRights = true
     }
-    if(name == 'healthProtocol'){
+    if(name == 'HealthProtocol'){
       this.healthProtocol = true
     }
-    if(name == 'financialContract'){
+    if(name == 'FinancialContract'){
       this.financialContract = true
     }
-    if(name == 'interieurRules'){
+    if(name == 'InterieurRules'){
       this.interieurRules = true
     }
 

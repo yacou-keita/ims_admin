@@ -17,7 +17,7 @@
                 <nb-card>
                     <nb-card-header>
                         {{'Basic Information' | translate}}
-                        <button nbButton (click)="dailyInfo()" style="float:right;">{{'Child`s Daily Information' | translate}}</button>
+                        <button nbButton (click)="dailyInfo()" *ngIf="isAdmin(currentUser)" style="float:right;">{{'Child`s Daily Information' | translate}}</button>
                     </nb-card-header>
                     <nb-card-body>
                         <form [formGroup]="childForm" (ngSubmit)="onSubmit()">
@@ -187,73 +187,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- [disabled]="isSubmitting" -->
-                            <!-- <input nbInput type="submit" value="{{'Submit' |  translate}}" style="float: right;" > -->
                         </form>
-                        <!-- <div class="row justify-content-center">
-                            <div class="col-sm-6 avatar">                            
-                                <div class="content" [ngStyle]="{'background-image':  'url(' + getPhotoOfChild() + ')'}">
-                                </div>                                                 
-                            </div>
-                        </div> -->
-                       <!-- <div class="row mt-2">
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'First Name' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.first_name |titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Last Name' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.last_name |titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Birth Date' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.birth}}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Gender' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.gender | titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Nationality' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.nationality | titlecase }}</span>
-                            </div>                                                        
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Address' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.address | titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'First Name of Mother' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.firstNameOfMother | titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Last Name of Mother' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.lastNameOfMother | titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Phone of Mother' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.phoneOfMother }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Email of Mother' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.emailOfMother}}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Fist Name of Father' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.firstNameOfFather | titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Last Name of Father' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.lastNameOfFather | titlecase }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Phone of Father' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.phoneOfFather }}</span>
-                            </div>
-                            <div class="col-sm-6 text-center">
-                                <label class="label">{{'Email of Father' | translate}}:</label>
-                                <span class="text-info ml-2">{{child?.emailOfFather }}</span>
-                            </div>                            
-                        </div> -->
                     </nb-card-body>
                 </nb-card>
             </div>
@@ -355,7 +289,7 @@
             <div class="col-md-6" *ngIf="isAdmin(currentUser)">
                 <nb-card>
                     <nb-card-header>
-                        {{'Other Options' | translate}}
+                        {{'Registration Files' | translate}}
                     </nb-card-header>
                     <nb-card-body>
                         <div class="form-group">

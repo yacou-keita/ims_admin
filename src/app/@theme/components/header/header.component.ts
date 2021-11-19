@@ -169,6 +169,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     
     
   }
+  isAdmin(user:User){
+    return user.role_name == USERROLE.Admin;
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

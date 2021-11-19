@@ -34,7 +34,7 @@
                 <nb-icon icon="close-outline" ></nb-icon>
             </button>
             
-            <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'" >
+            <ngx-dropzone (change)="onSelect($event)" >
                 <ngx-dropzone-label>{{'Drop or Browse' | translate}}</ngx-dropzone-label>
             
                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let upload of uploads"

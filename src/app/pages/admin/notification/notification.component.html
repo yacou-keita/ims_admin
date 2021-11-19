@@ -5,13 +5,13 @@
     </nb-card-header>
     <nb-card-body>
         <nb-list>
-            <nb-list-item *ngFor="let noti of notifications" (click)="goTo(noti)">
+            <nb-list-item *ngFor="let noti of notifications">
                 <div class="row justify-content-center w-100">
                     <!-- <div class="avatar ml-2">                            
                         <div class="content" [ngStyle]="{'background-image':  'url(' +getSenderPhotoUrl(msg) + ')'}">
                         </div>
                     </div> -->
-                    <div class="ml-3">
+                    <div class="ml-3" (click)="goTo(noti)" style="cursor: pointer;">
                         <div class="text-1">
                            <span>{{noti.module}}</span>
                                 
@@ -25,6 +25,9 @@
                         <div>
                             {{getFormatDate(noti.created_at)}}                            
                         </div>
+                        <button (click)="delete(noti)" nbButton ghost  nbTooltip="Remove Notification">
+                            <nb-icon icon="close-outline" ></nb-icon>
+                        </button>
                     </div>
                 </div>
             </nb-list-item>

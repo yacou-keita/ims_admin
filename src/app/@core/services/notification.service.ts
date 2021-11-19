@@ -21,4 +21,7 @@ export class NotificationService {
     console.log(data)
     return this.httpClient.post(`${this.api_url}/notification/global/`,data)
   }
+  deleteNotification(id) :Observable<any>{
+    return this.httpClient.delete(`${this.api_url}/notification/global/${id}/`)
+  }
 }

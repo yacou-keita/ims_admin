@@ -79,13 +79,13 @@ export class DailyDetailComponent implements OnInit {
       week: [this.weekNameList[0].key, Validators.nullValidator],
       day: [this.dayNameList[0], Validators.nullValidator],
       comment:['', Validators.nullValidator],
-      nap_start_time:['',Validators.nullValidator],
-      nap_end_time :['', Validators.nullValidator],
+      nap_start_time:[null,Validators.nullValidator],
+      nap_end_time :[null, Validators.nullValidator],
       is_bowel_move:[false, Validators.nullValidator],
       bowel_movement_time:[1, Validators.nullValidator],
       injureForms:this.fb.array([1].map(x=>this.buildInjureForm(x))),
       injureComment:['', Validators.nullValidator],
-    },{validators:[MustAfter('nap_start_time','nap_end_time')]})
+    }) //,{validators:[MustAfter('nap_start_time','nap_end_time')]}
     return formGroup
   }
   InitForm(data:ChildDailyInformation){
@@ -184,6 +184,10 @@ export class DailyDetailComponent implements OnInit {
         this.childDailyInformation.injures.forEach(injure=>{
           injure.comment = this.formGroup.get('injureComment').value;
         })
+        if(!this.childDailyInformation.nap_start_time)
+          delete this.childDailyInformation.nap_start_time
+        if(!this.childDailyInformation.nap_end_time)
+          delete this.childDailyInformation.nap_end_time
         if(today.isAfter(latest_date,'days') || !this.childDailyInformation.id){
           this.childService.createChildDailyInformation(this.childDailyInformation).subscribe(data => {
             this.childDailyInformation = data;

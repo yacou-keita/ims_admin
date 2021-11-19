@@ -41,7 +41,17 @@ export class NotificationComponent implements OnInit {
     })
     if(not.module == 'Appointment')
       this.router.navigate([`/appointment`]);
-    if(not.module == 'message')
+    if(not.module == 'Message')
     this.router.navigate([`/messagecenter`]);
+  }
+  delete(not){
+    console.log('not >>',not)
+    this.notificationService.deleteNotification(not.id).subscribe(res =>{
+      console.log('ret >>', res)
+      this.notificationService.getNotification(this.user.id).subscribe( data => {
+        console.log('notification data >>', data)
+        this.notifications = data;
+      })
+    })
   }
 }

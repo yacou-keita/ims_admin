@@ -48,6 +48,7 @@ export class ComposeMessageComponent implements OnInit {
     if(requests.length > 0){
       forkJoin(requests).subscribe(_=>{
         this.toastService.success('Message has been sent successfully', 'success');
+        this.router.navigate([`/messagecenter`]);
       })
     }
   }
