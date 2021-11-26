@@ -1,5 +1,6 @@
 import { User } from "./user";
 import { Child, NameOfClass } from './child';
+import { Time } from "@angular/common";
 export enum COLOR {
     Red = 'red',
     Blue = 'blue',
@@ -86,5 +87,33 @@ export interface PresetAppointment{ // This is only for meeting for Preset.
   child:Child;
   start: Date;
   end: Date;
+}
+
+export interface PresetAppointmentData {
+  SessionData : sessionData;
+  appointment: appointmentData; 
+}
+
+export interface sessionData{
+  id?:number;
+  appointment_id?:number;
+  child_id?:number;
+  startDate: Date;
+  startTime: Time;
+  endDate: Date;
+  endTime: Time;
+}
+
+export interface appointmentData{
+  id?:number;
+  duration?:number;
+  childName:string;
+  startDate: Date;
+  startTime: Time;
+  endDate: Date;
+  endTime: Time;
+  presetInfo: string;
+  title: string;
+  price: any;
 }
 

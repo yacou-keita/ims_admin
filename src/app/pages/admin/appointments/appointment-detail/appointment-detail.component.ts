@@ -7,7 +7,7 @@ import { UsersService } from "../../../../@core/services/users.service";
 import { ChildService } from "../../../../@core/services/child.service";
 import { User, USERROLE } from "../../../../@core/models/user";
 import { Appointment, AppointmentType } from "../../../../@core/models/appointment";
-import { calendarEventFromAppointment } from "../../../../@core/utils/calendar.util";
+import { calendarEventFromAppointment, calendarEventFromPresetAppointment } from "../../../../@core/utils/calendar.util";
 
 
 import * as moment from "moment";
@@ -20,6 +20,7 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { YesNoDialogComponent } from '../../../../components/yes-no-dialog/yes-no-dialog.component';
 import { ToastService } from '../../../../@core/services/toast.service';
 import { Child } from '../../../../@core/models/child';
+import { LeafletBaseLayersDirective } from '@asymmetrik/ngx-leaflet';
 
 @Component({
   selector: 'ngx-appointment-detail',
@@ -89,12 +90,12 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
         ),
         map(( {appointments,presetappointments}:{ appointments:Appointment[],presetappointments} )=>{        
          // this.user= user;        
-          return appointments.map(item=>{       
-            this.parentIds.push({id:item.id, val:item.parent.id})        
-            return calendarEventFromAppointment(item, this.actions);
-          })
+         let obj = appointments.map(item=>{this.parentIds.push({id:item.id, val:item.parent.id})      
+                return calendarEventFromAppointment(item, this.actions);})
+          obj = obj.concat(presetappointments.map(item=>{return calendarEventFromPresetAppointment(item, this.actions);}))
+          return obj;
         })
-      ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+      ).subscribe((res:CalendarEvent[])=>{this.events = res.filter(f => f !== undefined && f !== null) as CalendarEvent[];})
     }else{
       if(localStorage.getItem('childappointments') == 'true'){
         this.childSel = true;
@@ -117,7 +118,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
                 return calendarEventFromAppointment(item, this.actions);
             })
           })
-        ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+        ).subscribe((res:CalendarEvent[])=>{this.events = res.filter(f => f !== undefined && f !== null) as CalendarEvent[];})
       }else{
         this.route.paramMap.pipe(
           switchMap(
@@ -136,7 +137,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
               return calendarEventFromAppointment(item, this.actions);
             })
           })
-        ).subscribe((res:CalendarEvent[])=>{this.events = res;})
+        ).subscribe((res:CalendarEvent[])=>{this.events = res.filter(f => f !== undefined && f !== null) as CalendarEvent[];})
       }
      
     }
