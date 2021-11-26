@@ -43,12 +43,6 @@ export class PictureListComponent implements OnInit {
   back(){
     this.router.navigate(['..'],{relativeTo:this.route})
   }
-  // open(index:number){
-  //   this._lightbox.open(this._album,index, {
-  //     centerVertically: true,
-  //     fitImageInViewPort: false
-  //   });
-  // }
   open(index: number): void {
     // open lightbox
     this._lightbox.open(this._album, index, {

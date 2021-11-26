@@ -50,5 +50,9 @@ export class MiniclubComponent implements OnInit {
     })
 
   }
+  editClub(club){
+    localStorage.setItem('clubId',club.id)
+    this.router.navigate(['edit'],{relativeTo:this.route});
+  }
 
 }

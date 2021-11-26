@@ -76,4 +76,7 @@ export class MessageCenterComponent implements OnInit {
     else
       this.router.navigate([msg.id],{relativeTo:this.route})
   }
+  compose(){
+    this.router.navigate(['/teacher/messagecenter/compose'])
+  }
 }

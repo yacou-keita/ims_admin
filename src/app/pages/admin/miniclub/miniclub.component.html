@@ -18,12 +18,15 @@
                 
                 <div class="ml-3 mt-2 w-100"  >
                     <div class="d-flex flex-wrap">
-                        <div class="text-1">
+                        <div class="text-1" (click)="editClub(clubinfo)">
                             <div class="date-text">
                                 {{'Title' | translate}}: <span >{{clubinfo.title}}</span>
                             </div>
                             <div class="date-text">
-                                {{'Date' | translate}}:<span >{{ clubinfo.date | date}}</span>
+                                {{'Start Time' | translate}}:<span >{{ clubinfo.startDate | date}}</span>
+                            </div>
+                            <div class="date-text">
+                                {{'End Time' | translate}}:<span >{{ clubinfo.endDate | date}}</span>
                             </div>
                         </div>
                         <div class="ml-auto" >

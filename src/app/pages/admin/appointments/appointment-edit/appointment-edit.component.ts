@@ -13,6 +13,8 @@ import { ToastService } from '../../../../@core/services/toast.service';
 import { ChildService } from '../../../../@core/services/child.service';
 import { forkJoin } from 'rxjs';
 import { Child } from '../../../../@core/models/child';
+import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'ngx-appointment-edit',
   templateUrl: './appointment-edit.component.html',
@@ -36,10 +38,16 @@ export class AppointmentEditComponent implements OnInit {
     private appointmentService:AppointmentService,
     private childService:ChildService,
     private userService:UsersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dateAdapter:DateTimeAdapter<any>,
+    private translateService:TranslateService,
   ) { 
     this.isEditmode = true;  
     localStorage.setItem('landing','false')  
+    dateAdapter.setLocale('en-IN')
+    this.translateService.onLangChange.subscribe((event:LangChangeEvent)=>{
+      this.dateAdapter.setLocale(event.lang)
+    })
   }
 
   ngOnInit(): void {

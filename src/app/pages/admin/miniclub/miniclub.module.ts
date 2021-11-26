@@ -11,10 +11,11 @@ import { ClubFormComponent } from './club-form/club-form.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
+import { EditClubComponent } from './edit-club/edit-club.component';
 registerLocaleData(localeFr);
 
 @NgModule({
-  declarations: [MiniclubComponent, NewClubComponent, ClubFormComponent],
+  declarations: [MiniclubComponent, NewClubComponent, ClubFormComponent, EditClubComponent],
   imports: [
     CommonModule,
     NbCardModule,

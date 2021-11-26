@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Message } from '../models/message';
 import { User, USERROLE } from '../models/user';
 import { MiniClub } from '../models/miniclub';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,12 @@ export class MiniClubService {
   getAllMiniClub():Observable<MiniClub[]>{    
     return this.httpClient.get<MiniClub[]>(`${this.api_url}/miniclubs/`);
   }
-  addNewMiniClub(data:MiniClub):Observable<any>{
+  getMiniClub(id):Observable<MiniClub[]>{
+    return this.httpClient.get<MiniClub[]>(`${this.api_url}/miniclubs/${id}/`);
+  }
+  addNewMiniClub(data:any):Observable<any>{
+    // data.startDate = moment(data.startDate).format("YYYY-MM-DD")
+    // data.endDate = moment(data.endDate).format("YYYY-MM-DD")
     return this.httpClient.post(`${this.api_url}/miniclubs/`, data);
   }
   removeMiniClub(data:MiniClub):Observable<any>{

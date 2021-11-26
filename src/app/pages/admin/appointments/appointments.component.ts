@@ -8,6 +8,8 @@ import { forkJoin } from 'rxjs';
 import { ChildService } from '../../../@core/services/child.service';
 import { Child } from '../../../@core/models/child';
 import { AppointmentService } from '../../../@core/services/appointment.service';
+import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'ngx-appointments',
   templateUrl: './appointments.component.html',
@@ -55,9 +57,15 @@ export class AppointmentsComponent implements OnInit {
     private childService:ChildService,
     private router:Router,
     private route:ActivatedRoute,
-    private apntService: AppointmentService) {
+    private apntService: AppointmentService,
+    private dateAdapter:DateTimeAdapter<any>,
+    private translateService:TranslateService,) {
     this.teacher_src = new LocalDataSource();
     this.parent_src = new LocalDataSource();
+    dateAdapter.setLocale('en-IN')
+    this.translateService.onLangChange.subscribe((event:LangChangeEvent)=>{
+      this.dateAdapter.setLocale(event.lang)
+    })
   }
   
   ngOnInit(): void {

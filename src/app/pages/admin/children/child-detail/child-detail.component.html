@@ -17,7 +17,7 @@
                 <nb-card>
                     <nb-card-header>
                         {{'Basic Information' | translate}}
-                        <button nbButton (click)="dailyInfo()" *ngIf="isAdmin(currentUser)" style="float:right;">{{'Child`s Daily Information' | translate}}</button>
+                        <button nbButton (click)="dailyInfo()" *ngIf="isAdmin(currentUser)" style="float:right;">{{'My Day At IMS' | translate}}</button>
                     </nb-card-header>
                     <nb-card-body>
                         <form [formGroup]="childForm" (ngSubmit)="onSubmit()">
@@ -277,7 +277,7 @@
             <div class="col-md-6" *ngIf="isAdmin(currentUser)">
                 <nb-card>
                     <nb-card-header>
-                        {{'Privacy Rights' | translate}}
+                        {{'Image Rights' | translate}}
                     </nb-card-header>
                     <nb-card-body>
                         <div class="form-group">

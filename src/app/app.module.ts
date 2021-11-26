@@ -10,7 +10,7 @@ import { HttpBackend, HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@a
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
-import { DateTimeAdapter } from "@danielmoncada/angular-datetime-picker";
+import { DateTimeAdapter, OwlDateTimeModule, OwlNativeDateTimeModule } from "@danielmoncada/angular-datetime-picker";
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 // import ngx-translate and the http loader
@@ -72,8 +72,8 @@ export function momentAdapterFactory() {
     NbCardModule,    
     NbButtonModule,
     NbInputModule,
-    // OwlDateTimeModule,
-    // OwlNativeDateTimeModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     CoreModule.forRoot(),
     LightboxModule,
     TranslateModule.forRoot({

@@ -257,10 +257,10 @@ export let childDailyInformations:ChildDailyInformation[]=[
 ]
 let sampleComment = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 export let miniClubs:MiniClub[]=[
-  {id:0, children:[children[0]], title:'Test World', price:10, date:moment().toDate(), limit:10,comment:sampleComment },
-  {id:1, children:[children[1]], title:'Hello World', price:10, date:moment().toDate(), limit:10,comment:sampleComment },
-  {id:2, children:[children[2]], title:'Thank You World', price:10, date:moment().toDate(), limit:10,comment:sampleComment },
-  {id:3, children:[children[3]], title:'Our World', price:10, date:moment().toDate(), limit:10,comment:sampleComment },
+  {id:0, children:[children[0]], title:'Test World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
+  {id:1, children:[children[1]], title:'Hello World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
+  {id:2, children:[children[2]], title:'Thank You World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
+  {id:3, children:[children[3]], title:'Our World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
 
 ];
 

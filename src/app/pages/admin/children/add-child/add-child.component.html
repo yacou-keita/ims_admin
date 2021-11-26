@@ -73,7 +73,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="label"> {{'Nationality' | translate}}</label> <!--multiple-->
-                                <nb-select fullWidth multiple formControlName="nationality" [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
+                                <nb-select fullWidth multiple formControlName="nationality" placeholder="Select Nationality" [status]="isInvalidControl(childForm,'nationality')?'danger':'basic'">
                                     <nb-option *ngFor="let item of nationalities;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
                                     <nb-option (click)="addNewNationaliy()">Add New</nb-option>
                                     <!-- <nb-option value="civ">Cote d'ivoire</nb-option>
@@ -178,7 +178,7 @@
                             </div>
                         </div>
                     </div>
-                    <h6>{{'Privacy Rights' | translate}}</h6>
+                    <h6>{{'Image Rights' | translate}}</h6>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <nb-checkbox class="mr-2" (checkedChange)="privacyCheck($event, item)" *ngFor="let item of privacy">{{item|translate}}</nb-checkbox>

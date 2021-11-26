@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { LayoutService } from '../../../@core/utils';
-import { filter, map, takeUntil } from 'rxjs/operators';
-import { Subject, Observable, Subscription } from 'rxjs';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { Subject, Observable, Subscription, timer } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
 import { AuthService } from "../../../auth.service";
 import { UsersService } from "../../../@core/services/users.service";
@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   countryCodes = ['gb', 'fr'];
   private current_user:User;
   notificationLength;
+  subscription: Subscription;
   //public nameList:NameOfClass[]
   classes = []
   userMenu = [ 
@@ -88,12 +89,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.title = "Admin Center";
       if(user.role_name == USERROLE.Teacher)
         this.title = "Teacher Center";
-      interval(30000)
-      .subscribe(() => {
-        console.log('notifications')
-        this.notificationService.getNotification(user.id).subscribe(data => {
-          this.notificationLength = data.length;
-        });
+      this.subscription = timer(0, 30000).pipe(
+        switchMap(() => this.notificationService.getNotification(user.id))
+      ).subscribe(data => {
+        let length = 0;
+        data.forEach(val => {
+          if(val.is_read == false){
+            length++
+          }
+        })
+        this.notificationLength = length;
       });
      
     })

@@ -130,18 +130,19 @@ export const TEACHER_MENU_ITEMS: NbMenuItem[] = [
     home:true
   },
   {
-    title: 'Pictures',
+    title: 'Photos',
     icon: 'image-outline',
-    children: [
-      {
-        title: 'Add',
-        link: '/teacher/pictures/'
-      },
-      {
-        title: 'List',
-        link: '/teacher/pictures'
-      }
-    ]
+    link: '/teacher/pictures',
+    // children: [
+    //   {
+    //     title: 'Add',
+    //     link: '/teacher/pictures/'
+    //   },
+    //   {
+    //     title: 'List',
+    //     link: '/teacher/pictures'
+    //   }
+    // ]
   },
   {
     title:'School Documents',
@@ -157,16 +158,17 @@ export const TEACHER_MENU_ITEMS: NbMenuItem[] = [
       icon:'inbox',
       pack:'fa'
     },
-    children:[
-      {
-        title:'Inbox',
-        link: '/teacher/messagecenter',
-      },
-      {
-        title:'Compose',
-        link:'/teacher/messagecenter/compose'
-      }
-    ]
+    link: '/teacher/messagecenter',
+    // children:[
+    //   {
+    //     title:'Inbox',
+    //     link: '/teacher/messagecenter',
+    //   },
+    //   {
+    //     title:'Compose',
+    //     link:'/teacher/messagecenter/compose'
+    //   }
+    // ]
   },
   {
     title:'Child Daily Information',

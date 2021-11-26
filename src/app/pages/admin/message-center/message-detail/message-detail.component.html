@@ -30,6 +30,7 @@
                             <div class="mt-2 mb-2 text-right"> {{msg.content}} </div>
                             <div class="row attached-content justify-content-end">
                                 <ng-container *ngFor="let img of msg.attachedFiles">
+                                    <!-- <a href="{{d.url}}" target="_blank"> {{d.name}}</a> -->
                                     <img class="attached-img mr-2 mt-2" [src]="img.file">
                                 </ng-container>                            
                             </div>

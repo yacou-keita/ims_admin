@@ -68,9 +68,7 @@ export class ChildListComponent implements OnInit, OnChanges {
         this.others = this.data;
         this.parent_src.load(this.others);
       }
-      console.log('this.fromChuld >>', this.fromChild)
     }
-    console.log('data >>', this.data)
     this.classNameList.push({id: 0, name: "All", createdBy: 2});
     this.userService.getClasses().subscribe((classes) => {
      

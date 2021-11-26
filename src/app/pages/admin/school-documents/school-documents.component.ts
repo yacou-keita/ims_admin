@@ -18,7 +18,7 @@ export class SchoolDocumentsComponent implements OnInit {
   public currentClassName = 'All'
   public docFor = 'All';
   public docForClass = 'All'
-  public classNameList = ['All','Teachers','Admin','Parents','All ClassRooms'];
+  public classNameList = ['All','Teachers','Admin','All ClassRooms'];
   constructor(private documentService:DocumentsService, private toastService:ToastService, private userService:UsersService) { }
 
   ngOnInit(): void {

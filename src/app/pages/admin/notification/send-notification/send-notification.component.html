@@ -1,22 +1,35 @@
 <nb-card>
-    <!-- <nb-card-header>
-        {{"Send Notifications" | translate}}
-    </nb-card-header> -->
+    <nb-card-header>
+        <button nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
+        {{"New Notification" | translate}}
+    </nb-card-header>
     <nb-card-body>
         <form class="row justify-content-center " [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="form-group row align-items-center">
-                    <label class="label col-sm-3">{{'To' | translate}}</label>
-                    <div class="col-sm-9">
+                    <label class="label col-sm-2">{{'To' | translate}}</label>
+                    <div class="col-sm-5">
+                        <nb-select fullWidth placeholder="select" (selectedChange)="selectOption($event)">
+                            <nb-option value="classroom">{{'classroom'}}</nb-option>
+                            <nb-option value="child">{{'child'}}</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-sm-5" *ngIf="childSelected">
                         <ngx-user-select [users]="children" [title]="'Select Child'" formControlName="user_ids" [multi]="true"></ngx-user-select>
                         <div *ngIf="isInvalidControl(notificationForm,'user_ids')">
                             <span class="error-text" *ngIf="notificationForm.get('user_ids').errors.minLength">{{'required' | translate}}</span>
                         </div>  
                     </div>
+                    <div class="col-sm-5" *ngIf="classSelected">
+                        <!-- <label class="label"> {{'Name of Class' | translate}}</label> -->
+                        <nb-select fullWidth formControlName="classroom_id" placeholder="Select Classname" multiple>
+                            <nb-option *ngFor="let item of classNameList;" [value]="item"> {{item.name |translate |titlecase}} </nb-option>
+                        </nb-select>
+                    </div>
                 </div>
                 <div class="form-group row">
-                    <label class="label col-sm-3">{{'Title' | translate}}</label>
-                    <div class="col-sm-9">
+                    <label class="label col-sm-2">{{'Title' | translate}}</label>
+                    <div class="col-sm-10">
                         <input nbInput type="text" fullWidth [status]="isInvalidControl(notificationForm,'module')?'danger':'basic'" formControlName="module">
                         <div *ngIf="isInvalidControl(notificationForm,'module')">
                             <span class="error-text" *ngIf="notificationForm.get('module').errors.required">{{'required' | translate}}</span>
@@ -24,8 +37,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="label col-sm-3">{{'Content' | translate}}</label>
-                    <div class="col-sm-9">
+                    <label class="label col-sm-2">{{'Content' | translate}}</label>
+                    <div class="col-sm-10">
                         <textarea nbInput type="text" fullWidth rows="5" [status]="isInvalidControl(notificationForm,'notificationMessage')?'danger':'basic'" formControlName="notificationMessage"></textarea>                            
                         <div *ngIf="isInvalidControl(notificationForm,'notificationMessage')">
                             <span class="error-text" *ngIf="notificationForm.get('notificationMessage').errors.required">{{'required' | translate}}</span>

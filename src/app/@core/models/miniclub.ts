@@ -3,7 +3,8 @@ import { Child } from './child';
 export interface MiniClub{
     id:number;
     title:string;    
-    date:Date;
+    startDate:Date;
+    endDate:Date;
     price:number;
     limit:number;
     comment:string;
