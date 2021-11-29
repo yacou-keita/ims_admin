@@ -4,7 +4,7 @@ import { AppointmentService } from "../../../../@core/services/appointment.servi
 import { UsersService } from "../../../../@core/services/users.service";
 import { User } from "../../../../@core/models/user";
 import { isInvalidControl } from "../../../../@core/utils/form.util";
-import { Appointment, AppointmentType } from "../../../../@core/models/appointment";
+import { Appointment, AppointmentStatus, AppointmentType } from "../../../../@core/models/appointment";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  MustAfter } from "../../../../@core/utils/validators.util";
 import * as moment from "moment";
@@ -31,6 +31,7 @@ export class AppointmentEditComponent implements OnInit {
   appointmentForm:FormGroup
   children:Child[];
   teachers:User[];
+  showButtons:boolean = true;
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -84,7 +85,7 @@ export class AppointmentEditComponent implements OnInit {
       ).subscribe((res:Appointment)=>{
         console.log(res);
         this.appoinment = res;
-        if(this.appoinment.color == 'red'){
+        if(this.appoinment.color == 'red' || this.appoinment.color == 'blue'){
           this.submitButton = 'Reschedule'
           this.accpt = true;
         }else{
@@ -102,7 +103,9 @@ export class AppointmentEditComponent implements OnInit {
   InitForm(appointment:Appointment){
     console.log(appointment);
     this.appointmentForm.reset(appointment);
-
+    if(appointment.status == AppointmentStatus.ACCEPT){
+      this.showButtons = false;
+    }
   }
   get title():string{
     if(this.isEditmode)
