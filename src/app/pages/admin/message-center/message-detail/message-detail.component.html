@@ -59,7 +59,11 @@
                                 <div class="mt-2 mb-2"> {{msg.content}} </div>
                                 <div class="row attached-content">
                                     <ng-container *ngFor="let img of msg.attachedFiles">
-                                        <a href="{{img.file}}" target="_blank"><img class="attached-img mr-2 mt-2" [src]="img.file"></a>
+                                        <!-- <a href="{{img.file}}" target="_blank"><img class="attached-img mr-2 mt-2" [src]="img.file"></a> -->
+
+                                        <a href="{{img.file}}" target="_blank"><img class="attached-img mr-2 mt-2" [src]="img.file" *ngIf="img.fileType"></a>
+                                        <!-- <img [src]="img.file" *ngIf="img.fileType"/> -->
+                                        <a href="{{img.file}}" target="_system" *ngIf="!img.fileType">{{img.filename | translate}}</a>
                                     </ng-container>                            
                                 </div>
                             </div>

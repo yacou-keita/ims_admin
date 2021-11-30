@@ -5,7 +5,7 @@ import { ExchangeLibraryRoutingModule } from './exchange-library-routing.module'
 import { ExchangeLibraryComponent } from './exchange-library.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { BookFormComponent } from './book-form/book-form.component';
-import { NbAccordionModule, NbAlertModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
+import { NbAccordionModule, NbAlertModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbSelectModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
 import { ChildListModule } from '../../../shared/child-list/child-list.module';
@@ -25,6 +25,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     ReactiveFormsModule,
     NbButtonModule,
+    NbSelectModule,
     NbIconModule,
     NbTooltipModule,
     NbAccordionModule,

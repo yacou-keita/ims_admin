@@ -42,7 +42,13 @@
                     </div>
                     <div class="form-group">
                         <label class="label mr-4"> {{'Donated By' | translate}} </label>
-                        <ngx-child-select [childs]="children" formControlName="donator" ></ngx-child-select>
+                        <nb-select placeholder="select" [(selected)]="selectedOption" (selectedChange)="optionClick($event)">
+                            <!-- <nb-option [value]="Other" (click)="other()">{{'Other'}}</nb-option> -->
+                            <nb-option *ngFor="let item of donator;" [value]="item"> {{item |titlecase}} </nb-option>
+                        </nb-select>
+                        <input nbInput type="text" *ngIf="otherOpt" placeholder="{{'Other donator' | translate }}" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
+                        <!-- <ngx-child-select [childs]="children" formControlName="donator" *ngIf="childSelected"></ngx-child-select>
+                        <input nbInput type="text" placeholder="{{'Donator' | translate }}" formControlName="donator" *ngIf="otherSelected"> -->
                         <!-- <input nbInput type="text" placeholder="{{'Donated By' | translate }}" [status]="isInvalidControl(bookForm,'donator')?'danger':'basic'" formControlName="donator"> -->
                         <!-- <div *ngIf="isInvalidControl(bookForm,'donator')">
                             <span class="error-text" *ngIf="bookForm.get('donator').errors.required">{{'required' | translate}}</span>

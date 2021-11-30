@@ -26,6 +26,9 @@ export class BookFormComponent implements OnInit {
   bookId;
   pageTitle;
   submit;
+  donator
+  otherOpt:boolean= false;
+  selectedOption
   constructor(
     private fb:FormBuilder, private userService:UsersService, private childService:ChildService,
     private exchangeLibraryService: ExchangeLibraryService,private dateAdapter:DateTimeAdapter<any>,
@@ -40,17 +43,22 @@ export class BookFormComponent implements OnInit {
         children:this.childService.getAllChildren(),
       books: this.exchangeLibraryService.getBookById(this.bookId)
       }).subscribe(ret=>{
+        this.donator = ['Other']
         this.children = ret.children;
+        
+        this.children.forEach(val => {
+          this.donator.push(val.first_name +' '+ val.last_name)
+        })
         this.book = ret.books
+        this.donator.push(this.book.donator)
         this.children.forEach(val => {
           let name = val.first_name + ' ' + val.last_name
           if(val.id == this.book.child)
             this.book.child = val
-          if(name == this.book.donator)
-            this.book.donator = val
-          else if(this.book.donator == 'IMS')
-            this.book.donator = undefined
+          // if(name == this.book.donator)
+          //   this.selectedOption = val
         })
+        this.selectedOption = this.book.donator
         this.bookForm.reset(this.book)  
       })
     }else{
@@ -60,7 +68,11 @@ export class BookFormComponent implements OnInit {
         children:this.childService.getAllChildren(),
       // books: this.exchangeLibraryService.getBookById(this.bookId)
       }).subscribe(ret=>{
+        this.donator = ['Other']
         this.children = ret.children;
+        this.children.forEach(val => {
+          this.donator.push(val.first_name +' '+ val.last_name)
+        })
         // this.book = ret.books
         // this.bookForm.reset(this.book)  
       })
@@ -70,10 +82,15 @@ export class BookFormComponent implements OnInit {
       children:this.childService.getAllChildren(),
      // books: this.exchangeLibraryService.getBookById(this.bookId)
     }).subscribe(ret=>{
+      this.donator = ['Other']
       this.children = ret.children;
+      this.children.forEach(val => {
+        this.donator.push(val.first_name +' '+ val.last_name)
+      })
       // this.book = ret.books
       // this.bookForm.reset(this.book)  
     })
+    
     this.bookForm = this.fb.group({
       title:['', Validators.required],
       picture:['', Validators.nullValidator],
@@ -112,7 +129,13 @@ export class BookFormComponent implements OnInit {
       this.bookForm.reset(this.initdata)
     }
   }
-
+  optionClick(opt){
+    if(opt == 'Other'){
+      this.otherOpt = true
+    }else
+      this.otherOpt = false;
+  }
+    
   changeListener(event):void {
     console.log(event);
     if(event.target.files && event.target.files[0]){
@@ -130,7 +153,7 @@ export class BookFormComponent implements OnInit {
   onFormSubmit(){
     this.bookForm.markAllAsTouched();
     if(this.bookForm.valid){
-      
+      this.bookForm.value.donator = this.selectedOption 
       if(this.bookForm.value.booked_on){
         this.bookForm.value.booked_on = moment(this.bookForm.value.booked_on).format("YYYY-MM-DD") + 'T08:05:53.000Z'
         this.bookForm.value.booked_status = true

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MiniclubRoutingModule } from './miniclub-routing.module';
 import { MiniclubComponent } from './miniclub.component';
-import { NbAccordionModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
+import { NbAccordionModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbTooltipModule, NbUserModule, NbCheckboxModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedTranslateModule } from '../../../shared-translate/shared-translate.module';
 import { NewClubComponent } from './new-club/new-club.component';
@@ -32,7 +32,8 @@ registerLocaleData(localeFr);
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     SharedTranslateModule,
-    MiniclubRoutingModule
+    MiniclubRoutingModule,
+    NbCheckboxModule,
   ]
 })
 export class MiniclubModule { }

@@ -77,7 +77,7 @@ export class AddChildComponent implements OnInit {
         lastNameOfFather:['',Validators.required],
         emailOfMother:['',[Validators.email]],
         phoneOfFather:[''],
-        emailOfFather:['',[Validators.email]]        
+        emailOfFather:['',[Validators.email]]      
       });
       this.childForm['birth'] = datePipe.transform(this.childForm['birth'],'yyyy-MM-dd');
   }
@@ -153,31 +153,34 @@ export class AddChildComponent implements OnInit {
       data.nationality = nat;
       if(!data.photo) data.photo = undefined;
       if(this.video){
-        data.flag_video = this.video;
+        data.privacyRights.push({'Video':"true"});
       }
       if(this.newsLetter){
-        data.flag_newsletter = this.newsLetter;
+        data.privacyRights.push({'NewsLetter':"true"});
       }
       if(this.fridaysLetter){
-        data.flag_friday_letter = this.fridaysLetter;
+        data.privacyRights.push({'FridaysLetter':"true"});
       }
       if(this.internetSite){
-        data.flag_internet_sites = this.internetSite;
+        data.privacyRights.push({'InternetSite':"true"});
       }
       if(this.yearbook){
-        data.flag_yearbook = this.yearbook;
+        data.privacyRights.push({'Yearbook':"true"});
       }
       if(this.flyer){
-        data.flag_flyer = this.flyer;
+        data.privacyRights.push({'Flyer':"true"});
       }
       if(this.magazine){
-        data.flag_magazine = this.magazine;
+        data.privacyRights.push({'Video':"true"});
       }
       if(this.facebook){
-        data.flag_facebook = this.facebook;
+        data.privacyRights.push({'Facebook':"true"});
       }
       if(this.instagram){
-        data.flag_instagram = this.instagram;
+        data.privacyRights.push({'Instagram':"true"});
+      }
+      if(this.magazine){
+        data.privacyRights.push({'Magazine':'true'})
       }
       if(this.reenrollment){
         data.flag_re_enrollment = this.reenrollment;

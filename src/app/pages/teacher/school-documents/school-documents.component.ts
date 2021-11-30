@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { User } from '../../../@core/models/user';
 import { DocumentsService } from '../../../@core/services/documents.service';
+import { UsersService } from '../../../@core/services/users.service';
 
 @Component({
   selector: 'ngx-school-documents',
@@ -8,14 +11,27 @@ import { DocumentsService } from '../../../@core/services/documents.service';
 })
 export class SchoolDocumentsComponent implements OnInit {
 
-  public documents:any[];
-
-  constructor(private documentService:DocumentsService) { }
+  public documents:any[] = [];
+  private currentUserSubscription:Subscription;
+  private user:User
+  constructor(private documentService:DocumentsService,private userService: UsersService) { }
 
   ngOnInit(): void {
-    this.documentService.getDocuments().subscribe(documents=>{
-      this.documents = documents;
+    this.currentUserSubscription = this.userService.currentUserSubject.subscribe(user=>{
+      this.user = user;
     })
+    this.documentService.getDocuments().subscribe(documents=>{
+      //this.documents = documents;
+      documents.forEach(val => {
+        this.user.classNames.forEach(v =>{
+          if(val.documentfor == v.toString()){
+            this.documents.push(val)
+          }
+        })
+        
+      })
+    })
+    
   }
 
 }

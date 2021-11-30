@@ -67,6 +67,7 @@ export interface Child{
     flag_health_protocols:boolean,
     flag_fin_contract:boolean,
     flag_interieur_rules:boolean,
+    privacyRights:any[]
 }
 export interface InjureRecord{
     id:number,

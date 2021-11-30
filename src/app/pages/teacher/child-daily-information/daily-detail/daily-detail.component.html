@@ -80,8 +80,8 @@
             <div class="form-group">
                 <div class="d-flex align-items-center">
                     <div class="text-hint mr-4" >{{'Bowel Movement' | translate}} : </div>
-                    <nb-toggle style="margin-top:8px" status="basic" labelPosition="end" formControlName="is_bowel_move" (checkedChange)="IsBowelChange($event)" [disabled] = "!isToddler"> {{IsBowelled}}</nb-toggle>                
-                    <span class="text-hint mr-4" *ngIf = "!isToddler"> &nbsp;&nbsp; (N/A) </span>                
+                    <nb-toggle style="margin-top:8px" status="basic" labelPosition="end" formControlName="is_bowel_move" (checkedChange)="IsBowelChange($event)"> {{IsBowelled}}</nb-toggle>                
+                    <!-- <span class="text-hint mr-4" *ngIf = "!isToddler"> &nbsp;&nbsp; (N/A) </span>                 -->
                 </div>
                 <div class="ml-4">
                     <span class="text-hint mr-4"> {{'How many a day' | translate}}? :</span>

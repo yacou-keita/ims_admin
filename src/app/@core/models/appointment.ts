@@ -40,6 +40,7 @@ export enum AppointmentStatus{
   CONFIRM="confirm",
   PENDING="pending",
   ACCEPT="accept",
+  RESCHEDULE="reschedule"
 };
 
 export interface Appointment{ // this is only for free meeting beween parent and teacher

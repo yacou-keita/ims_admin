@@ -45,8 +45,11 @@ export class NotificationComponent implements OnInit {
     })
     if(not.module == 'Appointment')
       this.router.navigate([`/appointment`]);
-    if(not.module == 'message')
-    this.router.navigate([`/messagecenter`]);
+    else if(not.module == 'Message')
+      this.router.navigate([`/messagecenter`]);
+    else if(not.module == 'School-Document')
+      this.router.navigate(['/schooldocuments'])
+
   }
   delete(not){
     console.log('not >>',not)

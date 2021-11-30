@@ -24,7 +24,24 @@ export class MiniclubComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.miniClubService.getAllMiniClub().subscribe(data => {this.clubInfos = data; this.filteredInfos = this.clubInfos;})
+    this.miniClubService.getAllMiniClub().subscribe(data => {
+      this.clubInfos = data; 
+      this.filteredInfos = this.clubInfos;
+      this.filteredInfos.forEach(value =>{
+        value.children.forEach(val => {
+          if(value.isPaid){
+            value.isPaid.forEach(v => {
+              if(v == val.id){
+                val.isPaid = true;
+              }else{
+                val.isPaid = false;
+              }
+            })
+          }else
+            val.isPaid = false;
+        })
+      })
+    })
   }
   onSearchWordChange(data){
     this.filteredInfos = this.clubInfos.filter((item:MiniClub)=>{return item.title.includes(this.searchWord)});
@@ -54,5 +71,15 @@ export class MiniclubComponent implements OnInit {
     localStorage.setItem('clubId',club.id)
     this.router.navigate(['edit'],{relativeTo:this.route});
   }
-
+  isPaid(child){
+    this.filteredInfos.forEach(val => {
+      if(val.isPaid){
+        val.isPaid.forEach(v =>{
+          if(v == child.id)
+            return true
+          else return false;
+        })
+      }
+    })
+  }
 }

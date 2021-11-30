@@ -19,6 +19,7 @@ export class ClubFormComponent implements OnInit {
   clubForm:FormGroup;
   club:MiniClub;
   clubs;
+  children=[];
   constructor(
     private fb:FormBuilder,
     private dateAdapter:DateTimeAdapter<any>,
@@ -32,25 +33,40 @@ export class ClubFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.edit == true){
+      let clubId = localStorage.getItem('clubId')
+      forkJoin({
+        club: this.miniClubService.getMiniClub(clubId)
+      }).subscribe(ret=>{
+        this.clubs = ret.club;
+        this.clubForm.reset(this.clubs)
+        this.clubForm.value.isPaid = []; 
+        this.children = this.clubs.children
+        this.children.forEach(val =>{
+          if(this.clubs.isPaid){
+            this.clubs.isPaid.forEach(v => {
+              if(v == val.id){
+                val.isPaid = true;
+              }else{
+                val.isPaid = false;
+              }
+            })
+          }else
+            val.isPaid = false;
+        })
+      })
+      
+    }
     this.clubForm = this.fb.group({
       title:['', Validators.required],
       startDate:[null, Validators.nullValidator],
       endDate:[null, Validators.nullValidator],
       price:['', [Validators.required,Validators.min(1)]],
       limit:[10, [Validators.required, Validators.min(1)]],
-      comment:['', Validators.nullValidator]
+      comment:['', Validators.nullValidator],
+      children:[[]],
+      isPaid:[[],Validators.nullValidator]
     })
-    if(this.edit == true){
-      let clubId = localStorage.getItem('clubId')
-      forkJoin({
-        club: this.miniClubService.getMiniClub(clubId)
-      }).subscribe(ret=>{
-        this.clubs = ret.club;      
-      })
-      this.clubForm.reset(this.clubs)
-    }
-    // this.dateAdapter.setLocale(this.translateService.currentLang)
-    // this.translateService.onLangChange.subscribe((lang:LangChangeEvent)=>{this.dateAdapter.setLocale(lang.lang)});
     
     if(!this.initdata)
     {
@@ -65,7 +81,8 @@ export class ClubFormComponent implements OnInit {
           endDate:null,
           price:undefined,
           limit:undefined,
-          children:[]
+          children:[],
+          isPaid:[]
         }
       }
       
@@ -73,10 +90,30 @@ export class ClubFormComponent implements OnInit {
       this.clubForm.reset(this.initdata)
     }
   }
+  checked(eve,child){
+    if(eve == true){
+      this.clubForm.value.children.forEach(val => {
+        if(child.id == val.id){
+          this.clubForm.value.isPaid.push(val.id)
+        }
+      })
+    }else if(eve == false){
+      this.clubForm.value.children.forEach(val => {
+        if(child.id == val.id){
+          this.clubForm.value.isPaid.pop(val.id)
+        }
+      })
+    }
+  }
   onFormSubmit(){
     this.clubForm.markAllAsTouched();
     if(this.clubForm.valid){
       this.club = Object.assign(this.initdata, this.clubForm.value);
+      // this.club.children.forEach(val => {
+      //   if(val.isPaid == true){
+      //     this.club.isPaid.push(val.id)
+      //   }
+      // })
       this.submitEvent.emit(this.club);
     }
   }

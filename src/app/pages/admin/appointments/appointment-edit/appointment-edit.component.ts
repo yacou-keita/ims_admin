@@ -32,6 +32,7 @@ export class AppointmentEditComponent implements OnInit {
   children:Child[];
   teachers:User[];
   showButtons:boolean = true;
+  rescheduleText = false;
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -92,12 +93,21 @@ export class AppointmentEditComponent implements OnInit {
           this.accpt = false;
           this.submitButton = 'Send'
         }
+        if(this.appoinment.status == 'reschedule'){
+          this.rescheduleText = true
+          this.accpt = false;
+          this.submitButton = 'Send'
+        }else{
+          this.rescheduleText = false
+        }
         if(localStorage.getItem('childappointments') == 'false'){
           this.userId = this.appoinment.teacher.id;
         }else
           this.userId = this.appoinment.child.id;
         this.InitForm(res);
       })  
+    }else{
+      this.submitButton = 'Send'
     }
   }
   InitForm(appointment:Appointment){
@@ -105,6 +115,7 @@ export class AppointmentEditComponent implements OnInit {
     this.appointmentForm.reset(appointment);
     if(appointment.status == AppointmentStatus.ACCEPT){
       this.showButtons = false;
+      this.accpt = false;
     }
   }
   get title():string{
@@ -133,6 +144,19 @@ export class AppointmentEditComponent implements OnInit {
       }
     }
   }
+  reschedule(){
+    let dat = { 
+      "appointment_id":this.appoinment.id,
+      "status": "reschedule",
+      "child_id":this.appoinment.child.id,
+      "teacher_id":this.appoinment.parent.id
+    }
+    this.appointmentService.updateAppointment(dat).subscribe(ret => {
+      console.log('ret >>',ret)
+      //this.navCtrl.navigateBack('/normal_appointment');
+      this.toastrService.success('Requested for reschedule',"Success")
+    })
+  }
   accept(){
     let dat = { 
       "appointment_id":this.appoinment.id,
@@ -147,9 +171,9 @@ export class AppointmentEditComponent implements OnInit {
     })
   }
   back(){
-    if(this.userId)
-      this.router.navigate([`/appointment/${this.userId}`]);
-    else
+    // if(this.userId)
+    //   this.router.navigate([`/appointment/${this.userId}`]);
+    // else
       this.router.navigate(['/appointment']);
   }
   isInvalidControl = isInvalidControl;

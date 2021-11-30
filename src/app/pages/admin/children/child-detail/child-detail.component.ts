@@ -67,51 +67,84 @@ export class ChildDetailComponent implements OnInit {
     )).subscribe((child:Child) => {
       this.child = child;
       this.childForm.reset(child);
-      if(this.child.flag_video == true){
-        this.privacySelected.push('video')
-      }
-      if(this.child.flag_newsletter == true){
-        this.privacySelected.push('newsLetter')
-      }
-      if(this.child.flag_friday_letter == true){
-        this.privacySelected.push('fridaysLetter')
-      }
-      if(this.child.flag_internet_sites == true){
-        this.privacySelected.push('internetSite')
-      }
-      if(this.child.flag_yearbook == true){
-        this.privacySelected.push('yearbook')
-      }
-      if(this.child.flag_flyer == true){
-        this.privacySelected.push('flyer')
-      }
-      if(this.child.flag_magazine == true){
-        this.privacySelected.push('magazine')
-      }
-      if(this.child.flag_facebook == true){
-        this.privacySelected.push('facebook')
-      }
-      if(this.child.flag_instagram == true){
-        this.privacySelected.push('instagram')
-      }
+      // if(this.child.flag_video == true){
+      //   this.privacySelected.push('video')
+      // }
+      // if(this.child.flag_newsletter == true){
+      //   this.privacySelected.push('newsLetter')
+      // }
+      // if(this.child.flag_friday_letter == true){
+      //   this.privacySelected.push('fridaysLetter')
+      // }
+      // if(this.child.flag_internet_sites == true){
+      //   this.privacySelected.push('internetSite')
+      // }
+      // if(this.child.flag_yearbook == true){
+      //   this.privacySelected.push('yearbook')
+      // }
+      // if(this.child.flag_flyer == true){
+      //   this.privacySelected.push('flyer')
+      // }
+      // if(this.child.flag_magazine == true){
+      //   this.privacySelected.push('magazine')
+      // }
+      // if(this.child.flag_facebook == true){
+      //   this.privacySelected.push('facebook')
+      // }
+      // if(this.child.flag_instagram == true){
+      //   this.privacySelected.push('instagram')
+      // }
       if(this.child.flag_re_enrollment == true){
-        this.othersSelected.push('reenrollment')
+        this.othersSelected.push('Reenrollment')
       }
       if(this.child.flag_responsibility_discharge == true){
-        this.othersSelected.push('dischargeOfResponibility')
+        this.othersSelected.push('DischargeOfResponibility')
       }
       if(this.child.flag_image_rights == true){
-        this.othersSelected.push('imageRights')
+        this.othersSelected.push('ImageRights')
       }
       if(this.child.flag_health_protocols == true){
-        this.othersSelected.push('healthProtocol')
+        this.othersSelected.push('HealthProtocol')
       }
       if(this.child.flag_fin_contract == true){
-        this.othersSelected.push('financialContract')
+        this.othersSelected.push('FinancialContract')
       }
       if(this.child.flag_interieur_rules == true){
-        this.othersSelected.push('interieurRules')
+        this.othersSelected.push('InterieurRules')
       }
+      if(this.child.privacyRights){
+        this.child.privacyRights.forEach(val => {
+          if(val.Video == 'true'){
+            this.privacySelected.push('Video')
+          }
+          if(val.NewsLetter == 'true'){
+            this.privacySelected.push('NewsLetter')
+          }
+          if(val.FridaysLetter == 'true'){
+            this.privacySelected.push('FridaysLetter')
+          }
+          if(val.InternetSite == 'true'){
+            this.privacySelected.push('InternetSite')
+          }
+          if(val.Yearbook == 'true'){
+            this.privacySelected.push('Yearbook')
+          }
+          if(val.Flyer == 'true'){
+            this.privacySelected.push('Flyer')
+          }
+          if(val.Magazine == 'true'){
+            this.privacySelected.push('Magazine')
+          }
+          if(val.Facebook == 'true'){
+            this.privacySelected.push('Facebook')
+          }
+          if(val.Instagram == 'true'){
+            this.privacySelected.push('Instagram')
+          }
+  
+        })
+      }
+      
       this.userService.getClasses().subscribe((classes) => {
         this.classNameList = classes;
         this.classNameList.forEach((val,i)=>{
@@ -177,7 +210,8 @@ export class ChildDetailComponent implements OnInit {
       flag_image_rights:[''],
       flag_health_protocols:[''],
       flag_fin_contract:[''],
-      flag_interieur_rules:[''],   
+      flag_interieur_rules:[''],
+      privacyRights:[[]]  
     });
     
   }
@@ -296,32 +330,36 @@ export class ChildDetailComponent implements OnInit {
       }
       
       if(!data.photo) data.photo = undefined;
+      if(!data.photoFile) delete data.photo
       if(this.video){
-        data.flag_video = this.video;
+        data.privacyRights.push({'Video':"true"});
       }
       if(this.newsLetter){
-        data.flag_newsletter = this.newsLetter;
+        data.privacyRights.push({'NewsLetter':"true"});
       }
       if(this.fridaysLetter){
-        data.flag_friday_letter = this.fridaysLetter;
+        data.privacyRights.push({'FridaysLetter':"true"});
       }
       if(this.internetSite){
-        data.flag_internet_sites = this.internetSite;
+        data.privacyRights.push({'InternetSite':"true"});
       }
       if(this.yearbook){
-        data.flag_yearbook = this.yearbook;
+        data.privacyRights.push({'Yearbook':"true"});
       }
       if(this.flyer){
-        data.flag_flyer = this.flyer;
+        data.privacyRights.push({'Flyer':"true"});
       }
       if(this.magazine){
-        data.flag_magazine = this.magazine;
+        data.privacyRights.push({'Video':"true"});
       }
       if(this.facebook){
-        data.flag_facebook = this.facebook;
+        data.privacyRights.push({'Facebook':"true"});
       }
       if(this.instagram){
-        data.flag_instagram = this.instagram;
+        data.privacyRights.push({'Instagram':"true"});
+      }
+      if(this.magazine){
+        data.privacyRights.push({'Magazine':'true'})
       }
       if(this.reenrollment){
         data.flag_re_enrollment = this.reenrollment;
@@ -348,6 +386,7 @@ export class ChildDetailComponent implements OnInit {
       data.birth = moment(data.birth).format("YYYY-MM-DD")
       this.childService.UpdateChild(this.childId,data).subscribe(_=>{
         this.toastService.success('Child Details has been updated successfully','success');
+        this.router.navigate(['/children']);
       })
     }
   }

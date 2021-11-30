@@ -132,13 +132,14 @@ export class AppointmentService {
         observe?: 'body';
         params?: HttpParams;
         reportProgress?: boolean;
-        responseType: 'arraybuffer';
+        responseType: 'text';
         withCredentials?: boolean;
     } = {
-        responseType: 'arraybuffer'
+        responseType: 'text'
     };
     return this.httpClient.get(`${this.api_url}/appointments/download_session_details/`, options).pipe(
-      map((file: ArrayBuffer) => {
+      map((file: any) => {
+        location.href = "http://3.136.224.87/api/appointments/download_session_details/";
           return file;
       })
   );

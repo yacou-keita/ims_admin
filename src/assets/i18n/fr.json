@@ -12,7 +12,6 @@
     "List" : "Liste",
     "Inbox" : "Boîte de réception",
     "Compose" : "Écrire",
-    "Child Daily Information" : "Information de la journée ",
     "My Day At IMS" : "Ma Journée chez IMS",
     "Add Meal" : "Rajouter le plat",
     "Menu of This Year" : "Menu de l’année",
@@ -63,7 +62,6 @@
     "New Book" : "Nouveau livre",
     "Title" : "Titre",
     "Comment" : "Commentaire",
-    "comment" : "commentaire",
     "Messages" : "Messages",
     "New Mini Club" : "Nouveau mini-club",
     "Registered Children" : "Enfants enregistrés",
@@ -101,7 +99,6 @@
     "AttachPicture" : "AttachPicture",
     "Search by name" : "Rechercher par nom",
     "Name" : "Nom",
-    "description" : "la description",
     "Email" : "Email",
     "Write comment" : "Ecrire un commentaire",
     "Comment for Injuries" : "Commentaire pour les blessures",
@@ -121,7 +118,6 @@
     "Are you sure?" : "Êtes-vous sûr?",
     "Are you going to close?" : "Allez-vous fermer?",
     "CLOSE" : "FERMER",
-    "START" : "DÉBUT",
     "This child will be removed from sibling. Are you going to continue?" : "Cet enfant sera supprimé de son frère. Allez-vous continuer?",
     "Are you going to delete?" : "Allez-vous supprimer?",
     "Address" : "Adresse",
@@ -139,8 +135,6 @@
     "Email address" : "Adresse électronique",
     "Email of Father" : "Email du père",
     "Email of Mother" : "Email de la mère",
-    "First Name of Mother" : "Prénom de la mère",
-    "Fist Name of Father" : "Nom du premier père",
     "Food Restriction" : "Restriction alimentaire",
     "Friday" : "Vendredi",
     "Gender" : "Le genre",
@@ -234,7 +228,6 @@
     "Father’s first name" : "Prénom du père",
     "Father’s last name" : "Nom de famille du père",
     "Father’s phone number" : "Numéro de téléphone du père",
-    
     "Father’s email" : "Courriel du père",
     "Child has been deleted" : "L'enfant a été supprimé",
     "Delete" : "Effacer",
@@ -277,5 +270,6 @@
     "ImageRights":"Droits d'auteur",
     "HealthProtocol":"Protocole de santé",
     "FinancialContract":"Contrat financier",
-    "InterieurRules":"InterieurRules"
+    "InterieurRules":"InterieurRules",
+    "Paid":"Payé"
 }

@@ -54,6 +54,12 @@
                         <label class="label"> {{'Comment' | translate}} </label>
                         <textarea nbInput rows="5" fullWidth placeholder="{{'comment' | translate}}" formControlName="comment"></textarea>
                       </div>
+                      <div class="form-group" *ngIf="edit">
+                        <div *ngFor="let child of children" class="mr-2" style="display:flex;">
+                            <nb-user [picture]="child.photo" [name]="child.first_name +' '+ child.last_name"></nb-user>
+                            <div style="padding-top: 6px;"><nb-checkbox style="padding-left:20px;" (checkedChange)="checked($event, child)" [checked]="child.isPaid">{{'Paid' | translate}}</nb-checkbox></div>
+                         </div>
+                      </div>
                       <input nbInput type="submit" value="Add" style="float: right;">
                 </form>
             </nb-card-body>

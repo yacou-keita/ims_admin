@@ -58,6 +58,16 @@ export class MessageDetailComponent implements OnInit {
       }else
         this.toContact = this.messages[0].sender;
       this.toChild = this.messages[0].child;
+      this.messages.forEach(val => {
+        val.attachedFiles.forEach(v => {
+          if(v.file.indexOf('.png', v.file.length - '.png'.length) !== -1 || v.file.indexOf('.png', v.file.length - '.jpg'.length) !== -1){
+            v.fileType = true;
+          }else
+            v.fileType = false;
+          let files = v.file.split("Files/")
+            v.filename = files[1]
+        })
+      })
     })
     
     this.isReplyMode = false

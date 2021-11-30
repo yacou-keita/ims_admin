@@ -164,7 +164,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
     }
       // this.router.navigate([event.id,event.id])
     if(event.meta == AppointmentType.PRESET){
-      this.router.navigate([`/appointment/preset/${event.id}`]);
+      //this.router.navigate([`/appointment/preset/${event.id}`]);
     }
   }
   onDeleteEvent(event: CalendarEvent): void {

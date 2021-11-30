@@ -31,8 +31,9 @@ export class EditClubComponent implements OnInit {
     
   }
   onSubmit(data:MiniClub){
-    this.miniClubService.addNewMiniClub(data).subscribe(_=>{
-      this.toastrService.success('New Mini Club Item has been created', 'success');
+    delete data.children
+    this.miniClubService.editMiniClub(data).subscribe(_=>{
+      this.toastrService.success('Mini Club details updated', 'success');
       this.back();
     });
   }

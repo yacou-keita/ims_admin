@@ -23,11 +23,12 @@ export class MiniClubService {
     return this.httpClient.get<MiniClub[]>(`${this.api_url}/miniclubs/${id}/`);
   }
   addNewMiniClub(data:any):Observable<any>{
-    // data.startDate = moment(data.startDate).format("YYYY-MM-DD")
-    // data.endDate = moment(data.endDate).format("YYYY-MM-DD")
     return this.httpClient.post(`${this.api_url}/miniclubs/`, data);
   }
   removeMiniClub(data:MiniClub):Observable<any>{
     return this.httpClient.delete(`${this.api_url}/miniclubs/${data.id}/`);
+  }
+  editMiniClub(data:any):Observable<any>{
+    return this.httpClient.put(`${this.api_url}/miniclubs/${data.id}/`, data);
   }
 }

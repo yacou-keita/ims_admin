@@ -108,8 +108,8 @@ export class AppointmentsComponent implements OnInit {
   }
   preset(){
     this.apntService.presetAppointments().subscribe((data: any) => {
-      const blob = new Blob([data], { type: 'application/octet-stream' });
-      const fileName = 'preset-appointments.csv';
+      // const blob = new Blob([data], { type: 'application/octet-stream' });
+      // const fileName = 'preset-appointments.csv';
       //saveAs(blob, fileName);
   });
   }

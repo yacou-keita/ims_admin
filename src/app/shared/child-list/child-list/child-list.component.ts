@@ -2,10 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { Child, NameOfClass } from "../../../@core/models/child";
 import { LocalDataSource } from 'ng2-smart-table';
 import { ChildCellComponent } from "../child-cell/child-cell.component";
-import { User } from '../../../@core/models/user';
+import { User, USERROLE } from '../../../@core/models/user';
 import { UsersService } from '../../../@core/services/users.service';
 import { ChildService } from '../../../@core/services/child.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'ngx-child-list',
   templateUrl: './child-list.component.html',
@@ -19,9 +20,11 @@ export class ChildListComponent implements OnInit, OnChanges {
   parents: Child[] = [];
   others: User[] = [];
   classNameList=[];
+  user: User;
   currentClassName;
   fromChild = false;
   parent_src: LocalDataSource;
+  private currentUserSubscription:Subscription;
   settings = {
     actions:{
       add:false,
@@ -77,6 +80,13 @@ export class ChildListComponent implements OnInit, OnChanges {
       })
       this.classNameList.push({id:this.classNameList.length+1, name:"Add New Class", createdBy:2})
     })
+    this.currentUserSubscription = this.userService.currentUserSubject.subscribe(user=>{
+      this.user = user;
+      
+    })
+  }
+  isAdmin(user:User){
+    return user.role_name == USERROLE.Admin;
   }
   ngOnChanges(changes:SimpleChanges){
     if('data' in changes){

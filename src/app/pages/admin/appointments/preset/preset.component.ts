@@ -37,7 +37,7 @@ export class PresetComponent implements OnInit {
     this.isStarted = false;
     this.isFinished = false;
     this.isNewStarted = false;
-    this.actionText = "START";
+    this.actionText = "Start";
    }
   
   ngOnInit(): void {
@@ -149,7 +149,7 @@ export class PresetComponent implements OnInit {
     if(this.isStarted == true)
       this.actionText = "CLOSE";
     else
-      this.actionText = "START";
+      this.actionText = "Start";
   }
   updateSubmit(){
     this.onSubmit();

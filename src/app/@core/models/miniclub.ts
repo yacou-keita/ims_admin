@@ -8,5 +8,6 @@ export interface MiniClub{
     price:number;
     limit:number;
     comment:string;
-    children:Child[]
+    children:any[];
+    isPaid:any[];
 }

@@ -30,7 +30,7 @@ export let authPersons:AuthPersonContact[]=[
 ]
 export let children:Child[]=[
   
-  { id:1, first_name:"Emma", last_name:"Jones", photo: 'assets/images/childs/emma.jpg', birth:'2019',gender:'male',nationality:'', address:'', nameOfClass:NameOfClass.Acajou, parent:users[2], siblings_data:[],flag_video:false,flag_newsletter:false,flag_friday_letter:false,flag_internet_sites:false,flag_yearbook:false,flag_flyer:false,flag_magazine:false,flag_facebook:false,flag_instagram:false,flag_re_enrollment:false,flag_responsibility_discharge:false,flag_image_rights:false,flag_health_protocols:false,flag_fin_contract:false,flag_interieur_rules:false},
+  { id:1, first_name:"Emma", last_name:"Jones", photo: 'assets/images/childs/emma.jpg', birth:'2019',gender:'male',nationality:'', address:'', nameOfClass:NameOfClass.Acajou, parent:users[2], siblings_data:[],flag_video:false,flag_newsletter:false,flag_friday_letter:false,flag_internet_sites:false,flag_yearbook:false,flag_flyer:false,flag_magazine:false,flag_facebook:false,flag_instagram:false,flag_re_enrollment:false,flag_responsibility_discharge:false,flag_image_rights:false,flag_health_protocols:false,flag_fin_contract:false,flag_interieur_rules:false,privacyRights:[]},
   // { id:2, first_name:"Olivia", last_name:"Martinez", photo: 'assets/images/childs/olivia.jpg',birth:'2019',gender:'male',nationality:'', address:'', nameOfClass:NameOfClass.Bamboo, parent:users[4], siblings:[],flag_video:false,flag_newsletter:false,flag_friday_letter:false,flag_internet_sites:false,flag_yearbook:false,flag_flyer:false,flag_magazine:false,flag_facebook:false,flag_instagram:false,flag_re_enrollment:false,flag_responsibility_discharge:false,flag_image_rights:false,flag_health_protocols:false,flag_fin_contract:false,flag_interieur_rules:false},
   // { id:3, first_name:"Ava", last_name:"Moor", photo: 'assets/images/childs/ava.jpg',birth:'2019',gender:'male',nationality:'', address:'', nameOfClass:NameOfClass.Baobab, parent:users[2],  emergenyContacts:emgencyContacts, authPersons:authPersons, allgeries:"sfsdfsdf dsfsdf sdfsd", siblings:[],flag_video:false,flag_newsletter:false,flag_friday_letter:false,flag_internet_sites:false,flag_yearbook:false,flag_flyer:false,flag_magazine:false,flag_facebook:false,flag_instagram:false,flag_re_enrollment:false,flag_responsibility_discharge:false,flag_image_rights:false,flag_health_protocols:false,flag_fin_contract:false,flag_interieur_rules:false},
   // { id:4, first_name:"Isabella", last_name:"Williams", photo: 'assets/images/childs/isabella.jpg',birth:'2019',gender:'male',nationality:'', address:'', nameOfClass:NameOfClass.Iroko, parent:users[2], siblings:[],flag_video:false,flag_newsletter:false,flag_friday_letter:false,flag_internet_sites:false,flag_yearbook:false,flag_flyer:false,flag_magazine:false,flag_facebook:false,flag_instagram:false,flag_re_enrollment:false,flag_responsibility_discharge:false,flag_image_rights:false,flag_health_protocols:false,flag_fin_contract:false,flag_interieur_rules:false},
@@ -257,10 +257,10 @@ export let childDailyInformations:ChildDailyInformation[]=[
 ]
 let sampleComment = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 export let miniClubs:MiniClub[]=[
-  {id:0, children:[children[0]], title:'Test World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
-  {id:1, children:[children[1]], title:'Hello World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
-  {id:2, children:[children[2]], title:'Thank You World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
-  {id:3, children:[children[3]], title:'Our World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment },
+  {id:0, children:[children[0]], title:'Test World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment,isPaid:[] },
+  {id:1, children:[children[1]], title:'Hello World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment,isPaid:[] },
+  {id:2, children:[children[2]], title:'Thank You World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment,isPaid:[] },
+  {id:3, children:[children[3]], title:'Our World', price:10, startDate:moment().toDate(),endDate:moment().toDate(), limit:10,comment:sampleComment,isPaid:[] },
 
 ];
 

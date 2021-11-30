@@ -57,10 +57,13 @@
                         </div> 
                         <owl-date-time #dt2></owl-date-time>              
                     </div>                
-                </div>                
+                </div>
+                <div class="form-group row" *ngIf="rescheduleText">
+                    <label class="label col-sm-6">{{'Note : Requested for reschedule the appointment date' | translate}}</label>
+                </div>          
                 <div class="row justify-content-end" *ngIf = "showButtons; else statusBlock">
-                    <input nbInput type="submit" value="{{submitButton}}">
-                    <input nbInput type="submit" value="Accept" (click)="accept()" *ngIf="accpt">
+                    <input nbInput type="submit" value="{{submitButton}}" (click)="reschedule()">
+                    <input nbInput type="submit" value="Accept" (click)="accept()" *ngIf="accpt" style="margin-left: 10px;">
                 </div>
                 <ng-template #statusBlock>
                     <div class="form-group row">

@@ -21,6 +21,13 @@ export class ChildService {
   }
 
   addNewChild(submitdata):Observable<any>{
+    // let data:any = submitdata;
+    // const formData = new FormData();
+    // Object.keys(submitdata).forEach((key)=>{
+    //   formData.append(key, submitdata[key]);
+    // })    
+    // if(data.photoFile) formData.set('photo', data.photoFile);
+    // if(data.photoFile) data.photo = data.photoFile;
     return this.httpClient.post(`${this.api_url}/child/`,submitdata);
 
   }
