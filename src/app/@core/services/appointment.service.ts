@@ -56,6 +56,10 @@ export class AppointmentService {
     return this.httpClient.delete(`${this.api_url}/appointments/${eventId}/`);
   }
   
+  deletePresetAppointmentById(eventId):Observable<any>{
+    appointmentsOfOneUser.splice(eventId,1);
+    return this.httpClient.delete(`${this.api_url}/appointments/deletePresetAppoinment/${eventId}/`);
+  }
   
   StartNewPreset(presetRecord:PresetRecord):Observable<any>{    
     presetRecord.status = PresetStatus.Started;

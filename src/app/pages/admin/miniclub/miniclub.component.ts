@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 import { NbDialogService } from '@nebular/theme';
 import { MiniClub } from '../../../@core/models/miniclub';
 import { MiniClubService } from '../../../@core/services/mini-club.service';
 import { ToastService } from '../../../@core/services/toast.service';
 import { YesNoDialogComponent } from '../../../components/yes-no-dialog/yes-no-dialog.component';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-miniclub',
@@ -21,7 +23,14 @@ export class MiniclubComponent implements OnInit {
     private route:ActivatedRoute,
     private toastrService:ToastService,
     private dialogService:NbDialogService,
-  ) { }
+    private dateAdapter:DateTimeAdapter<any>,
+    private translateService:TranslateService,
+  ) {
+    dateAdapter.setLocale('en-IN')
+    this.translateService.onLangChange.subscribe((event:LangChangeEvent)=>{
+      this.dateAdapter.setLocale(event.lang)
+    })
+   }
 
   ngOnInit(): void {
     this.miniClubService.getAllMiniClub().subscribe(data => {

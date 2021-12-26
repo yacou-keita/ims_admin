@@ -125,29 +125,34 @@ export class AppointmentEditComponent implements OnInit {
   }
   onSubmit(){
     this.appointmentForm.markAllAsTouched();
-    if(this.appointmentForm.valid){
-      if(this.isEditmode){
-          Object.assign(this.appoinment, this.appointmentForm.value);
-          this.appointmentService.UpdateEventById(this.appoinment).subscribe(()=>{})
-          this.toastrService.success('Updated the Appointment Info',"Success");
-      }else{
-        this.appoinment = Object.assign({}, this.appointmentForm.value);
-        this.appoinment.parent = this.appoinment.child.parent;
-        this.appoinment.type = AppointmentType.FREE;
-        this.appointmentService.CreateEvent(this.appoinment).subscribe(data => {
-          this.toastrService.success('Registered the New Appointment',"Success");
-          localStorage.setItem('childappointments','true')
-          localStorage.setItem('appointedChild',data.parent)
-          this.userId = data.child
-          this.router.navigate([`/appointment/${data.child}`]);
-        })
+    if(this.submitButton == 'Reschedule'){
+      this.reschedule()
+    }else {
+      if(this.appointmentForm.valid){
+        if(this.isEditmode){
+            Object.assign(this.appoinment, this.appointmentForm.value);
+            this.appointmentService.UpdateEventById(this.appoinment).subscribe(()=>{})
+            this.toastrService.success('Updated the Appointment Info',"Success");
+        }else{
+          this.appoinment = Object.assign({}, this.appointmentForm.value);
+          this.appoinment.parent = this.appoinment.child.parent;
+          this.appoinment.type = AppointmentType.FREE;
+          this.appointmentService.CreateEvent(this.appoinment).subscribe(data => {
+            this.toastrService.success('Registered the New Appointment',"Success");
+            localStorage.setItem('childappointments','true')
+            localStorage.setItem('appointedChild',data.parent)
+            this.userId = data.child
+            this.router.navigate([`/appointment/${data.child}`]);
+          })
+        }
       }
     }
+    
   }
   reschedule(){
     let dat = { 
       "appointment_id":this.appoinment.id,
-      "status": "reschedule",
+      "status": "pending",
       "child_id":this.appoinment.child.id,
       "teacher_id":this.appoinment.parent.id
     }

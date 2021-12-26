@@ -62,7 +62,7 @@
                     <label class="label col-sm-6">{{'Note : Requested for reschedule the appointment date' | translate}}</label>
                 </div>          
                 <div class="row justify-content-end" *ngIf = "showButtons; else statusBlock">
-                    <input nbInput type="submit" value="{{submitButton}}" (click)="reschedule()">
+                    <input nbInput type="submit" value="{{submitButton}}">
                     <input nbInput type="submit" value="Accept" (click)="accept()" *ngIf="accpt" style="margin-left: 10px;">
                 </div>
                 <ng-template #statusBlock>

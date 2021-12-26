@@ -168,18 +168,32 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
     }
   }
   onDeleteEvent(event: CalendarEvent): void {
+    console.log('event >>',event)
     this.dialogService.open(YesNoDialogComponent,{context:{
       title:'Are you sure?'
     }}).onClose.subscribe(ret=>{
       if(ret==true){
-        this.appointmentService.deleteEventById(event.id).subscribe(_=>{
-          let index = this.events.findIndex(item=>{
-            return item.id == event.id;
-          })
-          this.events.splice(index,1);
-          this.events = Object.assign([], this.events);
-          this.toastrService.success('Deleted the Appointment',"Success");
-        });
+        if(event.meta == 'free'){
+          this.appointmentService.deleteEventById(event.id).subscribe(_=>{
+            let index = this.events.findIndex(item=>{
+              return item.id == event.id;
+            })
+            this.events.splice(index,1);
+            this.events = Object.assign([], this.events);
+            this.toastrService.success('Deleted the Appointment',"Success");
+          });
+        }else if(event.meta == 'preset'){
+          this.appointmentService.deletePresetAppointmentById(event.id).subscribe(_=>{
+            let index = this.events.findIndex(item=>{
+              return item.id == event.id;
+            })
+            this.events.splice(index,1);
+            this.events = Object.assign([], this.events);
+            window.location.reload();
+            this.toastrService.success('Deleted the Preset Appointment',"Success");
+          });
+        }
+        
       }
     });
     
