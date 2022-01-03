@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from "../../../environments/environment";
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { pictures, children } from "../dummy";
-import { ChildPicture } from '../models/picture';
+import { ChildPicture, Picture } from '../models/picture';
 import { user as dummy_user, users as dummyUsers, user, users } from "../dummy";
 import { Child } from '../models/child';
 @Injectable({
@@ -27,5 +27,9 @@ export class PictureService {
     // })
     // data.pictures = pictures;
     // return of(data);
+  }
+
+  removePictures(pictures:any):Observable<any>{
+        return this.httpClient.delete(`${this.api_url}/child/deletePicture/${pictures.id}/`);
   }
 }

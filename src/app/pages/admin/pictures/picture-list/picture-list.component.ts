@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { PictureService } from "../../../../@core/services/picture.service";
 import { Lightbox } from 'ngx-lightbox';
 import { NbUser } from '@nebular/auth';
+import { Picture } from '../../../../@core/models/picture';
 
 @Component({
   selector: 'ngx-picture-list',
@@ -47,13 +48,22 @@ export class PictureListComponent implements OnInit {
     // open lightbox
     this._lightbox.open(this._album, index, {
           centerVertically: true,
-          fitImageInViewPort: false
+          fitImageInViewPort: true
         });
   }
 
   close(): void {
     // close lightbox programmatically
     this._lightbox.close();
+  }
+
+  removePicture(picture: any){
+    this.pictureService.removePictures(picture).subscribe(_=>{
+      this.pictures= this.pictures.filter(item => item.id != picture.id);
+      this.pictures.forEach(item=>{
+        this._album.push({src:item.image});
+      }) 
+    });
   }
 
 }

@@ -10,6 +10,7 @@
         <div class="item col-sm-2 mb-4" *ngFor="let picture of pictures; let i= index">
             <img  class="img-content" [src]="picture.image" (click)="open(i)" />
             <!-- <div class="img-content" [ngStyle]="{'background-image':  'url(' + picture.image + ')'}"></div> -->
+            <br><button nbTooltip="{{'Delete' | translate}}"  nbButton ghost (click)="removePicture(picture)"> <nb-icon icon="trash-outline"  style="color: blue;"></nb-icon> </button>
         </div>
     </nb-card-body>
 </nb-card> 
