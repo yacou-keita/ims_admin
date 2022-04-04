@@ -18,6 +18,6 @@ import { SharedTranslateModule } from '../../../shared-translate/shared-translat
     NbButtonModule,
     NbIconModule,
     SharedTranslateModule,
-  ]
+  ],
 })
 export class SchoolDocumentsModule { }

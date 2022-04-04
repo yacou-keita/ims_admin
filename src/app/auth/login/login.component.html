@@ -1,5 +1,5 @@
 <div class="img">
-  <img src="media/upload/photo/logo.png" style="height: 50px; padding-left: 40%;">
+  <img src="../../../assets/images/logo.png" style="height: 50px; padding-left: 40%;">
 </div>
 <h1 id="title" class="title">{{'IMS Admin Portal Login' | translate}}</h1>
 <!-- <p class="sub-title">{{'Hello! Log in with your email' | translate}}.</p> -->
@@ -54,7 +54,7 @@
            [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
            required
            [attr.aria-invalid]="password.invalid && password.touched ? true : null">
-      <i class="fa fa-eye-slash" (click)="showPassword = !showPassword"></i>
+      <i [ngClass]="showPassword ? 'fa fa-eye':'fa fa-eye-slash'" (click)="changeShowPasswordValue()"></i>
     </div>
     <ng-container *ngIf="password.invalid && password.touched ">
       <p class="error-message" *ngIf="password.errors?.required">
