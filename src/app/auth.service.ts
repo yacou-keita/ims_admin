@@ -12,6 +12,7 @@ import { environment } from "../environments/environment";
 export class AuthService {
   api_url = environment.API_URL;
   constructor(private httpClient:HttpClient, public router:Router) { }
+  
   login(username,pwd) {
     var reqHeader = new HttpHeaders({ 'No-Auth':'True' });
     return this.httpClient.post<any>(`${this.api_url}/user/login/`,{

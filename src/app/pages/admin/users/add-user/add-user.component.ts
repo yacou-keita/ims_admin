@@ -49,20 +49,35 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // if(this.role_name == 'Teacher'){
+    //   this.title = 'New Teacher'
+    //   this.role = 3;
+    // }else if(this.role_name == 'Admin'){
+    //   this.title = 'New Admin'
+    //   this.role = 2;
+    // }
+    // else if(this.role_name == 'Assistant'){
+    //   this.title = 'New Assistant'
+    //   this.role = 6;
+    // }
+    // else if(this.role_name == 'Personnel'){
+    //   this.title = 'New Personnel'
+    //   this.role = 7;
+    // }
     if(this.role_name == 'Teacher'){
       this.title = 'New Teacher'
-      this.role = 3;
+      this.role = 7;
     }else if(this.role_name == 'Admin'){
       this.title = 'New Admin'
-      this.role = 2;
+      this.role = 6;
     }
     else if(this.role_name == 'Assistant'){
       this.title = 'New Assistant'
-      this.role = 6;
+      this.role = 10;
     }
     else if(this.role_name == 'Personnel'){
       this.title = 'New Personnel'
-      this.role = 7;
+      this.role = 11;
     }
   }
   isInvalidControl = isInvalidControl;

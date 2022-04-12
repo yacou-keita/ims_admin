@@ -51,21 +51,21 @@ export class UsersComponent implements OnInit, OnDestroy {
   //     }      
   //   },
   // };
-  searchWord:string;
+  searchWord: string;
   role;
-  roles=[];
+  roles = [];
   private destroy$: Subject<void> = new Subject<void>();
 
 
-  constructor(private userService: UsersService,private route:ActivatedRoute,
-    private router:Router,) {
+  constructor(private userService: UsersService, private route: ActivatedRoute,
+    private router: Router,) {
     // this.teacher_src = new LocalDataSource();
     // this.parent_src = new LocalDataSource();
     // this.admin_src = new LocalDataSource();
     // this.assistant_src = new LocalDataSource();
     // this.personnel_src = new LocalDataSource();
   }
-  
+
   ngOnInit(): void {
     // this.userService.getTeachers().pipe(takeUntil(this.destroy$)).subscribe((teachers:User[])=>{
     //   this.teachers = teachers;
@@ -77,20 +77,31 @@ export class UsersComponent implements OnInit, OnDestroy {
     //   this.admin_src.load(this.admins);
     //   this.userService.localSource = this.admin_src;
     // })
-    localStorage.setItem('fromChild','false');
-    localStorage.setItem('fromPicture','false')
-    this.userService.getRoles().subscribe((roles) =>{
+    localStorage.setItem('fromChild', 'false');
+    localStorage.setItem('fromPicture', 'false')
+    this.userService.getRoles().subscribe((roles) => {
       this.roles = roles;
+      console.log('yacou test roles',this.roles)
     })
-    this.userService.getAllUsers().pipe(takeUntil(this.destroy$)).subscribe( (user:User[]) => {
+    this.userService.getAllUsers().pipe(takeUntil(this.destroy$))
+    .subscribe((user: User[]) => {
       user.forEach((item) => {
-        if(item.role == 2){
+        // if (item.role == 2) {
+        //   this.admins.push(item)
+        // } else if (item.role == 3) {
+        //   this.teachers.push(item)
+        // } else if (item.role == 6) {
+        //   this.assistants.push(item)
+        // } else if (item.role == 7) {
+        //   this.personnels.push(item)
+        // }
+        if (item.role == 6) {
           this.admins.push(item)
-        }else if(item.role == 3){
+        } else if (item.role == 7) {
           this.teachers.push(item)
-        }else if(item.role == 6){
+        } else if (item.role == 10) {
           this.assistants.push(item)
-        }else if(item.role == 7){
+        } else if (item.role == 11) {
           this.personnels.push(item)
         }
       })
@@ -104,11 +115,11 @@ export class UsersComponent implements OnInit, OnDestroy {
       // this.userService.localSource = this.personnel_src;
     })
   }
-  onSelect(selectedUser:User){
-    this.router.navigate([selectedUser.id],{relativeTo:this.route})
+  onSelect(selectedUser: User) {
+    this.router.navigate([selectedUser.id], { relativeTo: this.route })
   }
-  newTeacher(val){
-    localStorage.setItem('role_name',val);
+  newTeacher(val) {
+    localStorage.setItem('role_name', val);
     this.router.navigate(['users/new'])
   }
   // onSearchWordChange(newWord:string){
@@ -120,7 +131,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   //     this.teacher_src.setFilter(null);
   //   }    
   // }
-  ngOnDestroy() {    
+  ngOnDestroy() {
     this.userService.localSource = undefined;
     this.destroy$.next();
     this.destroy$.complete();
