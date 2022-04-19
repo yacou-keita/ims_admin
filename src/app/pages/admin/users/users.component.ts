@@ -79,29 +79,17 @@ export class UsersComponent implements OnInit, OnDestroy {
     // })
     localStorage.setItem('fromChild', 'false');
     localStorage.setItem('fromPicture', 'false')
-    this.userService.getRoles().subscribe((roles) => {
-      this.roles = roles;
-      console.log('yacou test roles',this.roles)
-    })
+    this.initRoles();
     this.userService.getAllUsers().pipe(takeUntil(this.destroy$))
     .subscribe((user: User[]) => {
       user.forEach((item) => {
-        // if (item.role == 2) {
-        //   this.admins.push(item)
-        // } else if (item.role == 3) {
-        //   this.teachers.push(item)
-        // } else if (item.role == 6) {
-        //   this.assistants.push(item)
-        // } else if (item.role == 7) {
-        //   this.personnels.push(item)
-        // }
-        if (item.role == 6) {
+        if (item.role == 2) {
           this.admins.push(item)
-        } else if (item.role == 7) {
+        } else if (item.role == 3) {
           this.teachers.push(item)
-        } else if (item.role == 10) {
+        } else if (item.role == 6) {
           this.assistants.push(item)
-        } else if (item.role == 11) {
+        } else if (item.role == 7) {
           this.personnels.push(item)
         }
       })
@@ -115,13 +103,20 @@ export class UsersComponent implements OnInit, OnDestroy {
       // this.userService.localSource = this.personnel_src;
     })
   }
+  private initRoles() {
+    this.userService.getRoles().subscribe((roles) => {
+      this.roles = roles;
+    });
+  }
+
   onSelect(selectedUser: User) {
     this.router.navigate([selectedUser.id], { relativeTo: this.route })
   }
-  newTeacher(val) {
-    localStorage.setItem('role_name', val);
+  addNewPerson(setRoleName) {
+    localStorage.setItem('role_name', setRoleName);
     this.router.navigate(['users/new'])
   }
+
   // onSearchWordChange(newWord:string){
   //   this.searchWord = newWord;
   //   if(this.searchWord){

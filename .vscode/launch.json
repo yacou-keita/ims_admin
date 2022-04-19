@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "name": "http://onFormSubmit",
+            "request": "launch",
+            "url": "http://onFormSubmit"
+        }
+    ]
+}

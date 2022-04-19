@@ -23,7 +23,9 @@ export class MiniClubService {
     return this.httpClient.get<MiniClub[]>(`${this.api_url}/miniclubs/${id}/`);
   }
   addNewMiniClub(data:any):Observable<any>{
+    console.log('yacou test',data)
     return this.httpClient.post(`${this.api_url}/miniclubs/`, data);
+    // eturn this.httpClient.post(`http://3.136.224.87/api/miniclubs/`, data);
   }
   removeMiniClub(data:MiniClub):Observable<any>{
     return this.httpClient.delete(`${this.api_url}/miniclubs/${data.id}/`);

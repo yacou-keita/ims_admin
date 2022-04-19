@@ -57,6 +57,7 @@ export class ClubFormComponent implements OnInit {
       })
       
     }
+
     this.clubForm = this.fb.group({
       title:['', Validators.required],
       startDate:[null, Validators.nullValidator],
@@ -90,6 +91,7 @@ export class ClubFormComponent implements OnInit {
       this.clubForm.reset(this.initdata)
     }
   }
+
   checked(eve,child){
     if(eve == true){
       this.clubForm.value.children.forEach(val => {
@@ -105,17 +107,24 @@ export class ClubFormComponent implements OnInit {
       })
     }
   }
+
   onFormSubmit(){
     this.clubForm.markAllAsTouched();
+    console.log('formulair envoiye:',this.clubForm.markAllAsTouched())
     if(this.clubForm.valid){
       this.club = Object.assign(this.initdata, this.clubForm.value);
+      
       // this.club.children.forEach(val => {
       //   if(val.isPaid == true){
       //     this.club.isPaid.push(val.id)
       //   }
       // })
+      console.log('onFormSubmit',this.club)
       this.submitEvent.emit(this.club);
     }
   }
+
+
+
   isInvalidControl = isInvalidControl
 }
