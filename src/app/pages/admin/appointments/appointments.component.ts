@@ -84,9 +84,11 @@ export class AppointmentsComponent implements OnInit {
   }
   teacherDetails(){
    this.teacherSelected = true;
+   this.childSelected = false;
   }
   childDetails(){
     this.childSelected = true;
+    this.teacherSelected = false;
   }
   onTeacherSelect(event){
     localStorage.setItem('landing','false');

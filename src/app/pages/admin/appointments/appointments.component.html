@@ -1,6 +1,6 @@
 <nb-card>
     <nb-card-header>
-        <button *ngIf="teacherSelected || childSelected" nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon> </button>
+        <button *ngIf="teacherSelected || childSelected" nbTooltip="{{'Back' | translate}}"  nbButton ghost (click)="back()"> <nb-icon icon="arrow-back-outline"  style="color: black;">arrow-back-outline</nb-icon></button>
         <button type="button" nbButton (click)="teacherDetails()" ghost>
             {{'Teachers & Admins' | translate}}
         </button>
