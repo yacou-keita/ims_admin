@@ -33,7 +33,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/schooldocuments'
   },
   {
-    title: 'Teachers & Admins',
+    title: 'Admins & Teachers',
     icon: 'people-outline',
     link: '/users',
     
