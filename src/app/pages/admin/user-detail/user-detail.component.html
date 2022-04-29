@@ -121,7 +121,7 @@
                         <input [nbPopover]="card" nbPopoverPlacement="bottom" nbInput
                             [type]="showPassword ? 'text' : 'password'" fullWidth
                             [status]="isInvalidControl(passwordForm,'pwd')?'danger':'basic'" formControlName="pwd">
-                        <i class="fa fa-eye-slash" (click)="showPassword = !showPassword"></i>
+                        <i [ngClass]="showPassword ? 'fa fa-eye':'fa fa-eye-slash'" (click)="changeShowPasswordValue()"></i>
                         <div *ngIf="isInvalidControl(passwordForm,'pwd')">
                             <span class="error-text" *ngIf="passwordForm.get('pwd').errors.required">{{'required' |
                                 translate}}</span>
@@ -145,7 +145,7 @@
                         <input nbInput [type]="showPassword1 ? 'text' : 'password'" fullWidth
                             [status]="isInvalidControl(passwordForm,'confirm_pwd')?'danger':'basic'"
                             formControlName="confirm_pwd">
-                        <i class="fa fa-eye-slash" (click)="showPassword1 = !showPassword1"></i>
+                        <i [ngClass]="showPassword1 ? 'fa fa-eye':'fa fa-eye-slash'" (click)="changeShowPassword1Value()"></i>
                         <div *ngIf="isInvalidControl(passwordForm,'confirm_pwd')">
                             <span class="error-text" *ngIf="passwordForm.get('confirm_pwd').errors.mustMatch">Passwords
                                 doesn't match</span>
@@ -155,6 +155,7 @@
                 </form>
             </nb-card-body>
         </nb-card>
+
         <nb-card>
             <nb-card-header>
                 Classrooms
