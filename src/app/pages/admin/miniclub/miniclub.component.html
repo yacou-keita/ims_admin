@@ -50,12 +50,13 @@
                     <div class="mt-2">
                         <div *ngFor="let child of clubinfo.children" class="my-2 row" style="display:flex;">
                             <div class="col-3">
-                                <nb-user [picture]="child.photo" [name]=formatName(child.first_name,child.last_name)>
-                            </nb-user>
+                                <nb-user [picture]="child.photo" [name]=formatName(child.first_name,child.last_name)
+                                    nbTooltip="{{getFullName(child.first_name,child.last_name)}}">
+                                </nb-user>
                             </div>
                             <div class="col-1 pt-2">
-                                <nb-checkbox  (checkedChange)="checked($event, child)"
-                                    [checked]="child.isPaid" disabled>{{'Paid' | translate}}</nb-checkbox>
+                                <nb-checkbox (checkedChange)="checked($event, child)" [checked]="child.isPaid" disabled>
+                                    {{'Paid' | translate}}</nb-checkbox>
                             </div>
                         </div>
                     </div>

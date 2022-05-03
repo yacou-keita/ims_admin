@@ -93,13 +93,17 @@ export class MiniclubComponent implements OnInit {
       }
     })
   }
-  
-  formatName(first_name:String,last_name:String):String {
+
+  getFullName(first_name: String, last_name: String): String {
     const name = `${first_name} ${last_name}`
-    return this.display_specific_characters  (name,15)
+    return name
+  }
+  formatName(first_name: String, last_name: String): String {
+    const name = `${first_name} ${last_name}`
+    return this.display_specific_characters(name, 15)
   }
 
-   display_specific_characters  (text, count){
+  display_specific_characters(text, count) {
     return text.slice(0, count) + (text.length > count ? "..." : "");
-}
+  }
 }

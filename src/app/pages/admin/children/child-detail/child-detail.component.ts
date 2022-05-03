@@ -17,54 +17,54 @@ import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 @Component({
   selector: 'ngx-child-detail',
   templateUrl: './child-detail.component.html',
-  styleUrls: ['./child-detail.component.scss','../add-child/add-child.component.scss']
+  styleUrls: ['./child-detail.component.scss', '../add-child/add-child.component.scss']
 })
 export class ChildDetailComponent implements OnInit {
-  childForm:FormGroup;
-  childId:number;
-  currentUser = {role:{} , role_name:{} , classNames:{}} as User;
-  child:Child;
+  childForm: FormGroup;
+  childId: number;
+  currentUser = { role: {}, role_name: {}, classNames: {} } as User;
+  child: Child;
   classNameList = [];
   selectedItem;
   nationalities = [];
   selectedNation = [];
-  privacy = ['Video','NewsLetter','FridaysLetter','InternetSite','Yearbook','Flyer','Magazine','Facebook','Instagram'];
+  privacy = ['Video', 'NewsLetter', 'FridaysLetter', 'InternetSite', 'Yearbook', 'Flyer', 'Magazine', 'Facebook', 'Instagram'];
   privacySelected = [];
-  others = ['Reenrollment','DischargeOfResponibility','ImageRights','HealthProtocol','FinancialContract','InterieurRules'];
+  others = ['Reenrollment', 'DischargeOfResponibility', 'ImageRights', 'HealthProtocol', 'FinancialContract', 'InterieurRules'];
   othersSelected = [];
-  video:boolean = false;
-  newsLetter:boolean = false;
-  fridaysLetter:boolean = false;
-  internetSite:boolean = false;
-  yearbook:boolean = false;
-  flyer:boolean = false;
-  magazine:boolean = false;
-  facebook:boolean = false;
-  instagram:boolean = false;
-  reenrollment:boolean = false;
-  dischargeOfResponibility:boolean = false;
-  imageRights:boolean = false;
-  healthProtocol:boolean = false;
-  financialContract:boolean = false;
-  interieurRules:boolean = false;
+  video: boolean = false;
+  newsLetter: boolean = false;
+  fridaysLetter: boolean = false;
+  internetSite: boolean = false;
+  yearbook: boolean = false;
+  flyer: boolean = false;
+  magazine: boolean = false;
+  facebook: boolean = false;
+  instagram: boolean = false;
+  reenrollment: boolean = false;
+  dischargeOfResponibility: boolean = false;
+  imageRights: boolean = false;
+  healthProtocol: boolean = false;
+  financialContract: boolean = false;
+  interieurRules: boolean = false;
   constructor(
-    private route:ActivatedRoute,
-    private router:Router,
-    private userService:UsersService,
-    private childService:ChildService,
-    private toastService:ToastService,
-    private fb:FormBuilder,
-    private dialogService:NbDialogService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UsersService,
+    private childService: ChildService,
+    private toastService: ToastService,
+    private fb: FormBuilder,
+    private dialogService: NbDialogService,
     private dateTimeAdapter: DateTimeAdapter<any>
-  ) { 
+  ) {
     dateTimeAdapter.setLocale('en-IN')
-    this.userService.getCurrentUser().subscribe((user:User)=>{this.currentUser = user;})
+    this.userService.getCurrentUser().subscribe((user: User) => { this.currentUser = user; })
     this.route.paramMap.pipe(switchMap(
       params => {
         this.childId = Number(params.get('childId'));
         return this.childService.getChildById(this.childId);
       }
-    )).subscribe((child:Child) => {
+    )).subscribe((child: Child) => {
       this.child = child;
       this.childForm.reset(child);
       // if(this.child.flag_video == true){
@@ -94,73 +94,73 @@ export class ChildDetailComponent implements OnInit {
       // if(this.child.flag_instagram == true){
       //   this.privacySelected.push('instagram')
       // }
-      if(this.child.flag_re_enrollment == true){
+      if (this.child.flag_re_enrollment == true) {
         this.othersSelected.push('Reenrollment')
       }
-      if(this.child.flag_responsibility_discharge == true){
+      if (this.child.flag_responsibility_discharge == true) {
         this.othersSelected.push('DischargeOfResponibility')
       }
-      if(this.child.flag_image_rights == true){
+      if (this.child.flag_image_rights == true) {
         this.othersSelected.push('ImageRights')
       }
-      if(this.child.flag_health_protocols == true){
+      if (this.child.flag_health_protocols == true) {
         this.othersSelected.push('HealthProtocol')
       }
-      if(this.child.flag_fin_contract == true){
+      if (this.child.flag_fin_contract == true) {
         this.othersSelected.push('FinancialContract')
       }
-      if(this.child.flag_interieur_rules == true){
+      if (this.child.flag_interieur_rules == true) {
         this.othersSelected.push('InterieurRules')
       }
-      if(this.child.privacyRights){
+      if (this.child.privacyRights) {
         this.child.privacyRights.forEach(val => {
-          if(val.Video == 'true'){
+          if (val.Video == 'true') {
             this.privacySelected.push('Video')
           }
-          if(val.NewsLetter == 'true'){
+          if (val.NewsLetter == 'true') {
             this.privacySelected.push('NewsLetter')
           }
-          if(val.FridaysLetter == 'true'){
+          if (val.FridaysLetter == 'true') {
             this.privacySelected.push('FridaysLetter')
           }
-          if(val.InternetSite == 'true'){
+          if (val.InternetSite == 'true') {
             this.privacySelected.push('InternetSite')
           }
-          if(val.Yearbook == 'true'){
+          if (val.Yearbook == 'true') {
             this.privacySelected.push('Yearbook')
           }
-          if(val.Flyer == 'true'){
+          if (val.Flyer == 'true') {
             this.privacySelected.push('Flyer')
           }
-          if(val.Magazine == 'true'){
+          if (val.Magazine == 'true') {
             this.privacySelected.push('Magazine')
           }
-          if(val.Facebook == 'true'){
+          if (val.Facebook == 'true') {
             this.privacySelected.push('Facebook')
           }
-          if(val.Instagram == 'true'){
+          if (val.Instagram == 'true') {
             this.privacySelected.push('Instagram')
           }
-  
+
         })
       }
-      
+
       this.userService.getClasses().subscribe((classes) => {
         this.classNameList = classes;
-        this.classNameList.forEach((val,i)=>{
-          if(this.child.nameOfClass == val.name){
+        this.classNameList.forEach((val, i) => {
+          if (this.child.nameOfClass == val.name) {
             this.selectedItem = val.name;
           }
         })
       })
-      this.userService.getNationalities().subscribe((nationalities) =>{
+      this.userService.getNationalities().subscribe((nationalities) => {
         this.nationalities = nationalities;
-        let nat = this.child.nationality.substring(2, this.child.nationality.length-2).split('\", \"');
+        let nat = this.child.nationality.substring(2, this.child.nationality.length - 2).split('\", \"');
         //this.child.nationality = nat
         //nat = nat.split('\", \"')
-        this.nationalities.forEach((val,i)=>{
-         nat.forEach((v,i) => {
-            if(v == val.name){
+        this.nationalities.forEach((val, i) => {
+          nat.forEach((v, i) => {
+            if (v == val.name) {
               this.selectedNation.push(val)
             }
           })
@@ -174,238 +174,247 @@ export class ChildDetailComponent implements OnInit {
       //this.child.nationality = this.child.nationality.replace(/[\[\]'"]+/g,'')//(/[&\/\\#+()$~%.'":*?<>{}]/g, '');
     })
   }
-  private destroy$:Subject<void>=new Subject<void>();
+  private destroy$: Subject<void> = new Subject<void>();
   ngOnInit(): void {
     this.childForm = this.fb.group({
-      photo:[undefined],
-      photoFile:[undefined],
+      photo: [undefined],
+      photoFile: [undefined],
       first_name: ['', Validators.required],
-      last_name:  ['', Validators.required],
+      last_name: ['', Validators.required],
       // moment().subtract(15,'years').toDate()
-      birth:['', Validators.required],
-      gender:['', Validators.required],
+      birth: ['', Validators.required],
+      gender: ['', Validators.required],
       // nationality:['',Validators.required],
-      nationality:[[],Validators.required],
-      address:[''],
-      nameOfClass:['', Validators.required],
-      firstNameOfMother:['',Validators.required],
-      lastNameOfMother:['',Validators.required],
-      phoneOfMother:[''],
-      firstNameOfFather:['', Validators.required],
-      lastNameOfFather:['',Validators.required],
-      emailOfMother:['',[Validators.email]],
-      phoneOfFather:[''],
-      emailOfFather:['',[Validators.email]],
-      flag_video:[''],
-      flag_newsletter:[''],
-      flag_friday_letter:[''],
-      flag_internet_sites:[''],
-      flag_yearbook:[''],
-      flag_flyer:[''],
-      flag_magazine:[''],
-      flag_facebook:[''],
-      flag_instagram:[''],
-      flag_re_enrollment:[''],
-      flag_responsibility_discharge:[''],
-      flag_image_rights:[''],
-      flag_health_protocols:[''],
-      flag_fin_contract:[''],
-      flag_interieur_rules:[''],
-      privacyRights:[[]]  
+      nationality: [[], Validators.required],
+      address: [''],
+      nameOfClass: ['', Validators.required],
+      firstNameOfMother: ['', Validators.required],
+      lastNameOfMother: ['', Validators.required],
+      phoneOfMother: [''],
+      firstNameOfFather: ['', Validators.required],
+      lastNameOfFather: ['', Validators.required],
+      emailOfMother: ['', [Validators.email]],
+      phoneOfFather: [''],
+      emailOfFather: ['', [Validators.email]],
+      flag_video: [''],
+      flag_newsletter: [''],
+      flag_friday_letter: [''],
+      flag_internet_sites: [''],
+      flag_yearbook: [''],
+      flag_flyer: [''],
+      flag_magazine: [''],
+      flag_facebook: [''],
+      flag_instagram: [''],
+      flag_re_enrollment: [''],
+      flag_responsibility_discharge: [''],
+      flag_image_rights: [''],
+      flag_health_protocols: [''],
+      flag_fin_contract: [''],
+      flag_interieur_rules: [''],
+      privacyRights: [[]]
     });
-    
+
   }
-  onSiblingClick(sibling:Child){
-    this.router.navigate([`../${sibling.id}`],{relativeTo:this.route});
+
+  
+  display_specific_characters(text, count) {
+    return text.slice(0, count) + (text.length > count ? "..." : "");
   }
-  onRemoveSiblingClick(){
-    this.dialogService.open(YesNoDialogComponent,{context:{
-      title:'This child will be removed from sibling. Are you going to continue?'
-    }}).onClose.subscribe(ret=>{
-      if(ret==true)
-        this.childService.RemoveChildFromSibling(this.child).subscribe( groupId=>{
+  onSiblingClick(sibling: Child) {
+    this.router.navigate([`../${sibling.id}`], { relativeTo: this.route });
+  }
+  onRemoveSiblingClick() {
+    this.dialogService.open(YesNoDialogComponent, {
+      context: {
+        title: 'This child will be removed from sibling. Are you going to continue?'
+      }
+    }).onClose.subscribe(ret => {
+      if (ret == true)
+        this.childService.RemoveChildFromSibling(this.child).subscribe(groupId => {
           this.child.sibling_group = groupId;
-          this.child.siblings_data=[];          
+          this.child.siblings_data = [];
         })
     })
   }
-  onAddSiblingClick(){
-    this.router.navigate(['addsiblings'],{relativeTo:this.route});
+  onAddSiblingClick() {
+    this.router.navigate(['addsiblings'], { relativeTo: this.route });
   }
-  onSetPWDClick(){
-    this.router.navigate(['setpwd'],{relativeTo:this.route});
+  onSetPWDClick() {
+    this.router.navigate(['setpwd'], { relativeTo: this.route });
   }
-  privacyCheck(event,name){
-    if(name == 'Video'){
+  privacyCheck(event, name) {
+    if (name == 'Video') {
       this.video = true
     }
-    if(name == 'NewsLetter'){
+    if (name == 'NewsLetter') {
       this.newsLetter = true
     }
-    if(name == 'FridaysLetter'){
+    if (name == 'FridaysLetter') {
       this.fridaysLetter = true
     }
-    if(name == 'InternetSite'){
+    if (name == 'InternetSite') {
       this.internetSite = true
     }
-    if(name == 'Yearbook'){
+    if (name == 'Yearbook') {
       this.yearbook = true
     }
-    if(name == 'Flyer'){
+    if (name == 'Flyer') {
       this.flyer = true
     }
-    if(name == 'Magazine'){
+    if (name == 'Magazine') {
       this.magazine = true
     }
-    if(name == 'Facebook'){
+    if (name == 'Facebook') {
       this.facebook = true
     }
-    if(name == 'Instagram'){
+    if (name == 'Instagram') {
       this.instagram = true
     }
 
   }
-  othersCheck(event,name){
-    if(name == 'Reenrollment'){
+  othersCheck(event, name) {
+    if (name == 'Reenrollment') {
       this.reenrollment = true
     }
-    if(name == 'DischargeOfResponibility'){
+    if (name == 'DischargeOfResponibility') {
       this.dischargeOfResponibility = true
     }
-    if(name == 'ImageRights'){
+    if (name == 'ImageRights') {
       this.imageRights = true
     }
-    if(name == 'HealthProtocol'){
+    if (name == 'HealthProtocol') {
       this.healthProtocol = true
     }
-    if(name == 'FinancialContract'){
+    if (name == 'FinancialContract') {
       this.financialContract = true
     }
-    if(name == 'InterieurRules'){
+    if (name == 'InterieurRules') {
       this.interieurRules = true
     }
 
   }
-  back(){
+  back() {
     this.router.navigate(['/children']);
   }
-  isTeacher(){
+  isTeacher() {
     return this.currentUser.role_name == USERROLE.Teacher;
   }
-  getPhotoOfChild(){
-    if(this.child)
-      return this.child.photo? this.child.photo:'';
+  getPhotoOfChild() {
+    if (this.child)
+      return this.child.photo ? this.child.photo : '';
     return '';
   }
-  isAdmin(user:User){
+  isAdmin(user: User) {
     return user.role_name == USERROLE.Admin;
   }
-  changeListener(event):void {
-    if(event.target.files && event.target.files[0]){
+  changeListener(event): void {
+    if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
 
-      reader.onload = (event:any) => {
-        this.childForm.get('photo').setValue(event.target.result);        
+      reader.onload = (event: any) => {
+        this.childForm.get('photo').setValue(event.target.result);
       }
       this.childForm.get('photoFile').setValue(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
       console.log('photo >>', this.childForm)
     }
   }
-  dailyInfo(){
+  dailyInfo() {
     this.router.navigate([`/childdailyinformation/${this.child.id}`])
   }
-  onSubmit(){ 
+  onSubmit() {
     this.childForm.markAllAsTouched();
-    if(this.childForm.valid){
-      let data=this.childForm.value;
+    if (this.childForm.valid) {
+      let data = this.childForm.value;
       let nat = [];
       data.nameOfClass = this.selectedItem;
-      
-      if(data.nationality.length > 1){
-        data.nationality.forEach((val,i)=>{
-              nat.push(val.name);
+
+      if (data.nationality.length > 1) {
+        data.nationality.forEach((val, i) => {
+          nat.push(val.name);
         })
         data.nationality = nat;
       }
-      
-      if(!data.photo) data.photo = undefined;
-      if(!data.photoFile) delete data.photo
-      if(this.video){
-        data.privacyRights.push({'Video':"true"});
+
+      if (!data.photo) data.photo = undefined;
+      if (!data.photoFile) delete data.photo
+      if (this.video) {
+        data.privacyRights.push({ 'Video': "true" });
       }
-      if(this.newsLetter){
-        data.privacyRights.push({'NewsLetter':"true"});
+      if (this.newsLetter) {
+        data.privacyRights.push({ 'NewsLetter': "true" });
       }
-      if(this.fridaysLetter){
-        data.privacyRights.push({'FridaysLetter':"true"});
+      if (this.fridaysLetter) {
+        data.privacyRights.push({ 'FridaysLetter': "true" });
       }
-      if(this.internetSite){
-        data.privacyRights.push({'InternetSite':"true"});
+      if (this.internetSite) {
+        data.privacyRights.push({ 'InternetSite': "true" });
       }
-      if(this.yearbook){
-        data.privacyRights.push({'Yearbook':"true"});
+      if (this.yearbook) {
+        data.privacyRights.push({ 'Yearbook': "true" });
       }
-      if(this.flyer){
-        data.privacyRights.push({'Flyer':"true"});
+      if (this.flyer) {
+        data.privacyRights.push({ 'Flyer': "true" });
       }
-      if(this.magazine){
-        data.privacyRights.push({'Video':"true"});
+      if (this.magazine) {
+        data.privacyRights.push({ 'Video': "true" });
       }
-      if(this.facebook){
-        data.privacyRights.push({'Facebook':"true"});
+      if (this.facebook) {
+        data.privacyRights.push({ 'Facebook': "true" });
       }
-      if(this.instagram){
-        data.privacyRights.push({'Instagram':"true"});
+      if (this.instagram) {
+        data.privacyRights.push({ 'Instagram': "true" });
       }
-      if(this.magazine){
-        data.privacyRights.push({'Magazine':'true'})
+      if (this.magazine) {
+        data.privacyRights.push({ 'Magazine': 'true' })
       }
-      if(this.reenrollment){
+      if (this.reenrollment) {
         data.flag_re_enrollment = this.reenrollment;
       }
-      if(this.dischargeOfResponibility){
+      if (this.dischargeOfResponibility) {
         data.flag_responsibility_discharge = this.dischargeOfResponibility;
       }
-      if(this.imageRights){
+      if (this.imageRights) {
         data.flag_image_rights = this.imageRights;
       }
-      if(this.healthProtocol){
+      if (this.healthProtocol) {
         data.flag_health_protocols = this.healthProtocol;
       }
-      if(this.financialContract){
+      if (this.financialContract) {
         data.flag_fin_contract = this.financialContract;
       }
-      if(this.interieurRules){
+      if (this.interieurRules) {
         data.flag_interieur_rules = this.interieurRules;
       }
 
       data.authPersons = []
       data.emergencyContacts = []
-      
+
       data.birth = moment(data.birth).format("YYYY-MM-DD")
-      this.childService.UpdateChild(this.childId,data).subscribe(_=>{
-        this.toastService.success('Child Details has been updated successfully','success');
+      this.childService.UpdateChild(this.childId, data).subscribe(_ => {
+        this.toastService.success('Child Details has been updated successfully', 'success');
         this.router.navigate(['/children']);
       })
     }
   }
-  onDelete(){
-    this.dialogService.open(YesNoDialogComponent,{context:{
-      title:'Are you sure?'
-    }}).onClose.subscribe(ret=>{
-      if(ret==true)
-        this.childService.deleteChild(this.childId).subscribe(_=>{
-          this.toastService.warning('Child has been deleted','Delete');
-          this.router.navigate(['..'],{relativeTo:this.route});
+  onDelete() {
+    this.dialogService.open(YesNoDialogComponent, {
+      context: {
+        title: 'Are you sure?'
+      }
+    }).onClose.subscribe(ret => {
+      if (ret == true)
+        this.childService.deleteChild(this.childId).subscribe(_ => {
+          this.toastService.warning('Child has been deleted', 'Delete');
+          this.router.navigate(['..'], { relativeTo: this.route });
         })
-    })    
+    })
   }
-  get photo():string{
-    return this.childForm.get('photo').value? this.childForm.get('photo').value : '';
+  get photo(): string {
+    return this.childForm.get('photo').value ? this.childForm.get('photo').value : '';
   }
   isInvalidControl = isInvalidControl;
-  ngOnDestroy() {    
+  ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
