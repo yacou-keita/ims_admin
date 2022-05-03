@@ -2,7 +2,7 @@
     <nb-card-header>
       <div class="align-items-center">
         {{'Menu of This Year' | translate }}
-        <button nbButton style="float:right" nbTooltip="Add Food to this Menu" (click)="addNewFood()"> {{'Add New Food' | translate}} </button>
+        <button nbButton style="float:right" nbTooltip="Add a New Dish" (click)="addNewFood()"> {{'Add a New Dish' | translate}} </button>
         </div>
     </nb-card-header>
     <nb-card-body>
@@ -12,7 +12,7 @@
         <!-- <nb-select (selectedChange) ="onDayChange($event)" [selected]="selectedDay">
             <nb-option *ngFor="let dayname of dayNameList" [value]="dayname">{{dayname}}</nb-option>
         </nb-select> -->
-        <button nbButton style="float:right" nbTooltip="Add Food to this Menu" (click)="onAddFood()"> {{'Add Food To The Day' | translate}} </button>
+        <button nbButton style="float:right" nbTooltip="Add To Menu" (click)="onAddFood()"> {{'Add To Menu' | translate}} </button>
         <nb-tabset (changeTab)="onDayChange($event.tabTitle)">  	
             <nb-tab *ngFor="let dayname of dayNameList" tabTitle="{{dayname | translate}}"> </nb-tab>	
         </nb-tabset>
