@@ -153,6 +153,10 @@ export const TEACHER_MENU_ITEMS: NbMenuItem[] = [
     link: '/teacher/schooldocuments'
   },
   {
+    title:'Detail School Documents',
+    link: '/teacher/schooldocuments/detail'
+  },
+  {
     title:'Message Center',
     icon:{
       icon:'inbox',

@@ -13,52 +13,63 @@ import { UsersService } from '../../../@core/services/users.service';
 })
 export class NotificationComponent implements OnInit {
   //private currentUserSubscription:Subscription;
-  private user:User;
+  private user: User;
   notifications
-  constructor(private router:Router,private userService:UsersService, private notificationService: NotificationService) { }
+  constructor(private router: Router, private userService: UsersService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe((user:User)=>{
+    this.userService.getCurrentUser().subscribe((user: User) => {
       this.user = user;
       this.notificationService.getNotification(user.id).subscribe(data => {
         this.notifications = data;
-       })
+      })
     })
-   
+
   }
-  compose(){
+  compose() {
     this.router.navigate(['/notification/compose'])
   }
-  getFormatDate(date:string){
+  getFormatDate(date: string) {
     let md = moment(date);
-    if(md.isValid)
+    if (md.isValid)
       return md.format('LT');
     return '';
   }
-  goTo(not){
-    this.notificationService.putNotification(not.id).subscribe(res =>{
+  goTo(not) {
+
+    this.notificationService.putNotification(not.id).subscribe(res => {
       console.log('ret >>', res)
-      this.notificationService.getNotification(this.user.id).subscribe( data => {
+      this.notificationService.getNotification(this.user.id).subscribe(data => {
         console.log('notification data >>', data)
         this.notifications = data;
       })
     })
-    if(not.module == 'Appointment')
+
+    if (not.module == 'Appointment')
       this.router.navigate([`/appointment`]);
-    else if(not.module == 'Message')
+    else if (not.module == 'Message')
       this.router.navigate([`/messagecenter`]);
-    else if(not.module == 'School-Document')
+    else if (not.module == 'School-Document'){
+      if (this.user.role_name === "Teacher"){
+        this.router.navigate(['/teacher/schooldocuments'])
+        return
+      }
       this.router.navigate(['/schooldocuments'])
+    }
+      
+    
+      
 
   }
-  delete(not){
-    console.log('not >>',not)
-    this.notificationService.deleteNotification(not.id).subscribe(res =>{
+  delete(not) {
+    console.log('not >>', not)
+    this.notificationService.deleteNotification(not.id).subscribe(res => {
       console.log('ret >>', res)
-      this.notificationService.getNotification(this.user.id).subscribe( data => {
+      this.notificationService.getNotification(this.user.id).subscribe(data => {
         console.log('notification data >>', data)
         this.notifications = data;
       })
     })
   }
+
 }

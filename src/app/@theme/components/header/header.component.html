@@ -1,18 +1,13 @@
 <div class="header-container">
   <div class="logo-container">
-    <a
-      href="#"
-      class="sidebar-toggle"
-      matRipple
-      [matRippleUnbounded]="true"
-      [matRippleCentered]="true"
-      (click)="toggleSidebar()"
-    >
+    <a href="#" class="sidebar-toggle" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true"
+      (click)="toggleSidebar()">
       <nb-icon [icon]="(materialTheme$ | async) ? 'menu-outline' : 'menu-2-outline'"></nb-icon>
     </a>
-    <img src="./assets/images/logo.png" *ngIf="isAdmin(user)" (click)="redirecturl()" style="max-width: 80px; cursor: pointer;">
+    <img src="./assets/images/logo.png" *ngIf="isAdmin(user)" (click)="redirecturl()"
+      style="max-width: 80px; cursor: pointer;">
     <a class="logo" href="#" (click)="navigateHome()">{{title | translate}}</a>
-    
+
   </div>
 </div>
 
@@ -24,28 +19,20 @@
     </nb-select>
   </nb-action> -->
   <nb-actions size="small">
-    <nb-action class="sss" >
+    <nb-action class="sss">
       <div>
-        <ngx-flag-picker
-        [selectedCountryCode]="selectedCountryCode"
-        [showLabels] = "false"
-        [countryCodes]="countryCodes"
-        (changedCountryCode)="changeSelectedCountryCode($event)">
-      </ngx-flag-picker>
+        <ngx-flag-picker [selectedCountryCode]="selectedCountryCode" [showLabels]="false" [countryCodes]="countryCodes"
+          (changedCountryCode)="changeSelectedCountryCode($event)">
+        </ngx-flag-picker>
       </div>
-      
+
     </nb-action>
-    
-    <nb-action class="sss" icon="bell-outline" badgeText="{{notificationLength}}"
-    badgePosition="top right"
-    badgeStatus="info" (click)="onNotification()"></nb-action>
+
+    <nb-action class="sss" icon="bell-outline" badgeText="{{notificationLength}}" badgePosition="top right"
+      badgeStatus="info" (click)="onNotification()"></nb-action>
     <nb-action class="user-action">
-      <nb-user [nbContextMenu]="userMenu"
-               [onlyPicture]="userPictureOnly"
-               nbContextMenuTag="my-profile-tag"
-               nbContextMenuTrigger="hover"
-               [name]="user?.first_name +' '+ user?.last_name"
-               [picture]="user?.picture">
+      <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" nbContextMenuTag="my-profile-tag"
+        nbContextMenuTrigger="hover" [name]="user?.first_name +' '+ user?.last_name" [picture]="user?.picture">
       </nb-user>
     </nb-action>
   </nb-actions>
