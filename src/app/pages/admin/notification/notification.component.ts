@@ -51,7 +51,8 @@ export class NotificationComponent implements OnInit {
       this.router.navigate([`/messagecenter`]);
     else if (not.module == 'School-Document'){
       if (this.user.role_name === "Teacher"){
-        this.router.navigate(['/teacher/schooldocuments'])
+        this.router.navigate(['/teacher/schooldocument',not.id])
+
         return
       }
       this.router.navigate(['/schooldocuments'])
